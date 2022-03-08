@@ -18,8 +18,8 @@
 # You can create any custom variable you would like, and they will be accessible
 # in the templates via {{ site.myvariable }}.
 
-title: Parsons UI Example
-email: support@codio.com
+title: Website Name
+email: djmiller@naperville203.org
 description: # >- # this means to ignore newlines until "baseurl:"
   Drag or shuffle the blocks of code in the practice problems below.
   Remember to indent where appropriate by dragging blocks to the right. <br/>
@@ -28,8 +28,8 @@ description: # >- # this means to ignore newlines until "baseurl:"
   To start over, press the "Reset Problem" button.
 baseurl: "/hosting-parsons-on-github-template" # the subpath of your site, e.g. /blog
 url: "" # the base hostname & protocol for your site, e.g. http://example.com
-twitter_username:
-github_username:
+twitter_username: MillerNCHS
+github_username: MillerNCHS
 
 # Build settings
 theme: jekyll-theme-cayman
