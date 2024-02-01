@@ -2,8 +2,8 @@
 // Dr. Miller
 // Start your React app using npm start while in the client directory
 
+import React, { useEffect, useState } from "react";
 import './App.css';
-import React, { useState, useEffect } from "react";
 
   // You can use this function for sending POST requests You can modify it if you want to use it for GET requests as well
   // This is an asynchronous function meaning that it returns a Promise
@@ -55,7 +55,9 @@ function App() {
   return (
     <div className="App">
       <header className="App-header">
-      <h1>{message}</h1>
+      <h1><ul>
+        <li>{message}</li> 
+      </ul></h1>
 
       </header>
       
