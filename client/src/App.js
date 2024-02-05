@@ -58,9 +58,16 @@ function App() {
       <h1><ul>
         <li>{message}</li> 
       </ul></h1>
-
-      </header>
       
+      </header>
+      <body className="App-body">
+        <button type = "browse_button">Browse Problems database...</button>
+        <button type = "import_button">Import</button>
+        <button type = "reset_button">Reset</button>
+        <button type = "check_button">Check</button>
+        <button type = "save_button">Save</button>
+        <button type = "saveas_button">Save As</button>
+      </body>
     </div>
   );
 }
