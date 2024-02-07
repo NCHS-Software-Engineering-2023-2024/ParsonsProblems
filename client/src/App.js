@@ -56,17 +56,31 @@ function App() {
     <div className="App">
       <header className="App-header">
       <h1><ul>
-        <li>{message}</li> 
+        <li>NCHS Parsons Problems</li> 
       </ul></h1>
       
       </header>
       <body className="App-body">
-        <button type = "browse_button">Browse Problems database...</button>
-        <button type = "import_button">Import</button>
-        <button type = "reset_button">Reset</button>
-        <button type = "check_button">Check</button>
-        <button type = "save_button">Save</button>
-        <button type = "saveas_button">Save As</button>
+        
+          <div class="flex-browse">
+          <button type = "button" id = "browse_button">Browse problems database...</button>
+          <button type = "button" id = "import_button">Import problem</button>
+          </div>
+
+          <div class = "box">
+
+          </div>
+
+          <div class = "flex-reset">
+          <button type = "button" id = "reset_button">Reset</button>
+          <button type = "button" id = "check_button">Check</button>
+          </div>
+        
+        
+        
+        
+        <button type = "button" id = "save_button">Save</button>
+        <button type = "button" id = "saveas_button">Save As</button>
       </body>
     </div>
   );

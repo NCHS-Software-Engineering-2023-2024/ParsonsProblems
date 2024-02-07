@@ -18,7 +18,7 @@ app.use(express.json());
 // res is the result object of the request
 // The result is converted to a JSON object with a key of message and value "Hello from server!"
 app.get('/message', (req, res) => {
-    res.json({ message: "Hello from server!" });
+    res.json({ message: "NCHS Parsons Problems!" });
 });
 
 
