@@ -62,16 +62,22 @@ function App() {
       </header>
       <body className="App-body">
         
-          <div class="flex-browse">
+          <div class="flex-row">
           <button type = "button" id = "browse_button">Browse problems database...</button>
           <button type = "button" id = "import_button">Import problem</button>
+          
+          <div class = "right">
+          <button type = "button" id = "save_button">Save</button>
+          <button type = "button" id = "saveas_button">Save As</button>
+          </div>
+          
           </div>
 
           <div class = "box">
 
           </div>
 
-          <div class = "flex-reset">
+          <div class = "flex-row">
           <button type = "button" id = "reset_button">Reset</button>
           <button type = "button" id = "check_button">Check</button>
           </div>
@@ -79,8 +85,7 @@ function App() {
         
         
         
-        <button type = "button" id = "save_button">Save</button>
-        <button type = "button" id = "saveas_button">Save As</button>
+        
       </body>
     </div>
   );

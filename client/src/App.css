@@ -66,14 +66,13 @@ button{
 
 
 
-.flex-browse {
+.flex-row {
   display: flex;
   flex-direction: row;
 }
 
-.flex-reset {
-  display: flex;
-  flex-direction: row;
+.flex-row .right{
+  justify-content: space-between;
 }
 
 .box {
