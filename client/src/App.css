@@ -38,12 +38,12 @@ li {
   }
 
 .App-body{
-  background-color: rgb(218, 210, 210);
+  background-color: rgb(240, 230, 230);
   min-height: 100vh;
+  padding-top: 1%;
   padding-left: 20%;
-  
+  padding-right: 20%;
 }
-
 
 .App-link {
   color: #61dafb;
@@ -61,6 +61,7 @@ li {
 button{
   padding: 16px 32px;
   text-align: center;
+  font-size: 18px;
   cursor: pointer;
 }
 
@@ -68,15 +69,28 @@ button{
 
 .flex-row {
   display: flex;
+  flex: 1;
   flex-direction: row;
 }
 
 .flex-row .right{
-  justify-content: space-between;
+  float: right;
+  margin-left: auto;
 }
 
 .box {
   min-height: 500px;
   min-width: 500px;
   background-color: aquamarine;
+}
+
+
+.footer {
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  background-color: red;
+  color: white;
+  text-align: center;
 }

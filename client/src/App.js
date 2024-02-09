@@ -57,6 +57,7 @@ function App() {
       <header className="App-header">
       <h1><ul>
         <li>NCHS Parsons Problems</li> 
+
       </ul></h1>
       
       </header>
@@ -84,7 +85,10 @@ function App() {
         
         
         
-        
+        <div class = "footer">
+          <p> hi</p>
+
+        </div>
         
       </body>
     </div>
