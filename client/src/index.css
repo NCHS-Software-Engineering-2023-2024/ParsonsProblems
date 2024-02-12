@@ -12,8 +12,13 @@ code {
     monospace;
 }
 
+.test-box {
+  width: 600px;
+  background-color: #29e;
+}
 
-drag-1, drag-2 {
+drag-1, drag-2, drag-3 {
+  border-style: outset;
   width: 25%;
   min-height: 6.5em;
   margin: 1rem 0 0 1rem;

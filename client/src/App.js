@@ -36,16 +36,17 @@ interact('.draggable')
     modifiers: [
       interact.modifiers.snap({
         targets: [
-          interact.snappers.grid({ x: 30, y: 30 })
+          interact.snappers.grid({ x: 60, y: 30 })
         ],
         range: Infinity,
         relativePoints: [ { x: 0, y: 0 } ]
       }),
       interact.modifiers.restrict({
         restriction: 'parent',
-        elementRect: { top: 0, left: 0, bottom: 1, right: 1 },
+        elementRect: { top: 0, left: .5, bottom: 0, right: .5 },
         endOnly: true
       })
+  
     ],
 
     listeners: {
@@ -103,33 +104,26 @@ function App() {
       .then((data) => {setMessage(data.message);}
       );
   }, []);
-  
-
+  const textboxes = [
+      {"order":"1", "content":"asdf1"},
+      {"order":"2", "content":"asdf2"},
+      {"order":"3", "content":"asdf3"}
+    ];
   // The message variable is displayed below and will update, if necessary
   // You can put any Javascript (JSX) code within curly brackets in a React app
   return (
     <div className="App">
       <header className="App-header">
       
-    
-        <div id="drag-1" class="draggable">
-          <p> 1 </p>
+        <div class="test-box">
+          
+        {
+            textboxes.map((box) => 
+              React.createElement('div', {id: "drag-"+box.order, class:"draggable"}, box.content)
+            )
+        }
         </div>
-        <div id="drag-2" class="draggable">
-          <p> 2 </p>
-        </div>
-        <div id="drag-2" class="draggable">
-          <p> 3 </p>
-        </div>
-        <div id="drag-2" class="draggable">
-          <p> 4 </p>
-        </div>
-        <div id="drag-2" class="draggable">
-          <p> 5 </p>
-        </div>
-        <div id="drag-2" class="draggable">
-          <p> 6 </p>
-        </div>
+
         
       </header>
       
