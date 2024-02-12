@@ -71,7 +71,28 @@ function App() {
           <button type = "button" id = "save_button">Save</button>
           <button type = "button" id = "saveas_button">Save As</button>
           </div>
-          
+          <div style={{
+      display: 'flex',
+      margin: 'auto',
+      width: 400,
+      flexWrap: 'wrap',
+    }}>
+      
+      <input
+        type="file"
+        accept="image/*"
+        style={{ display: 'none' }}
+        id="contained-button-file"
+      />
+      <label htmlFor="contained-button-file">
+        <button variant="contained" color="primary" component="span">
+          Upload
+        </button>
+      </label>
+      <input accept="image/*" id="icon-button-file"
+        type="file" style={{ display: 'none' }} />
+      
+    </div>
           </div>
 
           <div class = "box">
