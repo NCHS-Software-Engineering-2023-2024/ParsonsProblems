@@ -4,7 +4,7 @@
 
 import React, { useEffect, useState } from "react";
 import './App.css';
-import SingleFileUpload, {ContainedButtons} from "./Fileupload";
+import SingleFileUpload from "./Fileupload";
 
   // You can use this function for sending POST requests You can modify it if you want to use it for GET requests as well
   // This is an asynchronous function meaning that it returns a Promise
@@ -31,6 +31,18 @@ import SingleFileUpload, {ContainedButtons} from "./Fileupload";
 }
 
 function App() {
+  
+  const dialogElem = document.getElementById("dialog");
+  const showBtn = document.querySelector(".show");
+  const closeBtn = document.querySelector(".close");
+
+  showBtn.addEventListener("click", () => {
+    dialogElem.showModal();
+  });
+
+  closeBtn.addEventListener("click", () => {
+    dialogElem.close();
+  });
   // Use this variable whenever you want to connect to the Node.js server
   // When you create production version of a React app, this address will change
   const baseURL = "http://localhost:8000/";
@@ -62,14 +74,22 @@ function App() {
       
       </header>
       <body className="App-body">
-        <button type = "browse_button">Browse Problems database...</button>
-        <button type = "import_button">Import</button>
-        <button type = "reset_button">Reset</button>
-        <button type = "check_button">Check</button>
-        <button type = "save_button">Save</button>
-        <button type = "saveas_button">Save As</button>
-        <button type="fileupload">{SingleFileUpload()}</button>
+        <button type = "button">Browse Problems database...</button>
+        <button type = "button">Import</button>
+        <button type = "button">Reset</button>
+        <button type = "button">Check</button>
+        <button type = "button">Save</button>
+        <button type = "button" id = ".show">Save As</button>
+        <dialog id="dialog">
+          Content here
+          <button class="close">close</button>
+        </dialog>
+        {SingleFileUpload()}
       </body>
+
+      <div className = "box">
+        
+      </div>
     </div>
   );
 }

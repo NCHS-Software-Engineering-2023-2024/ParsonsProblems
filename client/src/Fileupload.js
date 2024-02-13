@@ -34,7 +34,6 @@ const SingleFileUpload = () => {
 
    return (
    <div>
-      <h2>Single File Upload</h2>
       <input type="file" onChange={handleFileChange} />
       <button onClick={handleUpload}>Upload</button>
    </div>
