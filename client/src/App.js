@@ -4,6 +4,7 @@
 
 import React, { useEffect, useState } from "react";
 import './App.css';
+import SingleFileUpload, {ContainedButtons} from "./Fileupload";
 
   // You can use this function for sending POST requests You can modify it if you want to use it for GET requests as well
   // This is an asynchronous function meaning that it returns a Promise
@@ -56,61 +57,18 @@ function App() {
     <div className="App">
       <header className="App-header">
       <h1><ul>
-        <li>NCHS Parsons Problems</li> 
-
+        <li>{message}</li> 
       </ul></h1>
       
       </header>
       <body className="App-body">
-        
-          <div class="flex-row">
-          <button type = "button" id = "browse_button">Browse problems database...</button>
-          <button type = "button" id = "import_button">Import problem</button>
-          
-          <div class = "right">
-          <button type = "button" id = "save_button">Save</button>
-          <button type = "button" id = "saveas_button">Save As</button>
-          </div>
-          <div style={{
-      display: 'flex',
-      margin: 'auto',
-      width: 400,
-      flexWrap: 'wrap',
-    }}>
-      
-      <input
-        type="file"
-        accept="image/*"
-        style={{ display: 'none' }}
-        id="contained-button-file"
-      />
-      <label htmlFor="contained-button-file">
-        <button variant="contained" color="primary" component="span">
-          Upload
-        </button>
-      </label>
-      <input accept="image/*" id="icon-button-file"
-        type="file" style={{ display: 'none' }} />
-      
-    </div>
-          </div>
-
-          <div class = "box">
-
-          </div>
-
-          <div class = "flex-row">
-          <button type = "button" id = "reset_button">Reset</button>
-          <button type = "button" id = "check_button">Check</button>
-          </div>
-        
-        
-        
-        <div class = "footer">
-          <p> hi</p>
-
-        </div>
-        
+        <button type = "browse_button">Browse Problems database...</button>
+        <button type = "import_button">Import</button>
+        <button type = "reset_button">Reset</button>
+        <button type = "check_button">Check</button>
+        <button type = "save_button">Save</button>
+        <button type = "saveas_button">Save As</button>
+        <button type="fileupload">{SingleFileUpload()}</button>
       </body>
     </div>
   );
