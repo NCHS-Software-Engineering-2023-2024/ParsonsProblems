@@ -29,7 +29,7 @@ li {
 }
 
 .App-header {
-  background-color: #282c34;
+  background-color: rgb(240, 230, 230);
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -59,10 +59,14 @@ li {
 }
 
 button{
+  font-family: "Calibri";
   padding: 16px 32px;
   text-align: center;
   font-size: 18px;
   cursor: pointer;
+  
+  border-radius: 12px;
+  border-color: white;
 }
 
 
@@ -79,9 +83,9 @@ button{
 }
 
 .box {
-  min-height: 500px;
+  min-height: 700px;
   min-width: 500px;
-  background-color: aquamarine;
+  background-color: rgba(255, 255, 255, 0.637);
 }
 
 
