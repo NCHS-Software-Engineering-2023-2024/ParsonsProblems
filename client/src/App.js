@@ -107,7 +107,7 @@ function App() {
         
         
         <div class = "footer">
-          <p> hi</p>
+          <p> Created by Aryan Pradhan, Celeste Emery, Seth Tan, and Andrew Bukowski.</p>
 
         </div>
         
