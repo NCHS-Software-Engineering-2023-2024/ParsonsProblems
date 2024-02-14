@@ -4,6 +4,7 @@
 
 import React, { useEffect, useState } from "react";
 import './App.css';
+import SingleFileUpload, {ContainedButtons} from "./Fileupload";
 
   // You can use this function for sending POST requests You can modify it if you want to use it for GET requests as well
   // This is an asynchronous function meaning that it returns a Promise
@@ -56,8 +57,7 @@ function App() {
     <div className="App">
       <header className="App-header">
       <h1><ul>
-        <li>NCHS Parsons Problems</li> 
-
+        <li>{message}</li> 
       </ul></h1>
       
       </header>
