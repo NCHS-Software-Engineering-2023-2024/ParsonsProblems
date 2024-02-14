@@ -3,7 +3,7 @@ ul {
   top: 0;
   width: 100%;
   list-style-type: none;
-  background-color: #FF0000;
+  
   margin: 0;
   padding: 0;
 }
@@ -29,21 +29,20 @@ li {
 }
 
 .App-header {
-  background-color: rgb(206, 66, 66);
+  background-color: #CD3D8E;
   display: flex;
   flex-direction: column;
   justify-content: center;
   font-size: calc(10px + 2vmin);
-  color: white;
+  color: whitesmoke;
   }
 
 .App-body{
-  background-color: rgb(240, 230, 230);
   min-height: 100vh;
   padding-top: 1%;
   padding-left: 20%;
   padding-right: 20%;
-  background: linear-gradient(90deg, #efd5ff 0%, #515ada 100%);
+  background-color: #8339AB;
 }
 
 .App-link {
@@ -65,9 +64,9 @@ button{
   text-align: center;
   font-size: 18px;
   cursor: pointer;
-  background: linear-gradient(90deg, #0700b8 0%, #00ff88 100%);
+  background-color: #FF4C4C;
+  color: whitesmoke;
   border-radius: 12px;
-  
   border: none;
 }
 
@@ -97,8 +96,8 @@ button{
   left: 0;
   bottom: 0;
   width: 100%;
-  background-color: rgb(206, 66, 66);
-  color: white;
+  background-color: #CD3D8E;
+  color: whitesmoke;
   text-align: center;
 }
 
@@ -106,3 +105,9 @@ button{
   opacity: 0.6;
   cursor: not-allowed;
 }
+
+.nav-buttons {
+  width:25%;
+  padding-right: 100px;
+}
+

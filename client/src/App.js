@@ -64,17 +64,18 @@ function App() {
       <body className="App-body">
         
           <div class="flex-row">
-          <button type = "button" id = "browse_button">Browse problems database...</button>
-          <button type = "button" id = "import_button">Import problem</button>
-          
+            <button type = "button" id = "browse_button" class = "nav-buttons">Browse problems database...</button>
+            <button type = "button" id = "import_button" class = "nav-buttons">Import problem</button>
+          </div>
+
           <div class = "right">
-          <button type = "button" id = "save_button">Save</button>
-          <button type = "button" id = "saveas_button">Save As</button>
+            <button type = "button" id = "save_button" class = "nav-buttons">Save</button>
+            <button type = "button" id = "saveas_button" class = "nav-buttons">Save As</button>
           </div>
           <div style={{
       display: 'flex',
       margin: 'auto',
-      width: 400,
+      width: 100,
       flexWrap: 'wrap',
     }}>
       
@@ -93,7 +94,7 @@ function App() {
         type="file" style={{ display: 'none' }} />
       
     </div>
-          </div>
+          
 
           <div class = "box">
 
