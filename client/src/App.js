@@ -4,6 +4,7 @@
 // import file upload
 import React, { useEffect, useState } from "react";
 import './App.css';
+import { PopUp } from "./pop-up.js";
   // You can use this function for sending POST requests You can modify it if you want to use it for GET requests as well
   // This is an asynchronous function meaning that it returns a Promise
   // A Promise means it will either return a valid value or reject the request
@@ -33,7 +34,6 @@ function App() {
   // Use this variable whenever you want to connect to the Node.js server
   // When you create production version of a React app, this address will change
   const baseURL = "http://localhost:8000/";
-
   // This is an example variable (message) that can be changed with the setMessage function
   // The initial state of the message is an empty string. When the variable is changed, it changes everywhere it is used.
   // This is referred to as a state hook
@@ -62,11 +62,12 @@ function App() {
       </header>
       <body className="App-body">
         <button type = "button">Browse Problems database...</button>
+        
         <button type = "button">Import</button>
         <button type = "button">Reset</button>
         <button type = "button">Check</button>
         <button type = "button">Save</button>
-        <button type = "button" onClick = {() => this.SingleFileUpload}>Save As</button>
+        {PopUp}
         
         
       </body>
