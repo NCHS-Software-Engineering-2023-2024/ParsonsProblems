@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import {SingleFileUpload} from "./Fileupload";
 
 const PopUp = ({ idMessage }) => {
   // create state `open` with default as false
@@ -22,10 +23,8 @@ const PopUp = ({ idMessage }) => {
           id={idMessage}
           tabIndex="-1"
           role="dialog"
-          aria-labelledby="exampleModalLabel"
-          aria-hidden="true"
         >
-          content
+          {SingleFileUpload()}
         </div>
       )}
     </>
