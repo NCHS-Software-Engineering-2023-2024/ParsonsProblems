@@ -4,7 +4,10 @@
 
 import React, { useEffect, useState } from "react";
 import './App.css';
+import Button from 'react-bootstrap/Button';
+import 'bootstrap/dist/css/bootstrap.min.css';
 import SingleFileUpload, {ContainedButtons} from "./Fileupload";
+
 
   // You can use this function for sending POST requests You can modify it if you want to use it for GET requests as well
   // This is an asynchronous function meaning that it returns a Promise
@@ -55,63 +58,12 @@ function App() {
   // You can put any Javascript (JSX) code within curly brackets in a React app
   return (
     <div className="App">
-      <header className="App-header">
-      <h1><ul>
-        <li>{message}</li> 
-      </ul></h1>
       
-      </header>
       <body className="App-body">
         
-          <div class="flex-row">
-            <button type = "button" id = "browse_button" class = "nav-buttons">Browse problems database...</button>
-            <button type = "button" id = "import_button" class = "nav-buttons">Import problem</button>
-          </div>
+        <div class = "container-md border">Content</div>
 
-          <div class = "right">
-            <button type = "button" id = "save_button" class = "nav-buttons">Save</button>
-            <button type = "button" id = "saveas_button" class = "nav-buttons">Save As</button>
-          </div>
-          <div style={{
-      display: 'flex',
-      margin: 'auto',
-      width: 100,
-      flexWrap: 'wrap',
-    }}>
-      
-      <input
-        type="file"
-        accept="image/*"
-        style={{ display: 'none' }}
-        id="contained-button-file"
-      />
-      <label htmlFor="contained-button-file">
-        <button variant="contained" color="primary" component="span">
-          Upload
-        </button>
-      </label>
-      <input accept="image/*" id="icon-button-file"
-        type="file" style={{ display: 'none' }} />
-      
-    </div>
           
-
-          <div class = "box">
-
-          </div>
-
-          <div class = "flex-row">
-          <button type = "button" id = "reset_button">Reset</button>
-          <button type = "button" id = "check_button">Check</button>
-          </div>
-        
-        
-        
-        <div class = "footer">
-          <p> Created by Aryan Pradhan, Celeste Emery, Seth Tan, and Andrew Bukowski.</p>
-
-        </div>
-        
       </body>
     </div>
   );
