@@ -1,9 +1,12 @@
 // Video4Ever Starter Code
 // Dr. Miller
 // Start your React app using npm start while in the client directory
-import interact from 'interactjs';
 import './App.css';
 import React, { useState, useEffect } from "react";
+import { render } from 'react-dom' ;
+import Example from './example';
+import { DndProvider } from 'react-dnd';
+import { HTML5Backend } from 'react-dnd-html5-backend';
 
   // You can use this function for sending POST requests You can modify it if you want to use it for GET requests as well
   // This is an asynchronous function meaning that it returns a Promise
@@ -28,124 +31,6 @@ import React, { useState, useEffect } from "react";
     });
     return response.json(); // parses JSON response into native JavaScript objects
 }
-/* */
-// target elements with the "draggable" class
-interact('.draggable')
-  .draggable({
-    // keep the element within the area of it's parent
-    modifiers: [
-      interact.modifiers.snap({
-        targets: [
-          interact.snappers.grid({ x: 60, y: 30 })
-        ],
-        range: Infinity,
-        relativePoints: [ { x: 0, y: 0 } ]
-      }),
-      interact.modifiers.restrict({
-        restriction: 'parent',
-        elementRect: { top: 0, left: .5, bottom: 0, right: .5 },
-        endOnly: true
-      })
-  
-    ],
-
-    listeners: {
-      // call this function on every dragmove event
-      move: dragMoveListener
-      
-      //changes element text to "element moved xyz pixels idk"
-      // call this function on every dragend event
-      //end (event) {
-        /*
-        var textEl = event.target.querySelector('p')
-
-        textEl && (textEl.textContent =
-          'moved a distance of ' +
-          (Math.sqrt(Math.pow(event.pageX - event.x0, 2) +
-                     Math.pow(event.pageY - event.y0, 2) | 0))
-            .toFixed(2) + 'px')
-            */
-      //}
-    }
-  })
-  .resizable({
-    // resize from all edges and corners
-
-    listeners: {
-      move (event) {
-        var target = event.target
-
-        // update the element's style
-        target.style.width = event.rect.width + 'px'
-      }
-    },
-    modifiers: [
-      // keep the edges inside the parent
-      interact.modifiers.restrictEdges({
-        outer: 'parent'
-      }),
-
-      // minimum size
-      interact.modifiers.restrictSize({
-        min: { width: 100, height: 50 }
-      })
-    ],
-
-  })
-
-function dragMoveListener (event) {
-  var target = event.target;
-  // keep the dragged position in the data-x/data-y attributes
-  var x = (parseFloat(target.getAttribute('data-x')) || 0) + event.dx;
-  var y = (parseFloat(target.getAttribute('data-y')) || 0) + event.dy;
-
-  // translate the element
-  target.style.transform = 'translate(' + x + 'px, ' + y + 'px)';
-
-  // update the posiion attributes
-  target.setAttribute('data-x', x);
-  target.setAttribute('data-y', y);
-}
-// this function is used later in the resizing and gesture demos
-window.dragMoveListener = dragMoveListener;
-
-interact('.dropzone').dropzone({
-  // only accept elements matching this CSS selector
-  accept: '#yes-drop',
-  // Require a 75% element overlap for a drop to be possible
-  overlap: 0.75,
-
-  // listen for drop related events:
-
-  ondropactivate: function (event) {
-    // add active dropzone feedback
-    event.target.classList.add('drop-active')
-  },
-  ondragenter: function (event) {
-    var draggableElement = event.relatedTarget
-    var dropzoneElement = event.target
-
-    // feedback the possibility of a drop
-    dropzoneElement.classList.add('drop-target')
-    draggableElement.classList.add('can-drop')
-    draggableElement.textContent = 'Dragged in'
-  },
-  ondragleave: function (event) {
-    // remove the drop feedback style
-    event.target.classList.remove('drop-target')
-    event.relatedTarget.classList.remove('can-drop')
-    event.relatedTarget.textContent = 'Dragged out'
-  },
-  ondrop: function (event) {
-    event.relatedTarget.textContent = 'Dropped'
-  },
-  ondropdeactivate: function (event) {
-    // remove active dropzone feedback
-    event.target.classList.remove('drop-active')
-    event.target.classList.remove('drop-target')
-  }
-})
-
 function App() {
   // Use this variable whenever you want to connect to the Node.js server
   // When you create production version of a React app, this address will change
@@ -165,28 +50,20 @@ function App() {
       .then((data) => {setMessage(data.message);}
       );
   }, []);
-  const textboxes = [
-      {"order":"1", "content":"asdf1"},
-      {"order":"2", "content":"asdf2"},
-      {"order":"3", "content":"asdf3"}
-    ];
+    /* textboxes.map((box) => 
+              React.createElement('div', {id: "drag-"+box.order, class:"draggable"}, box.content)
+            )
+            */
   // The message variable is displayed below and will update, if necessary
   // You can put any Javascript (JSX) code within curly brackets in a React app
   return (
     <div className="App">
       <header className="App-header">
       
-        <div class="test-box">
-          
-        {
-            textboxes.map((box) => 
-              React.createElement('div', {id: "drag-"+box.order, class:"draggable"}, box.content)
-            )
-        }
-        </div>
-        <div id="drag-1" class="dropzone">#inner-dropzone</div>
-
         
+				<DndProvider backend={HTML5Backend}>
+					<Example />
+				</DndProvider>
       </header>
       
     </div>

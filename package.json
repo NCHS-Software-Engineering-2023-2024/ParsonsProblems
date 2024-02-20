@@ -1,6 +1,16 @@
 {
   "dependencies": {
+    "faker": "^6.6.6",
+    "immutability-helper": "^3.1.1",
     "interactjs": "^1.10.26",
-    "mysql2": "^3.6.5"
+    "lodash": "^4.17.21",
+    "mysql2": "^3.6.5",
+    "prop-types": "^15.8.1",
+    "react-dnd": "^16.0.1",
+    "react-dnd-html5-backend": "^16.0.1",
+    "react-dom": "^18.2.0",
+    "react-frame-component": "^5.2.6",
+    "typescript": "^5.3.3",
+    "web-vitals": "^3.5.2"
   }
 }
