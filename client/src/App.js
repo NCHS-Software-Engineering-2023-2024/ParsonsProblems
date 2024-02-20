@@ -4,8 +4,8 @@
 // import file upload
 import React, { useEffect, useState } from "react";
 import './App.css';
-import PopUp from "./pop-up.js";
 import { SingleFileUpload } from "./Fileupload.js";
+import PopUp from "./pop-up.js";
   // You can use this function for sending POST requests You can modify it if you want to use it for GET requests as well
   // This is an asynchronous function meaning that it returns a Promise
   // A Promise means it will either return a valid value or reject the request
@@ -69,9 +69,6 @@ function App() {
         <button type = "button">Check</button>
         <button type = "button">Save</button>
         <div id = "filepopup">{PopUp(SingleFileUpload)}</div>
-        
-        
-        
       </div>
 
       <div className = "box">

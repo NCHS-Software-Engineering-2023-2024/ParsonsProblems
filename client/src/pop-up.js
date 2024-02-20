@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import {SingleFileUpload} from "./Fileupload";
+import { SingleFileUpload } from "./Fileupload";
 
 const PopUp = ({ idMessage }) => {
   // create state `open` with default as false
@@ -14,6 +14,7 @@ const PopUp = ({ idMessage }) => {
         data-toggle="modal"
         data-target={`#${idMessage}`}
       >
+        Upload
         {idMessage}
       </button>
       {/* If open is true show <div /> */}
