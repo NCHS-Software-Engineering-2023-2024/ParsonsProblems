@@ -4,7 +4,7 @@
 import './App.css';
 import React, { useState, useEffect } from "react";
 import { render } from 'react-dom' ;
-import Example from './example';
+import { Container } from './Container';
 import { DndProvider } from 'react-dnd';
 import { HTML5Backend } from 'react-dnd-html5-backend';
 
@@ -58,14 +58,10 @@ function App() {
   // You can put any Javascript (JSX) code within curly brackets in a React app
   return (
     <div className="App">
-      <header className="App-header">
       
-        
 				<DndProvider backend={HTML5Backend}>
-					<Example />
+					<Container />
 				</DndProvider>
-      </header>
-      
     </div>
   );
 }
