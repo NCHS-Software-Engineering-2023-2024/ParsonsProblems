@@ -68,7 +68,7 @@ function App() {
         <button type = "button">Reset</button>
         <button type = "button">Check</button>
         <button type = "button">Save</button>
-        <div>{PopUp()}</div>
+        {PopUp()}
       </div>
 
       <div className = "box">

@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import Button from 'react-bootstrap/Button';
-import Modal from 'react-bootstrap/Modal';
 import Form from 'react-bootstrap/Form';
+import Modal from 'react-bootstrap/Modal';
 
 function PopUp() {
   const [show, setShow] = useState(false);
@@ -11,9 +11,9 @@ function PopUp() {
 
   return (
     <>
-      <Button variant="primary" onClick={handleShow}>
-        Launch static backdrop modal
-      </Button>
+      <button variant="primary" onClick={handleShow}>
+        Upload
+      </button>
 
       <Modal
         show={show}
@@ -37,7 +37,7 @@ function PopUp() {
           <Button variant="secondary" onClick={handleClose}>
             Close
           </Button>
-          <Button variant="primary">Upload</Button>
+                        <Button variant="primary">Upload</Button> 
         </Modal.Footer>
       </Modal>
     </>
