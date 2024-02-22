@@ -3,10 +3,8 @@
 // Start your React app using npm start while in the client directory
 import './App.css';
 import React, { useState, useEffect } from "react";
-import { render } from 'react-dom' ;
-import { Container } from './Container';
-import { DndProvider } from 'react-dnd';
-import { HTML5Backend } from 'react-dnd-html5-backend';
+import { render } from 'react-dom';
+import { RiDragMove2Line } from 'react-icons/ri'; 
 
   // You can use this function for sending POST requests You can modify it if you want to use it for GET requests as well
   // This is an asynchronous function meaning that it returns a Promise
@@ -31,39 +29,91 @@ import { HTML5Backend } from 'react-dnd-html5-backend';
     });
     return response.json(); // parses JSON response into native JavaScript objects
 }
-function App() {
-  // Use this variable whenever you want to connect to the Node.js server
-  // When you create production version of a React app, this address will change
-  const baseURL = "http://localhost:8000/";
 
-  // This is an example variable (message) that can be changed with the setMessage function
-  // The initial state of the message is an empty string. When the variable is changed, it changes everywhere it is used.
-  // This is referred to as a state hook
-  const [message, setMessage] = useState("");
+class App extends Component { 
+	constructor(props) { 
+		super(props); 
+		this.state = { 
+			items: [ 
+				{ 
+					id: 1, 
+					name: 'first', 
+				}, 
+				{ 
+					id: 2, 
+					name: 'second', 
+				}, 
+				{ 
+					id: 3, 
+					name: 'third',
+				}, 
+				// Add more items here 
+			], 
+			draggingItem: null, 
+			newItemName: '', 
+		}; 
+	} 
 
-  // useEffect will run when the app loads
-  // This is referred to as an effect hook
-  // This effect will modify the message based on what is returned from a GET request to the server's message 
-  useEffect(() => {
-    fetch(`${baseURL}message`)
-      .then((res) => res.json())
-      .then((data) => {setMessage(data.message);}
-      );
-  }, []);
-    /* textboxes.map((box) => 
-              React.createElement('div', {id: "drag-"+box.order, class:"draggable"}, box.content)
-            )
-            */
-  // The message variable is displayed below and will update, if necessary
-  // You can put any Javascript (JSX) code within curly brackets in a React app
-  return (
-    <div className="App">
-      
-				<DndProvider backend={HTML5Backend}>
-					<Container />
-				</DndProvider>
-    </div>
-  );
-}
+	handleDragStart = (e, item) => { 
+		this.setState({ draggingItem: item }); 
+		e.dataTransfer.setData('text/plain', ''); 
+	}; 
+
+	handleDragEnd = () => { 
+		this.setState({ draggingItem: null }); 
+	}; 
+
+	handleDragOver = (e) => { 
+		e.preventDefault(); 
+	}; 
+
+	handleDrop = (e, targetItem) => { 
+		const { draggingItem, items } = this.state; 
+		if (!draggingItem) return; 
+
+		const currentIndex = items.indexOf(draggingItem); 
+		const targetIndex = items.indexOf(targetItem); 
+
+		if (currentIndex !== -1 && targetIndex !== -1) { 
+			items.splice(currentIndex, 1); 
+			items.splice(targetIndex, 0, draggingItem); 
+			this.setState({ items }); 
+		} 
+	}; 
+
+	handleNameChange = (e) => { 
+		this.setState({ newItemName: e.target.value }); 
+	}; 
+
+	render() { 
+		return ( 
+			<div className="sortable-list"> 
+				{this.state.items.map((item, index) => ( 
+					<div 
+						key={item.id} 
+						className= 
+							{`item ${item === this.state.draggingItem ? 
+								'dragging' : ''
+							}`} 
+						draggable="true"
+						onDragStart={(e) => 
+							this.handleDragStart(e, item)} 
+						onDragEnd={this.handleDragEnd} 
+						onDragOver={this.handleDragOver} 
+						onDrop={(e) => this.handleDrop(e, item)} 
+					> 
+						<div className="details"> 
+							<span>{item.name}</span> 
+						</div> 
+						
+						{/* Use the React icon component */} 
+						<RiDragMove2Line /> 
+					</div> 
+				))} 
+			</div> 
+		); 
+	} 
+} 
 
 export default App;
+
