@@ -4,6 +4,7 @@ import Form from 'react-bootstrap/Form';
 import Modal from 'react-bootstrap/Modal';
 
 function PopUp() {
+  //hooks - makes the popup 'appear' 
   const [show, setShow] = useState(false);
 
   const handleClose = () => setShow(false);
@@ -27,17 +28,18 @@ function PopUp() {
           <Modal.Title>Upload</Modal.Title>
         </Modal.Header>
         <Modal.Body>
-        <Form.Group controlId="formFile" className="mb-3" >
-          <Form.Label>Choose a File: 
-          </Form.Label>
-          <Form.Control type="file" />
+          {/*file upload from bootstrap*/}
+          <Form.Group controlId="formFile" className="mb-3" >
+            <Form.Label>Choose a File: 
+            </Form.Label>
+            <Form.Control type="file" />
           </Form.Group>
         </Modal.Body>
         <Modal.Footer>
           <Button variant="secondary" onClick={handleClose}>
             Close
           </Button>
-                        <Button variant="primary">Upload</Button> 
+                        <Button variant="primary">Upload</Button> {/*call function to write uploaded file to database*/}
         </Modal.Footer>
       </Modal>
     </>
