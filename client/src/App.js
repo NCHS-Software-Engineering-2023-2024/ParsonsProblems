@@ -3,7 +3,7 @@
 // Start your React app using npm start while in the client directory
 import './App.css';
 import './index.css';
-import React, { useState, useEffect } from "react";
+import React, { Component, useState, useEffect } from "react";
 import { render } from 'react-dom';
 
 // You can use this function for sending POST requests You can modify it if you want to use it for GET requests as well
