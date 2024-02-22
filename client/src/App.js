@@ -2,6 +2,7 @@
 // Dr. Miller
 // Start your React app using npm start while in the client directory
 import './App.css';
+import './index.css';
 import React, { useState, useEffect } from "react";
 import { render } from 'react-dom';
 
