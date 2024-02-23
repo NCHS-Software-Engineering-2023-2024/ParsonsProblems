@@ -4,7 +4,6 @@
 import './App.css';
 import './index.css';
 import React, { Component, useState, useEffect } from "react";
-import { render } from 'react-dom';
 import { DndContainer } from "./dnd-container.js"
 
 // You can use this function for sending POST requests You can modify it if you want to use it for GET requests as well

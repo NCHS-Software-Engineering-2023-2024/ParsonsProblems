@@ -1,11 +1,12 @@
-import React, { useState, useEffect } from "react";
-
+import React, { useState, useEffect, useCallback } from "react";
+import { DndItem } from "./dnd-item.js"
+import { update } from "immutability-helper"
 
 export const DndContainer = () => {
     const [items, setItems] = useState([
         {
             id: 1,
-            name: 'first',
+            name: 'firstasdjkahsaskakskdjasjkdjkakjsssssssssssssskjskkdasd aasdasdakslk',
         },
         {
             id: 2,
@@ -17,7 +18,6 @@ export const DndContainer = () => {
         },
     ]);
     const [draggingItem, setDraggingItem] = useState(null);
-    const [newItemName, setNewItemName] = useState("");
 
     const handleDragStart = (e, item) => {
         setDraggingItem(item);
@@ -39,38 +39,57 @@ export const DndContainer = () => {
         const targetIndex = items.indexOf(targetItem);
 
         if (currentIndex !== -1 && targetIndex !== -1) {
-            items.splice(currentIndex, 1);
-            items.splice(targetIndex, 0, draggingItem);
-            setItems(items);
+            setItems((prevItems) =>
+                update(prevItems, {
+                    $splice: [
+                        [currentIndex, 1],
+                        [targetIndex, 0, draggingItem],
+                    ]
+            }));
         }
     };
 
-    const handleNameChange = (e) => {
-        setNewItemName(e.target.value);
-    };
+ 
+    const moveItem = useCallback((dragIndex, hoverIndex) => {
+        setItems((prevItems) =>
+          update(prevItems, {
+            $splice: [
+              [dragIndex, 1],
+              [hoverIndex, 0, prevItems[dragIndex]],
+            ],
+          })
+        );
+      }, []);
+    const renderItem = useCallback((item, index, classN, dragStartN, onDropN) => {
+        return (
+            <>
+                <DndItem
+                    key={item.id}
+                    index={index}
+                    id={item.id}
+                    text={card.name}
+                    moveItem={moveItem}
+                    className={classN}
+                    onDragStart={dragStartN}
+                    onDragEnd={handleDragEnd}
+                    onDragOver={handleDragOver}
+                    onDrop={onDropN}
+                />
+            </>
+        );
+    }, []);
 
     return (
         <>
             <div className="sortable-list">
                 {items.map((item, index) => (
-                    <div
-                        key={item.id}
-                        className=
-                        {`item ${item === draggingItem ?
-                            'dragging' : ''
-                            }`}
-                        draggable="true"
-                        onDragStart={(e) =>
-                            handleDragStart(e, item)}
-                        onDragEnd={handleDragEnd}
-                        onDragOver={handleDragOver}
-                        onDrop={(e) => handleDrop(e, item)}
-                    >
-                        <div className="details">
-                            <span>{item.name}</span>
-                        </div>
-
-                    </div>
+                    renderItem(
+                        item, 
+                        index, 
+                        `item ${item === draggingItem ?
+                        'dragging' : ''}`,
+                        (e) => handleDragStart(e, item),
+                        (e) => handleDrop(e, item)),
                 ))}
             </div>
         </>
