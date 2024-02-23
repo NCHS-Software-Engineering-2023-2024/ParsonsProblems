@@ -5,7 +5,7 @@ import './App.css';
 import './index.css';
 import React, { Component, useState, useEffect } from "react";
 import { render } from 'react-dom';
-import { DndContainer as default } from "./dnd-container.js"
+import { DndContainer } from "./dnd-container.js"
 
 // You can use this function for sending POST requests You can modify it if you want to use it for GET requests as well
 // This is an asynchronous function meaning that it returns a Promise
@@ -35,7 +35,7 @@ function App() {
     
     <div className = "App">
       <div className = "App-body">
-        { DndContainer.render()  }
+        < DndContainer />
       </div>
     </div>
   )

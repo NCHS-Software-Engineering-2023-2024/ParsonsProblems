@@ -1,38 +1,38 @@
+import React, { useState, useEffect } from "react";
 
 
 export const DndContainer = () => {
-    const [state, setState] = useState( {
-            {
-                id: 1,
-                name: 'first',
-            },
-            {
-                id: 2,
-                name: 'second',
-            },
-            {
-                id: 3,
-                name: 'third',
-            }
-    });
-    const draggingItem = null;
-    const newItemName = "";
+    const [items, setItems] = useState([
+        {
+            id: 1,
+            name: 'first',
+        },
+        {
+            id: 2,
+            name: 'second',
+        },
+        {
+            id: 3,
+            name: 'third',
+        },
+    ]);
+    const [draggingItem, setDraggingItem] = useState(null);
+    const [newItemName, setNewItemName] = useState("");
 
-    handleDragStart = (e, item) => {
-        this.setState({ draggingItem: item });
+    const handleDragStart = (e, item) => {
+        setDraggingItem(item);
         e.dataTransfer.setData('text/plain', '');
     };
 
-    handleDragEnd = () => {
-        this.setState({ draggingItem: null });
+    const handleDragEnd = () => {
+        setDraggingItem(null);
     };
 
-    handleDragOver = (e) => {
+    const handleDragOver = (e) => {
         e.preventDefault();
     };
 
-    handleDrop = (e, targetItem) => {
-        const { draggingItem, items } = this.state;
+    const handleDrop = (e, targetItem) => {
         if (!draggingItem) return;
 
         const currentIndex = items.indexOf(draggingItem);
@@ -41,31 +41,30 @@ export const DndContainer = () => {
         if (currentIndex !== -1 && targetIndex !== -1) {
             items.splice(currentIndex, 1);
             items.splice(targetIndex, 0, draggingItem);
-            this.setState({ items });
+            setItems(items);
         }
     };
 
-    handleNameChange = (e) => {
-        this.setState({ newItemName: e.target.value });
+    const handleNameChange = (e) => {
+        setNewItemName(e.target.value);
     };
 
-    render() {
-        return (
-
+    return (
+        <>
             <div className="sortable-list">
-                {this.state.items.map((item, index) => (
+                {items.map((item, index) => (
                     <div
                         key={item.id}
                         className=
-                        {`item ${item === this.state.draggingItem ?
+                        {`item ${item === draggingItem ?
                             'dragging' : ''
                             }`}
                         draggable="true"
                         onDragStart={(e) =>
-                            this.handleDragStart(e, item)}
-                        onDragEnd={this.handleDragEnd}
-                        onDragOver={this.handleDragOver}
-                        onDrop={(e) => this.handleDrop(e, item)}
+                            handleDragStart(e, item)}
+                        onDragEnd={handleDragEnd}
+                        onDragOver={handleDragOver}
+                        onDrop={(e) => handleDrop(e, item)}
                     >
                         <div className="details">
                             <span>{item.name}</span>
@@ -74,7 +73,7 @@ export const DndContainer = () => {
                     </div>
                 ))}
             </div>
-        );
-    }
+        </>
+    );
 }
 export default DndContainer;
