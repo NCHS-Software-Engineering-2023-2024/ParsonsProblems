@@ -4,8 +4,16 @@
 // import file upload
 import React, { useEffect, useState } from "react";
 import './App.css';
+<<<<<<< HEAD
 
 import PopUp from "./pop-up.js";
+=======
+import Button from 'react-bootstrap/Button';
+import 'bootstrap/dist/css/bootstrap.min.css';
+import SingleFileUpload, {ContainedButtons} from "./Fileupload";
+
+
+>>>>>>> homepage
   // You can use this function for sending POST requests You can modify it if you want to use it for GET requests as well
   // This is an asynchronous function meaning that it returns a Promise
   // A Promise means it will either return a valid value or reject the request
@@ -55,11 +63,8 @@ function App() {
   // You can put any Javascript (JSX) code within curly brackets in a React app
   return (
     <div className="App">
-      <header className="App-header">
-      <h1><ul>
-        <li>{message}</li> 
-      </ul></h1>
       
+<<<<<<< HEAD
       </header>
       <div className="App-body">
         <button type = "button">Browse Problems database...</button>
@@ -74,6 +79,14 @@ function App() {
       <div className = "box">
         
       </div>
+=======
+      <body className="App-body">
+        
+        <div class = "container-md border">Content</div>
+
+          
+      </body>
+>>>>>>> homepage
     </div>
   );
 }
