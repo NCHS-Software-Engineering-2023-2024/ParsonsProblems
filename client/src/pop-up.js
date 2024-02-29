@@ -13,7 +13,7 @@ function PopUp() {
   return (
     <>
       <button variant="primary" onClick={handleShow}>
-        Upload
+        Import a Problem
       </button>
 
       <Modal
@@ -39,7 +39,7 @@ function PopUp() {
           <Button variant="secondary" onClick={handleClose}>
             Close
           </Button>
-                        <Button variant="primary">Upload</Button> {/*call function to write uploaded file to database*/}
+                        <button type = "submit">Upload</button> {/*call function to write uploaded file to database*/}
         </Modal.Footer>
       </Modal>
     </>

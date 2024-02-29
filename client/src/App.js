@@ -5,6 +5,7 @@ import React, { useEffect, useState } from "react";
 import './App.css';
 import { DndContainer } from "./dnd-container.js";
 import './index.css';
+import PopUp from "./pop-up.js";
   // You can use this function for sending POST requests You can modify it if you want to use it for GET requests as well
   // This is an asynchronous function meaning that it returns a Promise
   // A Promise means it will either return a valid value or reject the request
@@ -43,7 +44,8 @@ function App() {
     // The initial state of the message is an empty string. When the variable is changed, it changes everywhere it is used.
     // This is referred to as a state hook
     const [message, setMessage] = useState("");
-
+    const [file, setFile] = useState();
+    useEffect(()=> {fetch()})
     // useEffect will run when the app loads
     // This is referred to as an effect hook
     // This effect will modify the message based on what is returned from a GET request to the server's message 
@@ -59,7 +61,7 @@ function App() {
       <body className="App-body">
       < DndContainer />
         <div class = "container-md border">Content</div>
-
+          <PopUp />
           
       </body>
 
