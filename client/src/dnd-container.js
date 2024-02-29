@@ -1,27 +1,9 @@
 import React, { useState, useEffect } from "react";
 import update from "immutability-helper"
 
-export const DndContainer = () => {
-    const [items, setItems] = useState([
-        {
-            id: 1,
-            name: 'firstasdjkahsaskakskdjasjkdjkakjsssssssssssssskjskkdasd aasdasdakslk',
-            positionx: null,
-            positiony: null,
-        },
-        {
-            id: 2,
-            name: 'second',
-            positionx: null,
-            positiony: null,
-        },
-        {
-            id: 3,
-            name: 'third',
-            positionx: null,
-            positiony: null,
-        },
-    ]);
+export const DndContainer = ({file}) => {
+    const [items, setItems] = useState(file);
+
     const [draggingItem, setDraggingItem] = useState(null);
 
     const handleDragStart = (e, item) => {
