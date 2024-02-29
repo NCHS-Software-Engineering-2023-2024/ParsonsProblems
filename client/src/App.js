@@ -43,6 +43,26 @@ function App() {
     // The initial state of the message is an empty string. When the variable is changed, it changes everywhere it is used.
     // This is referred to as a state hook
     const [message, setMessage] = useState("");
+    const [file, setFile] = useState([
+        {
+            id: 1,
+            name: 'firstasdjkahsaskakskdjasjkdjkakjsssssssssssssskjskkdasd aasdasdakslk',
+            positionx: null,
+            positiony: null,
+        },
+        {
+            id: 2,
+            name: 'second',
+            positionx: null,
+            positiony: null,
+        },
+        {
+            id: 3,
+            name: 'third',
+            positionx: null,
+            positiony: null,
+        },
+    ])
 
     // useEffect will run when the app loads
     // This is referred to as an effect hook
@@ -57,7 +77,8 @@ function App() {
     <div className="App">
       
       <body className="App-body">
-      < DndContainer />
+      < DndContainer file={file} 
+      />
         <div class = "container-md border">Content</div>
 
           
