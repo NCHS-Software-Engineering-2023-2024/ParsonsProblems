@@ -1,12 +1,10 @@
 // Video4Ever Starter Code
 // Dr. Miller
 // Start your React app using npm start while in the client directory
+import React, { useEffect, useState } from "react";
 import './App.css';
+import { DndContainer } from "./dnd-container.js";
 import './index.css';
-import React, { Component, useState, useEffect } from "react";
-import { DndContainer } from "./dnd-container.js"
-import './App.css';
-import PopUp from "./pop-up.js";
   // You can use this function for sending POST requests You can modify it if you want to use it for GET requests as well
   // This is an asynchronous function meaning that it returns a Promise
   // A Promise means it will either return a valid value or reject the request
@@ -30,6 +28,14 @@ import PopUp from "./pop-up.js";
     });
     return response.json(); // parses JSON response into native JavaScript objects
 
+    
+    
+
+    // The message variable is displayed below and will update, if necessary
+    // You can put any Javascript (JSX) code within curly brackets in a React app
+
+  }
+function App() {
     // Use this variable whenever you want to connect to the Node.js server
     // When you create production version of a React app, this address will change
     const baseURL = "http://localhost:8000/";
@@ -47,14 +53,6 @@ import PopUp from "./pop-up.js";
         .then((data) => {setMessage(data.message);}
         );
     }, []);
-    
-
-    // The message variable is displayed below and will update, if necessary
-    // You can put any Javascript (JSX) code within curly brackets in a React app
-
-  }
-function App() {
-  
   return (
     <div className="App">
       
