@@ -89,21 +89,21 @@ function App() {
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous"></link>
       </head>
       <body className="App-body">
-
-      <div class = "jumbotron">
-       
-        <div class = "row">
-          <div class = "col-4"> 
-            <h1 class="text-start">NCHS Parsons Problems</h1>
-          </div>
-          <div class = "col-8">
-            <h1 class = "text-end">Log In</h1>
-          </div>
+      
+      <div class = "jumbotron jumbotron-fluid">
+        <div class = "container">
+          <div class = "row">
+            <div class = "col"> 
+              <h1 class="text-start">NCHS Parsons Problems</h1>
+            </div>
+            <div class = "col">
+              <h1 class = "text-start">Log In</h1>
+            </div>
+        </div>
       </div>
       
       </div>
-        
-    
+      
       <div class="container text-center">
         <div class="row">
           <div class="col-md-3" >
@@ -122,24 +122,23 @@ function App() {
             <button class ="button">Save As</button>
           </div>
         </div>
-        
-        <div class="row mt-3">
-          <div class = "box">
-              < DndContainer file ={file}/>
-          </div>
-        </div>
-
-        <div class="row mt-3">
-          <div class="col-md-2">
-            <button class = "button">Reset</button>
-          </div>
-          <div class="col-md-2">
-            <button class = "button">Check</button>
-          </div>
-         
-        </div>
       </div>
 
+      < DndContainer file ={file}/>
+      
+      <div class = "container text-center">
+        <div class="row mt-3">
+            <div class="col-md-2">
+              <button class = "button">Reset</button>
+            </div>
+            <div class="col-md-2">
+              <button class = "button">Check</button>
+            </div>
+        </div>
+      </div>
+        
+     
+      
           
       </body>
 
