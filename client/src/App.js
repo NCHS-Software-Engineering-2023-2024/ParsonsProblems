@@ -1,17 +1,11 @@
 // Video4Ever Starter Code
 // Dr. Miller
 // Start your React app using npm start while in the client directory
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import './App.css';
-<<<<<<< HEAD
-import Button from 'react-bootstrap/Button';
-import SingleFileUpload, {ContainedButtons} from "./Fileupload";
-
-=======
 import { DndContainer } from "./dnd-container.js";
 import './index.css';
-import {PopUp} from "./pop-up.js";
->>>>>>> 1313deb46330dfaaa91398fbfc363fd1bf11d95d
+import { PopUp } from "./pop-up.js";
 
   // You can use this function for sending POST requests You can modify it if you want to use it for GET requests as well
   // This is an asynchronous function meaning that it returns a Promise
@@ -95,7 +89,6 @@ function App() {
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous"></link>
       </head>
       <body className="App-body">
-<<<<<<< HEAD
 
       <div class = "jumbotron">
        
@@ -117,7 +110,7 @@ function App() {
           <button class = "button">Browse Problems Database</button>
           </div>
           <div class="col-md-2">
-          <button class = "button">Import</button>
+            <PopUp />
           </div>
           <div class="col-md-3">
             
@@ -126,13 +119,13 @@ function App() {
           <button class = "button">Save</button>
           </div>
           <div class="col-md-2">
-          <button class = "button">Save As</button>
+            <button class ="button">Save As</button>
           </div>
         </div>
         
         <div class="row mt-3">
           <div class = "box">
-              box
+              < DndContainer file ={file}/>
           </div>
         </div>
 
@@ -147,12 +140,6 @@ function App() {
         </div>
       </div>
 
-=======
-      < DndContainer file={file} 
-      />
-        <div class = "container-md border">Content</div>
-          <PopUp />
->>>>>>> 1313deb46330dfaaa91398fbfc363fd1bf11d95d
           
       </body>
 
