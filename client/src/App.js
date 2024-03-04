@@ -3,9 +3,15 @@
 // Start your React app using npm start while in the client directory
 import React, { useEffect, useState } from "react";
 import './App.css';
+<<<<<<< HEAD
+import Button from 'react-bootstrap/Button';
+import SingleFileUpload, {ContainedButtons} from "./Fileupload";
+
+=======
 import { DndContainer } from "./dnd-container.js";
 import './index.css';
 import {PopUp} from "./pop-up.js";
+>>>>>>> 1313deb46330dfaaa91398fbfc363fd1bf11d95d
 
   // You can use this function for sending POST requests You can modify it if you want to use it for GET requests as well
   // This is an asynchronous function meaning that it returns a Promise
@@ -85,12 +91,68 @@ function App() {
     */
   return (
     <div className="App">
-      
+      <head>
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous"></link>
+      </head>
       <body className="App-body">
+<<<<<<< HEAD
+
+      <div class = "jumbotron">
+       
+        <div class = "row">
+          <div class = "col-4"> 
+            <h1 class="text-start">NCHS Parsons Problems</h1>
+          </div>
+          <div class = "col-8">
+            <h1 class = "text-end">Log In</h1>
+          </div>
+      </div>
+      
+      </div>
+        
+    
+      <div class="container text-center">
+        <div class="row">
+          <div class="col-md-3" >
+          <button class = "button">Browse Problems Database</button>
+          </div>
+          <div class="col-md-2">
+          <button class = "button">Import</button>
+          </div>
+          <div class="col-md-3">
+            
+          </div>
+          <div class="col-md-2">
+          <button class = "button">Save</button>
+          </div>
+          <div class="col-md-2">
+          <button class = "button">Save As</button>
+          </div>
+        </div>
+        
+        <div class="row mt-3">
+          <div class = "box">
+              box
+          </div>
+        </div>
+
+        <div class="row mt-3">
+          <div class="col-md-2">
+            <button class = "button">Reset</button>
+          </div>
+          <div class="col-md-2">
+            <button class = "button">Check</button>
+          </div>
+         
+        </div>
+      </div>
+
+=======
       < DndContainer file={file} 
       />
         <div class = "container-md border">Content</div>
           <PopUp />
+>>>>>>> 1313deb46330dfaaa91398fbfc363fd1bf11d95d
           
       </body>
 

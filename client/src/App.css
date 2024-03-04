@@ -13,3 +13,25 @@
   }
 }
 
+
+
+.box {
+  border: 200px;
+  background-color: gray ;
+  border-color:red ;
+  
+}
+
+.container{
+  padding: 0 !important;
+
+}
+
+.jumbotron{
+  background-color: red !important;
+  color: white;
+}
+
+.button{
+  
+}
