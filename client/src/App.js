@@ -6,6 +6,7 @@ import './App.css';
 import { DndContainer } from "./dnd-container.js";
 import './index.css';
 import { PopUp } from "./pop-up.js";
+import { PopUpBrowse } from "./popupbrowse.js";
 
   // You can use this function for sending POST requests You can modify it if you want to use it for GET requests as well
   // This is an asynchronous function meaning that it returns a Promise
@@ -107,7 +108,7 @@ function App() {
       <div class="container text-center">
         <div class="row">
           <div class="col-md-4" >
-          <button class = "button">Browse Problems Database</button>
+           <PopUpBrowse />
           </div>
           <div class="col-md-3">
             <PopUp />
