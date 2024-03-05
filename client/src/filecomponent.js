@@ -13,7 +13,7 @@ export const UploadComponent = () => {
         formData.append('file', file);
         
         try {
-            const res = await fetch('http://localhost:3000/', {
+            const res = await fetch('http://localhost:8000/', {
                 method: 'POST',
                 body: formData,
                 

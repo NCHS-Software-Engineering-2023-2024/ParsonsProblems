@@ -8,12 +8,12 @@
 // Express determines what function to call based on the endpoint specified
 const express = require('express');
 const cors = require('cors');
-//const fileUpload = require('express-fileupload');
+const fileUpload = require('express-fileupload');
 
 const app = express();
 app.use(cors());
 app.use(express.json());
-//app.use(fileUpload());
+app.use(fileUpload());
 
 // This is an example GET request endpoint
 // req is the request object that was sent
