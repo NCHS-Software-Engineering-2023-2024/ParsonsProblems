@@ -19,16 +19,17 @@ code {
 	font-family: 'Courier New', monospace;
 } 
 
-body { 
-	display: flex; 
-	
+body {
+	margin: 0;
 	justify-content: center; 
 	min-height: 100vh; 
 	background: #f4f4f4; 
 } 
 
-.sortable-list { 
+.sortable-list {
+	margin: auto;
 	width: 40rem; 
+	align-content: auto;
 	background: #ffffff; 
 	border-radius: 10px; 
 	padding: 20px; 

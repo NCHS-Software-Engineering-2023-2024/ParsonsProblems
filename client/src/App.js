@@ -90,14 +90,14 @@ function App() {
       </head>
       <body className="App-body">
       
-      <div class = "jumbotron jumbotron-fluid">
+      <div class = "jumbotron">
         <div class = "container">
           <div class = "row">
             <div class = "col"> 
               <h1 class="text-start">NCHS Parsons Problems</h1>
             </div>
             <div class = "col">
-              <h1 class = "text-start">Log In</h1>
+              <h1 class = "text-end">Log In</h1>
             </div>
         </div>
       </div>
@@ -106,13 +106,13 @@ function App() {
       
       <div class="container text-center">
         <div class="row">
-          <div class="col-md-3" >
+          <div class="col-md-4" >
           <button class = "button">Browse Problems Database</button>
           </div>
-          <div class="col-md-2">
+          <div class="col-md-3">
             <PopUp />
           </div>
-          <div class="col-md-3">
+          <div class="col-md-1">
             
           </div>
           <div class="col-md-2">
@@ -124,7 +124,7 @@ function App() {
         </div>
       </div>
 
-      < DndContainer file ={file}/>
+      <DndContainer file ={file}/>
       
       <div class = "container text-center">
         <div class="row mt-3">

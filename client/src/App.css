@@ -19,8 +19,18 @@
   padding: 0 !important;
 
 }
-
+.sortable-list{
+  margin-inline: auto;
+}
 .jumbotron{
   background-color: red !important;
   color: white;
+}
+
+.button{
+  border: none;
+  border-radius: 12px;
+  padding: 5% !important;
+  text-align: center;
+  font-size: 18px;
 }

@@ -29,7 +29,7 @@ export function PopUp() {
   
   return (
     <>
-      <button variant="primary" onClick={handleShow}>
+      <button class = "button" onClick={handleShow}>
         Import a Problem
       </button>
 
@@ -42,7 +42,7 @@ export function PopUp() {
         centered = {true}
       >
         <Modal.Header closeButton>
-          <Modal.Title>Upload</Modal.Title>
+          <Modal.Title>Import</Modal.Title>
         </Modal.Header>
         <Modal.Body>
             <UploadComponent />
