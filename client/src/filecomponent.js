@@ -4,14 +4,16 @@ export const UploadComponent = () => {
     const [file, setFile] = useState(null);
     const handleFileChange = (event) => {
         setFile(event.target.files[0]);
+        console.log(event.target.files[0]);
+        
     }
 
     const handleSubmit = async (event) => {
         event.preventDefault();
         
         const formData = new FormData();
-        formData.append('file', file);
-        
+        formData.append('file', new File ([file], file.name));
+        console.log(formData.get(1));
         try {
             const res = await fetch('http://localhost:8000/', {
                 method: 'POST',

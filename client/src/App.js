@@ -116,7 +116,7 @@ function App() {
             
           </div>
           <div class="col-md-2">
-          <button class = "button">Save</button>
+            <button class = "button">Save</button>
           </div>
           <div class="col-md-2">
             <button class ="button">Save As</button>
