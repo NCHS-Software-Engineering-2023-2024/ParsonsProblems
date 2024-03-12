@@ -1,85 +1,96 @@
-import React, { useState, useEffect } from "react";
-import update from "immutability-helper"
+import "./index.css";
+import {
+  DndContext,
+  useSensor,
+  useSensors,
+  PointerSensor,
+  KeyboardSensor,
+} from "@dnd-kit/core";
 
+import {
+  useSortable,
+  SortableContext,
+  sortableKeyboardCoordinates,
+  verticalListSortingStrategy,
+  arrayMove
+} from "@dnd-kit/sortable";
+import { restrictToVerticalAxis } from "@dnd-kit/modifiers";
+import { useState } from "react";
+import { CSS } from "@dnd-kit/utilities";
+
+function SortableItem(props) {
+  const {
+    attributes,
+    listeners,
+    setNodeRef,
+    transform,
+    transition
+  } = useSortable({ id: props.id });
+
+  const style = {
+    transform: CSS.Transform.toString(transform),
+    transition
+  };
+
+  return (
+    <div
+      className="item"
+      ref={setNodeRef}
+      style={style}
+      {...attributes}
+      {...listeners}
+    >
+      {props.id.name}
+    </div>
+  );
+}
 export const DndContainer = ({file}) => {
-    const [items, setItems] = useState(file);
+  const [items, setitems] = useState(file);
+  const sensors = useSensors(
+    useSensor(PointerSensor),
+    useSensor(KeyboardSensor, {
+      coordinateGetter: sortableKeyboardCoordinates
+    })
+  );
 
-    const [draggingItem, setDraggingItem] = useState(null);
+  const [activeId, setActiveId] = useState(null);
 
-    const handleDragStart = (e, item) => {
-        setDraggingItem(item);
-        e.dataTransfer.setData('text/plain', '');
-    };
+  function handleDragStart(event) {
+    setActiveId(event.active.id);
+  }
+  function handleDragOver(event, targetItem) {
 
+    const { active, over } = event;
 
-    const handleDragEnd = () => {
-        setDraggingItem(null);
-    };
+    if (activeId !== over.id) {
+      setitems((items) => {
+        const oldIndex = items.indexOf(activeId);
+        const newIndex = items.indexOf(over.id);
 
-    const handleDragOver = (e, targetItem) => {
-        e.preventDefault();
-        
-        const currentIndex = items.indexOf(draggingItem);
-        const targetIndex = items.indexOf(targetItem);
-        if (currentIndex !== -1 && targetIndex !== -1) {
-            setItems((prevItems) =>
-                update(prevItems, {
-                    $splice: [
-                        [currentIndex, 1],
-                        [targetIndex, 0, draggingItem],
-                    ]
-            }));
-        }
-    };
+        return arrayMove(items, oldIndex, newIndex);
+      });
+    }
+  };
 
-    const handleDrop = (e, targetItem) => {
-        if (!draggingItem) return;
+  return (
+        <DndContext
+          sensors={sensors}
+          onDragOver={handleDragOver}
+          onDragStart={handleDragStart}
+          modifiers={[restrictToVerticalAxis]}
+        >
+          <div className="sortable-list">
+            <SortableContext
+              items={items}
+              strategy={verticalListSortingStrategy}
+            >
+              {items.map((item) => (
+                <SortableItem key={item} id={item} />
+              ))}
+            </SortableContext>
+          </div>
+        </DndContext>
+  );
 
-        const currentIndex = items.indexOf(draggingItem);
-        const targetIndex = items.indexOf(targetItem);
-
-        if (currentIndex !== -1 && targetIndex !== -1) {
-            setItems((prevItems) =>
-                update(prevItems, {
-                    $splice: [
-                        [currentIndex, 1],
-                        [targetIndex, 0, draggingItem],
-                    ]
-            }));
-        }
-    };
-
-    useEffect(() => {
-    const noSelectElements =
-    document.querySelectorAll(".item.details");
-    
-    noSelectElements.forEach((element) => {
-        element.style.mozUserSelect = "none";
-        element.style.msUserSelect = "none";
-        element.style.userSelect = "none";
-    });
-})
-    return (
-        <>
-            <div className="sortable-list">
-                {items.map((item, index) => (
-                <>
-                    <div class="details"
-                        key={item.id}
-                        index={index}
-                        id={item.id}
-                        className={`item ${item === draggingItem ?
-                            'dragging' : ''}`}
-                        onDragStart={(e) => handleDragStart(e, item)}
-                        onDragEnd={handleDragEnd}
-                        onDragOver={(e) => handleDragOver(e, item)}
-                        onDrop={(e) => handleDrop(e, item)}   >
-                            {item.name}
-                    </div>
-                </> 
-                ))}
-            </div>
-        </>
-    );
 }
 export default DndContainer;
