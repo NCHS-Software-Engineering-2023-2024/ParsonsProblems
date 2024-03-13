@@ -4,20 +4,27 @@ export const UploadComponent = () => {
     const [file, setFile] = useState(null);
     const handleFileChange = (event) => {
         setFile(event.target.files[0]);
-        console.log(event.target.files[0]);
+        console.log(file);
         
     }
 
     const handleSubmit = async (event) => {
         event.preventDefault();
-        
+        var json ={
+            "id": 1,
+            "name": 'firstasdjkahsaskakskdjasjkdjkakjsssssssssssssskjskkdasd aasdasdakslk',
+            "positionx": null,
+            "positiony": null,
+        }
         const formData = new FormData();
-        formData.append('file', new File ([file], file.name));
-        console.log(formData.get(1));
+        console.log(file);
+        formData.append('asdf', JSON.stringify(json));
+        console.log(formData.getAll('asdf'));
         try {
-            const res = await fetch('http://localhost:8000/', {
+            const res = await fetch("http://localhost:8000", {
                 method: 'POST',
-                body: formData,
+                mode: 'cors',
+                body: formData
                 
             });
             
