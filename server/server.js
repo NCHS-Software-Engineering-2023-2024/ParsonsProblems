@@ -31,11 +31,9 @@ app.listen(8000, () => {
   });
 
 
-app.post('/', (req, res) => {
-    if (!req.files || Object.keys(request.files).length === 0){
-        return res.status(400).send('no files were uploaded');
-    }
-
-    const file = request.files.file;
-    console.log(file);
+app.put('/getfile', (req, res) => {
+    console.log("recieving data");
+    
+    console.log(JSON.stringify(req.body));
+    
 });

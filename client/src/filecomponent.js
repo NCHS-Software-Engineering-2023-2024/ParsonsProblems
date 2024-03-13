@@ -5,7 +5,6 @@ export const UploadComponent = () => {
     const handleFileChange = (event) => {
         setFile(event.target.files[0]);
         console.log(file);
-        
     }
 
     const handleSubmit = async (event) => {
@@ -15,16 +14,18 @@ export const UploadComponent = () => {
             "name": 'firstasdjkahsaskakskdjasjkdjkakjsssssssssssssskjskkdasd aasdasdakslk',
             "positionx": null,
             "positiony": null,
+            "file": file
         }
-        const formData = new FormData();
-        console.log(file);
-        formData.append('asdf', JSON.stringify(json));
-        console.log(formData.getAll('asdf'));
+        
+
+
         try {
-            const res = await fetch("http://localhost:8000", {
-                method: 'POST',
-                mode: 'cors',
-                body: formData
+            const res = await fetch("http://localhost:8000/getfile", {
+                method: 'PUT',
+                headers:{
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(json)
                 
             });
             
@@ -41,4 +42,3 @@ export const UploadComponent = () => {
         </form>
     );
   };
-
