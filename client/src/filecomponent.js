@@ -1,14 +1,23 @@
 import React, { useState } from 'react';
 
-export const UploadComponent = () => {
+
+export const ImportProblem = () => {
     const [file, setFile] = useState(null);
     const handleFileChange = (event) => {
         setFile(event.target.files[0]);
-        console.log(file);
+        
+    }
+    var f;
+    if (file !== null) {
+        f = createFile (file.webkitRelativePath, file.name, file.type);
     }
 
-    const handleSubmit = async (event) => {
-        event.preventDefault();
+    console.log(f);
+    const reader = new FileReader();
+    reader.readAsText(f);
+    console.log(reader.result);
+
+    console.log(file);
         var json ={
             "id": 1,
             "name": 'firstasdjkahsaskakskdjasjkdjkakjsssssssssssssskjskkdasd aasdasdakslk',
@@ -16,9 +25,10 @@ export const UploadComponent = () => {
             "positiony": null,
             "file": file
         }
+
         
-
-
+        const handleSubmit = async (event) => {
+            event.preventDefault();
         try {
             const res = await fetch("http://localhost:8000/getfile", {
                 method: 'PUT',
@@ -33,8 +43,9 @@ export const UploadComponent = () => {
         }
         catch (error){
             console.error('upload error');
-        }
-    }
+        }}
+
+       
     return (
         <form onSubmit = {handleSubmit}>
             <input type = "file" accept = ".txt, .java, .py" onChange = {handleFileChange} />
@@ -42,3 +53,16 @@ export const UploadComponent = () => {
         </form>
     );
   };
+
+
+async function createFile (path, name, type)
+{
+       {
+        let response = await fetch(path);
+        let data = await response.blob();
+        let metadata = {
+            type: type
+        };
+        return new File([data], name, metadata);
+}
+}
