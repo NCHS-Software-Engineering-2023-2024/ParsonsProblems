@@ -50,7 +50,6 @@ import {
   }
   
   
-  
 
 function App() {
     // Use this variable whenever you want to connect to the Node.js server
@@ -94,69 +93,81 @@ function App() {
         );
     }, []);
     */
+    function Home() {
+      return (
+        <div className="App">
+        <head>
+          <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous"></link>
+        </head>
+        <body className="App-body">
+        
+        <div class = "jumbotron">
+          <div class = "container">
+            <div class = "row">
+              <div class = "col"> 
+                <h1 class="text-start">NCHS Parsons Problems</h1>
+              </div>
+              <div class = "col">
+                <h1 class = "text-end">Log In</h1>
+              </div>
+          </div>
+        </div>
+        
+        </div>
+        
+        <div class="container text-center">
+          <div class="row">
+            <div class="col-md-4" >
+            <button class = "button" ><Link to="/browse">Browse Problems Database</Link></button>
+            </div>
+            <div class="col-md-3">
+              <PopUp />
+            </div>
+            <div class="col-md-1">
+              
+            </div>
+            <div class="col-md-2">
+            <button class = "button">Save</button>
+            </div>
+            <div class="col-md-2">
+              <button class ="button">Save As</button>
+            </div>
+          </div>
+        </div>
+  
+        <DndContainer file ={file}/>
+        
+        <div class = "container text-center">
+          <div class="row mt-3">
+              <div class="col-md-2">
+                <button class = "button">Reset</button>
+              </div>
+              <div class="col-md-2">
+                <button class = "button">Check</button>
+              </div>
+          </div>
+        </div>
+        </body>
+        </div>
+      );
+    }
+    
   return (
     
-    <div className="App">
-      <head>
-        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous"></link>
-      </head>
-      <body className="App-body">
-      
-      <div class = "jumbotron">
-        <div class = "container">
-          <div class = "row">
-            <div class = "col"> 
-              <h1 class="text-start">NCHS Parsons Problems</h1>
-            </div>
-            <div class = "col">
-              <h1 class = "text-end">Log In</h1>
-            </div>
-        </div>
-      </div>
-      
-      </div>
-      
-      <div class="container text-center">
-        <div class="row">
-          <div class="col-md-4" >
-          <button class = "button" ><Link to="/browse">Browse Problems Database</Link></button>
-          </div>
-          <div class="col-md-3">
-            <PopUp />
-          </div>
-          <div class="col-md-1">
-            
-          </div>
-          <div class="col-md-2">
-          <button class = "button">Save</button>
-          </div>
-          <div class="col-md-2">
-            <button class ="button">Save As</button>
-          </div>
-        </div>
-      </div>
-
-      <DndContainer file ={file}/>
-      
-      <div class = "container text-center">
-        <div class="row mt-3">
-            <div class="col-md-2">
-              <button class = "button">Reset</button>
-            </div>
-            <div class="col-md-2">
-              <button class = "button">Check</button>
-            </div>
-        </div>
-      </div>
+    
         
       <>
             {/* This is the alias of BrowserRouter i.e. Router */}
-            <Router>
+            
                 <Routes>
                     {/* This route is for home component 
           with exact path "/", in component props 
           we passes the imported component*/}
-                    
+                    <Route
+                            exact
+                            path="/"
+                            element={<Home />}
+                        ></Route>
  
                     {/* This route is for about component 
           with exact path "/about", in component 
@@ -177,13 +188,11 @@ function App() {
                     {/* <Redirect to="/" /> */}
                     
                 </Routes>
-            </Router>
+            
         </>
       
           
-      </body>
-
-    </div>
+     
     
   )
 } 

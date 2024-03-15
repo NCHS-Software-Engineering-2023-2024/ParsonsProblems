@@ -2,7 +2,7 @@
  
 import React from "react";
  
-const Browse = () => {
+export function Browse()  {
     return (
         <div>
             <h1>geww</h1>
