@@ -3,22 +3,34 @@ import React, { useState } from 'react';
 
 export const ImportProblem = () => {
     const [file, setFile] = useState(null);
+    const [content, setContent] = useState("hi");
     const handleFileChange = (event) => {
         setFile(event.target.files[0]);
+        const reader = new FileReader();
+        
+        reader.onload = function() {
+            //console.log(reader.result);
+            
+            setContent(reader.result);
+        }
+        reader.readAsText(event.target.files[0]);
         
     }
-    var f;
-    if (file !== null) {
-        f = createFile (file.webkitRelativePath, file.name, file.type);
+    var json = "";
+    var count = 0;
+    for (const line of content.split("\n")){
+        if (line.length !== 0){
+             json += {id: count, name: line, positionx: null, positiony: null };
+             console.log(json);
+        };
     }
+    
 
-    console.log(f);
-    const reader = new FileReader();
-    reader.readAsText(f);
-    console.log(reader.result);
-
+    console.log(content);
+    
+    
     console.log(file);
-        var json ={
+        var asdf ={
             "id": 1,
             "name": 'firstasdjkahsaskakskdjasjkdjkakjsssssssssssssskjskkdasd aasdasdakslk',
             "positionx": null,
@@ -35,7 +47,7 @@ export const ImportProblem = () => {
                 headers:{
                     'Content-Type': 'application/json'
                 },
-                body: JSON.stringify(json)
+                body: JSON.stringify(asdf)
                 
             });
             
