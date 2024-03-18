@@ -2,6 +2,7 @@ import { useState } from 'react';
 import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
 import { ImportProblem } from './filecomponent.js';
+import { FileProvider } from './fileContext.js';
 /* 
 export function texttoJSON(){
     let uploadtext = selectedFile.text();
@@ -44,7 +45,10 @@ export function PopUp() {
           <Modal.Title>Import</Modal.Title>
         </Modal.Header>
         <Modal.Body>
+            <FileProvider>
             <ImportProblem />
+            </FileProvider>
+            
         </Modal.Body>
         <Modal.Footer>
           <Button variant="secondary" onClick={handleClose}>

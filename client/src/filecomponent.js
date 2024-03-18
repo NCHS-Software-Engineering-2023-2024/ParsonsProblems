@@ -1,9 +1,11 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
+import { fileContext } from './fileContext';
 
 
 export const ImportProblem = () => {
-    const [file, setFile] = useState(null);
-    const [content, setContent] = useState("hi");
+    const {file, setFile} = useContext(fileContext);
+
+    const [content, setContent] = useState("");
     const handleFileChange = (event) => {
         setFile(event.target.files[0]);
         const reader = new FileReader();
@@ -16,31 +18,38 @@ export const ImportProblem = () => {
         reader.readAsText(event.target.files[0]);
         
     }
-    var json = "";
+    var json = [];
     var count = 0;
-    for (const line of content.split("\n")){
-        if (line.length !== 0){
-             json += {id: count, name: line, positionx: null, positiony: null };
-             console.log(json);
+    for (const line of content.split("\r")){
+        if (count === 0){
+            json.push([{id: count, name: line, positionx: null, positiony: null}]);
+            count++;
+        }
+        else if (line.substring(1).length !== 0){ //substring(1) to remove \n
+             json.push([{id: count, name: line.substring(1), positionx: null, positiony: null }]);
+             
+             count++;
         };
+        
     }
-    
+    console.log(json);
 
-    console.log(content);
-    
-    
-    console.log(file);
         var asdf ={
             "id": 1,
             "name": 'firstasdjkahsaskakskdjasjkdjkakjsssssssssssssskjskkdasd aasdasdakslk',
             "positionx": null,
             "positiony": null,
-            "file": file
         }
-
         
+        const handleSubmit = (event) => {
+            event.preventDefault();
+            setFile(json);
+            console.log(json);
+        }
+        /*
         const handleSubmit = async (event) => {
             event.preventDefault();
+            
         try {
             const res = await fetch("http://localhost:8000/getfile", {
                 method: 'PUT',
@@ -55,7 +64,7 @@ export const ImportProblem = () => {
         }
         catch (error){
             console.error('upload error');
-        }}
+        }}*/
 
        
     return (
@@ -66,15 +75,3 @@ export const ImportProblem = () => {
     );
   };
 
-
-async function createFile (path, name, type)
-{
-       {
-        let response = await fetch(path);
-        let data = await response.blob();
-        let metadata = {
-            type: type
-        };
-        return new File([data], name, metadata);
-}
-}

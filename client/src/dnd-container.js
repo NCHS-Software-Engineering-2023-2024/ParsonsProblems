@@ -15,9 +15,9 @@ import {
   arrayMove
 } from "@dnd-kit/sortable";
 import { restrictToVerticalAxis } from "@dnd-kit/modifiers";
-import { useState } from "react";
+import { useState, useContext } from "react";
 import { CSS } from "@dnd-kit/utilities";
-
+import { fileContext } from "./fileContext";
 function SortableItem(props) {
   const {
     attributes,
@@ -44,7 +44,8 @@ function SortableItem(props) {
     </div>
   );
 }
-export const DndContainer = ({file}) => {
+export const DndContainer = () => {
+  const { file, setFile} = useContext(fileContext);
   const [items, setitems] = useState(file);
   const sensors = useSensors(
     useSensor(PointerSensor),
