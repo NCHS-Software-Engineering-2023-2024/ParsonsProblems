@@ -1,12 +1,12 @@
 // Video4Ever Starter Code
 // Dr. Miller
 // Start your React app using npm start while in the client directory
-import React, { useState, useContext } from "react";
+import React, { useState } from "react";
 import './App.css';
 import { DndContainer } from "./dnd-container.js";
+import { FileProvider } from "./fileContext.js";
 import './index.css';
 import { PopUp } from "./pop-up.js";
-import { fileContext, FileProvider } from "./fileContext.js";
   // You can use this function for sending POST requests You can modify it if you want to use it for GET requests as well
   // This is an asynchronous function meaning that it returns a Promise
   // A Promise means it will either return a valid value or reject the request
@@ -125,8 +125,9 @@ function App() {
         </div>
       </div>
       <FileProvider>
-       <DndContainer />
+        <DndContainer />
       </FileProvider>
+       
       
       
       <div class = "container text-center">

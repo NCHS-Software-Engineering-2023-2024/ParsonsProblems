@@ -1,9 +1,9 @@
-import React, { useState, useContext } from 'react';
+import React, { useContext, useState } from 'react';
 import { fileContext } from './fileContext';
 
 
 export const ImportProblem = () => {
-    const {file, setFile} = useContext(fileContext);
+    const [file, setFile] = useContext(fileContext);
 
     const [content, setContent] = useState("");
     const handleFileChange = (event) => {
@@ -20,13 +20,9 @@ export const ImportProblem = () => {
     }
     var json = [];
     var count = 0;
-    for (const line of content.split("\r")){
-        if (count === 0){
-            json.push([{id: count, name: line, positionx: null, positiony: null}]);
-            count++;
-        }
-        else if (line.substring(1).length !== 0){ //substring(1) to remove \n
-             json.push([{id: count, name: line.substring(1), positionx: null, positiony: null }]);
+    for (const line of content.split("\n")){ 
+        if (line.length !== 0){ 
+             json.push([{id: count, name: line, positionx: null, positiony: null }]);
              
              count++;
         };

@@ -1,22 +1,22 @@
-import "./index.css";
 import {
   DndContext,
+  KeyboardSensor,
+  PointerSensor,
   useSensor,
   useSensors,
-  PointerSensor,
-  KeyboardSensor,
 } from "@dnd-kit/core";
+import "./index.css";
 
-import {
-  useSortable,
-  SortableContext,
-  sortableKeyboardCoordinates,
-  verticalListSortingStrategy,
-  arrayMove
-} from "@dnd-kit/sortable";
 import { restrictToVerticalAxis } from "@dnd-kit/modifiers";
-import { useState, useContext } from "react";
+import {
+  SortableContext,
+  arrayMove,
+  sortableKeyboardCoordinates,
+  useSortable,
+  verticalListSortingStrategy
+} from "@dnd-kit/sortable";
 import { CSS } from "@dnd-kit/utilities";
+import { useContext, useState } from "react";
 import { fileContext } from "./fileContext";
 function SortableItem(props) {
   const {
@@ -45,8 +45,9 @@ function SortableItem(props) {
   );
 }
 export const DndContainer = () => {
-  const { file, setFile} = useContext(fileContext);
-  const [items, setitems] = useState(file);
+  //const { file, setFile} = useContext(fileContext);
+  const [items, setitems] = useContext(fileContext);
+  
   const sensors = useSensors(
     useSensor(PointerSensor),
     useSensor(KeyboardSensor, {
