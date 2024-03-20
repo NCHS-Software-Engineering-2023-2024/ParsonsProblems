@@ -13,6 +13,25 @@ const cors = require('cors');
 const app = express();
 app.use(cors());
 app.use(express.json());
+
+const mysql = require('mysql2'); 
+
+const connection = mysql.createConnection({
+  host: 'db.redhawks.us',
+  user: 'redhawk_parsons', 
+  password: 'Qiprufecr*22@lc0fru',
+  database: 'redhawk_parsons'
+});
+connection.connect((err) => 
+{
+  if (err) {
+    console.log("Error connecting to the database", err);
+  }else {
+    console.log("Connected to the database!");
+  }
+})
+
+
 //app.use(fileUpload());
 
 // This is an example GET request endpoint
