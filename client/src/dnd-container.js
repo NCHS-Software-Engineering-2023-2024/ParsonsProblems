@@ -73,24 +73,38 @@ export const DndContainer = ({file}) => {
   };
 
   return (
-    <div className="sortable-list">
-        <DndContext
-          sensors={sensors}
-          onDragOver={handleDragOver}
-          onDragStart={handleDragStart}
-          modifiers={[snapGridModifier]}
-          
-        >
-            <SortableContext
-              items={items}
-            >
-              {items.map((item) => (
-                <SortableItem key={item} id={item} />
-              ))}
-            </SortableContext>
+    <>
+      <div className="sortable-list">
+          <DndContext
+            sensors={sensors}
+            onDragOver={handleDragOver}
+            onDragStart={handleDragStart}
+            modifiers={[snapGridModifier]}
+            
+          >
+              <SortableContext
+                items={items}
+              >
+                {items.map((item) => (
+                  <SortableItem key={item} id={item} />
+                ))}
+              </SortableContext>
 
-        </DndContext>
-    </div>
+          </DndContext>
+          
+      </div>
+
+      <div class = "container text-center">
+      <div class="row mt-3">
+          <div class="col-md-2">
+            <button class = "button">Reset</button>
+          </div>
+          <div class="col-md-2">
+            <button class = "button">Check</button>
+          </div>
+      </div>
+      </div>
+    </>
   );
 
 }
