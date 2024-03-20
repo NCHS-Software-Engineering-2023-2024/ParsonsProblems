@@ -1,23 +1,22 @@
+import "./index.css";
 import {
   DndContext,
-  KeyboardSensor,
-  PointerSensor,
   useSensor,
   useSensors,
+  PointerSensor,
+  KeyboardSensor,
 } from "@dnd-kit/core";
-import "./index.css";
 
-import { restrictToVerticalAxis } from "@dnd-kit/modifiers";
 import {
-  SortableContext,
-  arrayMove,
-  sortableKeyboardCoordinates,
   useSortable,
-  verticalListSortingStrategy
+  SortableContext,
+  sortableKeyboardCoordinates,
+  arrayMove
 } from "@dnd-kit/sortable";
+import { useState } from "react";
 import { CSS } from "@dnd-kit/utilities";
-import { useContext, useEffect, useState } from "react";
-import { fileContext } from "./fileContext";
+import { snapGridModifier } from "./snapGridModifier.ts"
+
 function SortableItem(props) {
   const {
     attributes,
@@ -44,23 +43,16 @@ function SortableItem(props) {
     </div>
   );
 }
-export const DndContainer = () => {
-  const {file, setFile} = useContext(fileContext);
-  
+export const DndContainer = ({file}) => {
   const [items, setitems] = useState(file);
   
-  var arr = [];
-  for (const f in file){
-    arr.push(f);
-  }
-  useEffect(() => setitems(file), [file]);
   const sensors = useSensors(
     useSensor(PointerSensor),
     useSensor(KeyboardSensor, {
       coordinateGetter: sortableKeyboardCoordinates
     })
   );
-
+  
   const [activeId, setActiveId] = useState(null);
 
   function handleDragStart(event) {
@@ -81,23 +73,24 @@ export const DndContainer = () => {
   };
 
   return (
+    <div className="sortable-list">
         <DndContext
           sensors={sensors}
           onDragOver={handleDragOver}
           onDragStart={handleDragStart}
-          modifiers={[restrictToVerticalAxis]}
+          modifiers={[snapGridModifier]}
+          
         >
-          <div className="sortable-list">
             <SortableContext
               items={items}
-              strategy={verticalListSortingStrategy}
             >
               {items.map((item) => (
                 <SortableItem key={item} id={item} />
               ))}
             </SortableContext>
-          </div>
+
         </DndContext>
+    </div>
   );
 
 }

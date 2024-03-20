@@ -124,7 +124,7 @@ function App() {
           </div>
         </div>
       </div>
-      <DndContainer />
+      <DndContainer file={file}/>
      
        
       
