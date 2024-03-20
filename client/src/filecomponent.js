@@ -1,66 +1,26 @@
-import React, { useContext, useState } from 'react';
-import { fileContext } from './fileContext';
+import React from 'react';
 
 
-export const ImportProblem = () => {
-    const {file, setFile} = useContext(fileContext);
-    
-    const [content, setContent] = useState("");
-    const handleFileChange = (event) => {
-        //setFile(event.target.files[0]);
-        const reader = new FileReader();
+export const UploadProblem = () => {
         
-        reader.onload = function() {
-            //console.log(reader.result);
+    const handleSubmit = async (event) => {
+        event.preventDefault();
             
-            setContent(reader.result);
-        }
-        reader.readAsText(event.target.files[0]);
-        
-    }
-    var json = [];
-    var count = 0;
-    for (const line of content.split("\n")){ 
-        if (line.length !== 0){ 
-             json.push({id: count, name: line, positionx: null, positiony: null });
-             count++;
-        };
-        
-    }
-    
-
-        var asdf ={
-            "id": 1,
-            "name": 'firstasdjkahsaskakskdjasjkdjkakjsssssssssssssskjskkdasd aasdasdakslk',
-            "positionx": null,
-            "positiony": null,
-        }
-        
-        const handleSubmit = async (event) => {
-            event.preventDefault();
-            setFile(json);
-            console.log(file);
-            
-        }
-        /*
-        const handleSubmit = async (event) => {
-            event.preventDefault();
-            
-        try {
-            const res = await fetch("http://localhost:8000/getfile", {
-                method: 'PUT',
-                headers:{
-                    'Content-Type': 'application/json'
-                },
-                body: JSON.stringify(asdf)
+    try {
+        const res = await fetch("http://localhost:8000/getfile", {// change url to send to different place
+            method: 'PUT',
+            headers:{
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(asdf)
                 
-            });
+        });
             
-            console.log(res.ok);
-        }
+        console.log(res.ok);
+    }
         catch (error){
             console.error('upload error');
-        }}*/
+        }}
 
        
     return (

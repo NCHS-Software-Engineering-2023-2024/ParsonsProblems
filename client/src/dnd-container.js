@@ -49,11 +49,8 @@ export const DndContainer = () => {
   
   const [items, setitems] = useState(file);
   
-  var arr = [];
-  for (const f in file){
-    arr.push(f);
-  }
   useEffect(() => setitems(file), [file]);
+  
   const sensors = useSensors(
     useSensor(PointerSensor),
     useSensor(KeyboardSensor, {

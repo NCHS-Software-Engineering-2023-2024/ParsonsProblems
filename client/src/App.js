@@ -111,7 +111,7 @@ function App() {
           </div>
           <div class="col-md-3">
               <PopUp />
-            
+    
           </div>
           <div class="col-md-1">
             

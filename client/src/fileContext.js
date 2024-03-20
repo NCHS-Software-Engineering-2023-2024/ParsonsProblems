@@ -1,8 +1,11 @@
 import React, { createContext, useState } from 'react';
 
 export const fileContext = createContext();
-    
+// React.useContext(fileContext) to use file/setfile
+// need to import fileContext and wrap in FileProvider
+
 export const FileProvider = ({children}) => {
+                            // initally loaded problem
     const [file, setFile] = useState([
         {
         id: 1,
@@ -22,9 +25,6 @@ export const FileProvider = ({children}) => {
         positionx: null,
         positiony: null,
     }]);
-
-
-    console.log(Array.isArray(file));
     return (
     <fileContext.Provider value = {{file, setFile}}>
         {children}
