@@ -1,6 +1,6 @@
 import React, { createContext, useState } from 'react';
 
-export const fileContext = createContext([]);
+export const fileContext = createContext();
     
 export const FileProvider = ({children}) => {
     const [file, setFile] = useState([
@@ -23,13 +23,10 @@ export const FileProvider = ({children}) => {
         positiony: null,
     }]);
 
-    const saveFile = (values) => {
-        setFile(values);
-    }
 
     console.log(Array.isArray(file));
     return (
-    <fileContext.Provider value = {[file, setFile, saveFile]}>
+    <fileContext.Provider value = {{file, setFile}}>
         {children}
     </fileContext.Provider>
     );

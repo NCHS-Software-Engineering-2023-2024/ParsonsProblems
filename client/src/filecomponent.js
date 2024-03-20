@@ -3,11 +3,11 @@ import { fileContext } from './fileContext';
 
 
 export const ImportProblem = () => {
-    const [file, setFile] = useContext(fileContext);
-
+    const {file, setFile} = useContext(fileContext);
+    
     const [content, setContent] = useState("");
     const handleFileChange = (event) => {
-        setFile(event.target.files[0]);
+        //setFile(event.target.files[0]);
         const reader = new FileReader();
         
         reader.onload = function() {
@@ -22,13 +22,12 @@ export const ImportProblem = () => {
     var count = 0;
     for (const line of content.split("\n")){ 
         if (line.length !== 0){ 
-             json.push([{id: count, name: line, positionx: null, positiony: null }]);
-             
+             json.push({id: count, name: line, positionx: null, positiony: null });
              count++;
         };
         
     }
-    console.log(json);
+    
 
         var asdf ={
             "id": 1,
@@ -37,10 +36,11 @@ export const ImportProblem = () => {
             "positiony": null,
         }
         
-        const handleSubmit = (event) => {
+        const handleSubmit = async (event) => {
             event.preventDefault();
             setFile(json);
-            console.log(json);
+            console.log(file);
+            
         }
         /*
         const handleSubmit = async (event) => {
@@ -66,7 +66,7 @@ export const ImportProblem = () => {
     return (
         <form onSubmit = {handleSubmit}>
             <input type = "file" accept = ".txt, .java, .py" onChange = {handleFileChange} />
-            <button type = "submit">Upload</button>
+            <input type = "submit"></input>
         </form>
     );
   };

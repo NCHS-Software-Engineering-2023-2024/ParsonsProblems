@@ -16,7 +16,7 @@ import {
   verticalListSortingStrategy
 } from "@dnd-kit/sortable";
 import { CSS } from "@dnd-kit/utilities";
-import { useContext, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { fileContext } from "./fileContext";
 function SortableItem(props) {
   const {
@@ -45,9 +45,15 @@ function SortableItem(props) {
   );
 }
 export const DndContainer = () => {
-  //const { file, setFile} = useContext(fileContext);
-  const [items, setitems] = useContext(fileContext);
+  const {file, setFile} = useContext(fileContext);
   
+  const [items, setitems] = useState(file);
+  
+  var arr = [];
+  for (const f in file){
+    arr.push(f);
+  }
+  useEffect(() => setitems(file), [file]);
   const sensors = useSensors(
     useSensor(PointerSensor),
     useSensor(KeyboardSensor, {

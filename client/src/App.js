@@ -124,9 +124,8 @@ function App() {
           </div>
         </div>
       </div>
-      <FileProvider>
-        <DndContainer />
-      </FileProvider>
+      <DndContainer />
+     
        
       
       
