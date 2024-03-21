@@ -124,25 +124,11 @@ function App() {
           </div>
         </div>
       </div>
-      <DndContainer />
-     
-       
+
+
+      <DndContainer file={file}/>          
       
       
-      <div class = "container text-center">
-        <div class="row mt-3">
-            <div class="col-md-2">
-              <button class = "button">Reset</button>
-            </div>
-            <div class="col-md-2">
-              <button class = "button">Check</button>
-            </div>
-        </div>
-      </div>
-        
-     
-      
-          
       </body>
 
     </div>

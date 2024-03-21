@@ -3,21 +3,20 @@ import {
   KeyboardSensor,
   PointerSensor,
   useSensor,
-  useSensors,
+  useSensors
 } from "@dnd-kit/core";
 import "./index.css";
 
-import { restrictToVerticalAxis } from "@dnd-kit/modifiers";
 import {
   SortableContext,
   arrayMove,
   sortableKeyboardCoordinates,
-  useSortable,
-  verticalListSortingStrategy
+  useSortable
 } from "@dnd-kit/sortable";
 import { CSS } from "@dnd-kit/utilities";
-import { useContext, useEffect, useState } from "react";
-import { fileContext } from "./fileContext";
+import { useState } from "react";
+import { snapGridModifier } from "./snapGridModifier.ts";
+
 function SortableItem(props) {
   const {
     attributes,
@@ -44,20 +43,17 @@ function SortableItem(props) {
     </div>
   );
 }
-export const DndContainer = () => {
-  const {file, setFile} = useContext(fileContext);
-  
+export const DndContainer = ({file}) => {
   const [items, setitems] = useState(file);
   
   useEffect(() => setitems(file), [file]);
-  
   const sensors = useSensors(
     useSensor(PointerSensor),
     useSensor(KeyboardSensor, {
       coordinateGetter: sortableKeyboardCoordinates
     })
   );
-
+  
   const [activeId, setActiveId] = useState(null);
 
   function handleDragStart(event) {
@@ -78,23 +74,38 @@ export const DndContainer = () => {
   };
 
   return (
-        <DndContext
-          sensors={sensors}
-          onDragOver={handleDragOver}
-          onDragStart={handleDragStart}
-          modifiers={[restrictToVerticalAxis]}
-        >
-          <div className="sortable-list">
-            <SortableContext
-              items={items}
-              strategy={verticalListSortingStrategy}
-            >
-              {items.map((item) => (
-                <SortableItem key={item} id={item} />
-              ))}
-            </SortableContext>
+    <>
+      <div className="sortable-list">
+          <DndContext
+            sensors={sensors}
+            onDragOver={handleDragOver}
+            onDragStart={handleDragStart}
+            modifiers={[snapGridModifier]}
+            
+          >
+              <SortableContext
+                items={items}
+              >
+                {items.map((item) => (
+                  <SortableItem key={item} id={item} />
+                ))}
+              </SortableContext>
+
+          </DndContext>
+          
+      </div>
+
+      <div class = "container text-center">
+      <div class="row mt-3">
+          <div class="col-md-2">
+            <button class = "button">Reset</button>
           </div>
-        </DndContext>
+          <div class="col-md-2">
+            <button class = "button">Check</button>
+          </div>
+      </div>
+      </div>
+    </>
   );
 
 }
