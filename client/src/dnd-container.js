@@ -14,7 +14,8 @@ import {
   useSortable
 } from "@dnd-kit/sortable";
 import { CSS } from "@dnd-kit/utilities";
-import { useState } from "react";
+import React, { useEffect, useState } from "react";
+import { fileContext } from "./fileContext.js";
 import { snapGridModifier } from "./snapGridModifier.ts";
 
 function SortableItem(props) {
@@ -43,7 +44,8 @@ function SortableItem(props) {
     </div>
   );
 }
-export const DndContainer = ({file}) => {
+export const DndContainer = () => {
+  const {file, setFile} = React.useContext(fileContext);
   const [items, setitems] = useState(file);
   
   useEffect(() => setitems(file), [file]);
