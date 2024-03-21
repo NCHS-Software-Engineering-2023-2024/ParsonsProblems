@@ -101,13 +101,13 @@ function App() {
         </head>
         <body className="App-body">
         
-        <div class = "jumbotron">
+        <div class = "navbar">
           <div class = "container">
             <div class = "row">
               <div class = "col"> 
                 <h1 class="text-start">NCHS Parsons Problems</h1>
               </div>
-              <div class = "col">
+              <div class = "strong">
                 <h1 class = "text-end">Log In</h1>
               </div>
           </div>
