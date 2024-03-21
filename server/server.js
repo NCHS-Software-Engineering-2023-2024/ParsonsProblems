@@ -28,8 +28,16 @@ connection.connect((err) =>
     console.log("Error connecting to the database", err);
   }else {
     console.log("Connected to the database!");
-  }
-})
+    connection.query("SELECT Problem Name AS Name, File Type AS Type, Comments AS Comments, Date AS Date FROM Files", function (err, result) {
+      if (err) throw err;
+        app.get('/Problems', (req, res) => {
+          res.json({ data: result});
+        });
+      });
+    };
+  });
+  
+
 
 
 //app.use(fileUpload());
@@ -40,6 +48,7 @@ connection.connect((err) =>
 // The result is converted to a JSON object with a key of message and value "Hello from server!"
 app.get('/message', (req, res) => {
     res.json({ message: "NCHS Parsons Problems!" });
+    
 });
 
 
