@@ -27,7 +27,7 @@ import {
   async function postData(url = "", data = {}) {
     // Default options are marked with *
     const response = await fetch(url, {
-      method: "POST", // *GET, POST, PUT, DELETE, etc.
+      method: "POST", // *GET, PsOST, PUT, DELETE, etc.
       mode: "cors", // no-cors, *cors, same-origin
       cache: "no-cache", // *default, no-cache, reload, force-cache, only-if-cached
       credentials: "same-origin", // include, *same-origin, omit
@@ -101,13 +101,13 @@ function App() {
         </head>
         <body className="App-body">
         
-        <div class = "jumbotron">
+        <div class = "navbar">
           <div class = "container">
             <div class = "row">
               <div class = "col"> 
                 <h1 class="text-start">NCHS Parsons Problems</h1>
               </div>
-              <div class = "col">
+              <div class = "strong">
                 <h1 class = "text-end">Log In</h1>
               </div>
           </div>
