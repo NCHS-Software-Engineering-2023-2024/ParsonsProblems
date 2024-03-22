@@ -43,7 +43,7 @@ function SortableItem(props) {
       {...attributes}
       {...listeners}
     >
-      {props.id.name}
+      {props.id.id + props.id.name + props.id.fuck}
     </div>
   );
 }
