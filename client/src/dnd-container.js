@@ -29,7 +29,8 @@ function SortableItem(props) {
 
   const style = {
     transform: CSS.Transform.toString(transform),
-    transition
+    transition,
+    background: props.grade
   };
 
   return (
@@ -75,6 +76,17 @@ export const DndContainer = () => {
     }
   };
 
+  function handleGrade() {
+    setGrade(Grade(items));
+  }
+  function resetGrade() {
+    setGrade(new Array("white"));
+  }
+
+  function handleShuffle() {
+    setItems(Shuffle(items))
+  }
+
   return (
     <>
       <div className="sortable-list">
@@ -88,8 +100,13 @@ export const DndContainer = () => {
               <SortableContext
                 items={items}
               >
-                {items.map((item) => (
-                  <SortableItem key={item} id={item} />
+                {items.map((item, index) => (
+                  <SortableItem 
+                    key={item} 
+                    id={item}
+                    fuck={index}
+                    grade={grade[item.id]}
+                  />
                 ))}
               </SortableContext>
 
@@ -100,10 +117,20 @@ export const DndContainer = () => {
       <div class = "container text-center">
       <div class="row mt-3">
           <div class="col-md-2">
-            <button class = "button">Reset</button>
+            <button 
+              class = "button"
+              onClick = {handleShuffle}
+            >
+              Shuffle
+            </button>
           </div>
           <div class="col-md-2">
-            <button class = "button">Check</button>
+            <button 
+              class = "button"
+              onClick = {handleGrade}
+            >
+              Check
+            </button>
           </div>
       </div>
       </div>
