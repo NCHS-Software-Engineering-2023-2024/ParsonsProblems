@@ -14,7 +14,13 @@ const app = express();
 app.use(cors());
 app.use(express.json());
 
-const mysql = require('mysql2'); 
+const mysql = require('mysql'); 
+
+// This will check if the server is running on port 8000
+// If you change the port number here, you also have to change the baseURL in App.js
+app.listen(8000, () => {
+  console.log(`Server is running on port 8000.`);
+});
 
 const connection = mysql.createConnection({
   host: 'db.redhawks.us',
@@ -28,10 +34,12 @@ connection.connect((err) =>
     console.log("Error connecting to the database", err);
   }else {
     console.log("Connected to the database!");
-    connection.query("SELECT Problem Name AS Name, File Type AS Type, Comments AS Comments, Date AS Date FROM Files", function (err, result) {
+    connection.query("SELECT `Problem Name` AS Name, `File Type` AS Type, Comments AS Comments, Date AS Date FROM Files", function (err, result) {
       if (err) throw err;
+      console.log("result: " + result)
         app.get('/Problems', (req, res) => {
           res.json({ data: result});
+          console.log(data);
         });
       });
     };
@@ -52,19 +60,5 @@ app.get('/message', (req, res) => {
 });
 
 
-// This will check if the server is running on port 8000
-// If you change the port number here, you also have to change the baseURL in App.js
-app.listen(8000, () => {
-    console.log(`Server is running on port 8000.`);
-  });
 
 
-app.post('/upload', (req, res) => {
-    if (!req.files || Object.keys(request.files).length === 0){
-        return res.status(400).send('no files were uploaded');
-    }
-
-    const file = request.files.file;
-    console.log(file);
-
-});

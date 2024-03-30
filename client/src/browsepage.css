@@ -13,13 +13,37 @@
     }
   }
   
-  
-  
   .sortable-list{
     margin-inline: auto;
   }
   
+  table.center{
+    margin: auto;
+    text-align: center;
+  }
+
+  table, th, td, tr {
+    border: 3px solid black;
+    border-collapse: collapse;
+  }
+
+  table{
+    width: 90%;
+    align-items: center;
+  }
+  th{
+    text-align: center;
+  }
   
+  td {
+    padding: 30px;
+    text-align: left;
+  }
+
+  tr:nth-child(even) {
+    background-color: #d3d3d3;
+  }
+
   .button{
     border: none;
     border-radius: 12px;

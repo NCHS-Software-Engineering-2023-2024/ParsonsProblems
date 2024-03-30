@@ -1,35 +1,37 @@
 // App.jsx
  
 import React, { useState, useEffect } from "react";
- 
-import React from "react";
-import './App.css';
+import './browsepage.css';
 import { DndContainer } from "./dnd-container.js";
 import './index.css';
 import { PopUp } from "./pop-up.js";
-import React, { useState, useEffect } from "react";
- 
+
+
+
 export function Browse()  {
+    const baseURL  = 'http://localhost:8000/'
     const [file, setFiles] = useState([]);
 
     useEffect(() => {
-        fetch('${http://localhost:8000/Problems')
+        fetch(`${baseURL}Problems`) // use backticks instead of apostrophes
             .then((res) => res.json())
             .then((data) => {setFiles(data.data)})
 
     }, []);
-
+    console.log(file);
     
     
 
     return (
         <div>
-            
+        <head>
+          <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous"></link>
+        </head>
         <table class = "center">
        
           <thead>
-            <tr>
-            <th>Problem Name</th>
+            <tr class = "tr">
+            <th class = "th">Problem Name</th>
             <th>File Type</th>
             <th>Comments</th>
             <th>Date</th>
