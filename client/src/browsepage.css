@@ -12,7 +12,33 @@
       transform: rotate(360deg);
     }
   }
+  .jumbotron{
+    background-color: red !important;
+    color: white;
+  }
+
+  .navbar {
+    z-index: 999;
+    background-color: rgb(255, 0, 0);
+    padding-left: 15px;
+    padding-right: 15px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    overflow: hidden;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 10px;
+    color: white;
+  }
   
+  .strong {
+    border: none;
+    border-radius: 12px;
+    padding: 5% !important;
+    text-align: center;
+    font-size: 18px;
+  }
+
   .sortable-list{
     margin-inline: auto;
   }
@@ -50,4 +76,7 @@
     padding: 5% !important;
     text-align: center;
     font-size: 18px;
+    align-items: center;
+    position: absolute;
+    left: 40%;
   }
