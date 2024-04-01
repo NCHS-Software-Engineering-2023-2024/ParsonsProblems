@@ -7,23 +7,20 @@ export const fileContext = createContext();
 export const FileProvider = ({children}) => {
                             // initally loaded problem
     const [file, setFile] = useState([
-        {
+    {
         id: 1,
         name: 'firstasdjkahsaskakskdjasjkdjkakjsssssssssssssskjskkdasd aasdasdakslk',
-        positionx: null,
-        positiony: null,
+        indent: 0,
     },
     {
         id: 2,
         name: 'second',
-        positionx: null,
-        positiony: null,
+        indent: 1,
     },
     {
         id: 3,
         name: 'third',
-        positionx: null,
-        positiony: null,
+        indent: 2,
     }]);
     return (
     <fileContext.Provider value = {{file, setFile}}>
