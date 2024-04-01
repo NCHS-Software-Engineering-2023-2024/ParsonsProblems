@@ -43,7 +43,7 @@ function SortableItem(props) {
       {...attributes}
       {...listeners}
     >
-      {props.id.id + props.id.name + props.id.fuck}
+      {props.id.id + props.id.name + props.id.index}
     </div>
   );
 }
@@ -52,8 +52,13 @@ export const DndContainer = () => {
   const [items, setItems] = useState(Shuffle(file));
   const [activeId, setActiveId] = useState(null);
   const [grade, setGrade] = useState(Grade(items));
-  
   useEffect(() => setItems(file), [file]);
+
+  const firstrender = useEffect(() => {
+    handleShuffle();
+    resetGrade();
+  }, []);
+  
   const sensors = useSensors(
     useSensor(PointerSensor),
     useSensor(KeyboardSensor, {
@@ -70,6 +75,7 @@ export const DndContainer = () => {
     const { active, over } = event;
 
     if (activeId !== over.id) {
+      resetGrade();
       setItems((items) => {
         const oldIndex = items.indexOf(activeId);
         const newIndex = items.indexOf(over.id);
@@ -85,11 +91,15 @@ export const DndContainer = () => {
   function resetGrade() {
     setGrade(new Array("white"));
   }
-
   function handleShuffle() {
-    setItems(Shuffle(items))
+    setGrade(new Array("white"));
+    setItems(Shuffle(items));
   }
-
+  /**
+   * 1) correct num indents is stored in the problem file
+   * 2) CURRENT num indents is 
+   * 3) render flexbox to the left of the element 
+   */
   return (
     <>
       <div className="sortable-list">
@@ -107,7 +117,7 @@ export const DndContainer = () => {
                   <SortableItem 
                     key={item} 
                     id={item}
-                    fuck={index}
+                    index={index}
                     grade={grade[item.id]}
                   />
                 ))}
