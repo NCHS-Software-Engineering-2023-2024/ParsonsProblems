@@ -13,17 +13,19 @@ export function PopUp() {
     
   const [content, setContent] = useState("");
   const handleFileChange = (event) => {
-    if (event.target.files[0].name.slice(-4) !== ".txt" ||
-        event.target.files[0].name.slice(-5) !== ".java" ||
-        event.target.files[0].name.slice(-3) !== ".py"){
-          alert("The file type you selected is not supported.");
-      }
-      const reader = new FileReader();
-      reader.onload = function() {
+    if (event.target.files[0].name.slice(-4) === ".txt" ||
+        event.target.files[0].name.slice(-5) === ".java" ||
+        event.target.files[0].name.slice(-3) === ".py"){
+          const reader = new FileReader();
+          reader.onload = function() {
           //console.log(reader.result);
           setContent(reader.result); // to parse outside of handleFileChange
+            }
+          reader.readAsText(event.target.files[0]);
       }
-      reader.readAsText(event.target.files[0]);
+    else{
+      alert("The file type you selected is not supported.");
+    }
     }
     
 
