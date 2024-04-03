@@ -11,8 +11,10 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "@dnd-kit/core": "^6.1.0",
     "cors": "^2.8.5",
     "express": "^4.18.2",
+    "i": "^0.3.7",
     "mysql": "^2.18.1"
   },
   "devDependencies": {
