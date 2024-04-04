@@ -5,7 +5,7 @@ import './browsepage.css';
 import { DndContainer } from "./dnd-container.js";
 import './index.css';
 import { PopUp } from "./pop-up.js";
-
+import { Link } from "react-router-dom";
 
 
 export function Browse()  {
@@ -27,6 +27,9 @@ export function Browse()  {
         <head>
           <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous"></link>
         </head>
+
+        <button class = "button" ><Link to="/">Homepage</Link></button>
+
         <table class = "center">
        
           <thead>
