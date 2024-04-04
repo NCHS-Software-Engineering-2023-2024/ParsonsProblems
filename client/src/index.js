@@ -1,15 +1,15 @@
+import 'bootstrap/dist/css/bootstrap.min.css';
 import React from 'react';
 import ReactDOM from 'react-dom/client';
-import './index.css';
 import App from './App';
-import { BrowserRouter } from 'react-router-dom';
-import 'bootstrap/dist/css/bootstrap.min.css';
-document.getElementById('root')
-
+import './index.css';
+import { FileProvider } from './fileContext';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
-  <BrowserRouter>
+  <React.StrictMode>
+    <FileProvider>
     <App />
-  </BrowserRouter>,
+    </FileProvider>
+  </React.StrictMode>
 );
