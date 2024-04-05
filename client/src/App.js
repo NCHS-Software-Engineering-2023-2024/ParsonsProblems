@@ -1,10 +1,9 @@
 // Video4Ever Starter Code
 // Dr. Miller
 // Start your React app using npm start while in the client directory
-import React, { useState } from "react";
+import React from "react";
 import './App.css';
 import { DndContainer } from "./dnd-container.js";
-import { FileProvider } from "./fileContext.js";
 import './index.css';
 import { PopUp } from "./pop-up.js";
   // You can use this function for sending POST requests You can modify it if you want to use it for GET requests as well
@@ -91,7 +90,7 @@ function App() {
             
           </div>
           <div class="col-md-2">
-            <button class = "button">Save</button>
+          <button class = "button">Save</button>
           </div>
           <div class="col-md-2">
             <button class ="button">Save As</button>

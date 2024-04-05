@@ -28,4 +28,3 @@ export const FileProvider = ({children}) => {
     </fileContext.Provider>
     );
 }
-

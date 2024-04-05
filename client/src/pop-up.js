@@ -1,6 +1,8 @@
 import { useContext, useState } from 'react';
+import { useContext, useState } from 'react';
 import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
+import { FileProvider, fileContext } from './fileContext.js';
 import { FileProvider, fileContext } from './fileContext.js';
 
 export function PopUp() {
