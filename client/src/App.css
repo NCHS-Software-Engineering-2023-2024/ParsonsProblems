@@ -13,7 +13,25 @@
   }
 }
 
+.navbar {
+  z-index: 999;
+  background-color: rgb(255, 0, 0);
+  padding-left: 15px;
+  padding-right: 15px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  overflow: hidden;
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 10px;
+  color: white;
+  min-height: 50%;
+}
 
+.col{
+  padding: 0 !important;
+  margin: 0 !important;
+}
 
 .container{
   padding: 0 !important;
@@ -22,10 +40,6 @@
 .sortable-list{
   margin-inline: auto;
 }
-.jumbotron{
-  background-color: red !important;
-  color: white;
-}
 
 .button{
   border: none;
@@ -33,4 +47,5 @@
   padding: 5% !important;
   text-align: center;
   font-size: 18px;
+  margin: auto;
 }

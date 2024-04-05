@@ -74,45 +74,5 @@ export function Upload() {
         }
   }
 
-  
 
-  return (
-    <>
-      <button class = "button" onClick={handleShow}>
-        Import a Problem
-      </button>
 
-      <Modal
-        show={show}
-        onHide={handleClose}
-        backdrop="static"
-        keyboard={false}
-        centered = {true}
-      >
-        <Modal.Header closeButton>
-          <Modal.Title>Save a problem</Modal.Title>
-        </Modal.Header>
-        <Modal.Body>
-            <FileProvider>
-              <form onSubmit = {handleSubmit}>
-                <div>
-                    <input type = "file" accept = ".txt, .java, .py" id = "problem" onChange = {handleFileChange}/>  
-                </div>
-                <div>
-                    <label for = "comments">Comments</label>
-                    <textarea id = "comments" rows = "2"></textarea>
-                    <input type = "submit"></input>
-                </div>    
-
-              </form>
-            </FileProvider>
-        </Modal.Body>
-        <Modal.Footer>
-          <Button variant="secondary" onClick={handleClose}>
-            Close
-          </Button>
-        </Modal.Footer>
-      </Modal>
-    </>
-  );
-}

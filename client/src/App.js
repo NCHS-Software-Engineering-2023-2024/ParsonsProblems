@@ -6,6 +6,15 @@ import './App.css';
 import { DndContainer } from "./dnd-container.js";
 import './index.css';
 import { PopUp } from "./pop-up.js";
+import { Browse } from "./browsepage.js";
+import {
+  BrowserRouter as Router,
+  Routes,
+  Route,
+  Link,
+  render
+} from "react-router-dom";
+
   // You can use this function for sending POST requests You can modify it if you want to use it for GET requests as well
   // This is an asynchronous function meaning that it returns a Promise
   // A Promise means it will either return a valid value or reject the request
@@ -37,7 +46,59 @@ import { PopUp } from "./pop-up.js";
 
   }
   
+  function Home() {
+    return (
+      <div className="App">
+      <head>
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous"></link>
+      </head>
+      <body className="App-body">
   
+      <div class = "jumbotron">
+        <div class = "container-fluid">
+          <div class = "row">
+            <div class = "col"> 
+              <h1 class="text-start">NCHS Parsons Problems</h1>
+              <h1 class = "text-end">Log In</h1>
+            </div>
+            
+        </div>
+      </div>
+  
+      </div>
+      
+      <div class="container text-center">
+        <div class="row">
+          <div class="col-4" >
+            <button class = "button" ><Link to="/browse">Browse Problems Database</Link></button>
+          </div>
+          <div class="col-3">
+            <PopUp />
+          </div>
+          <div class="col-1">
+  
+          </div>
+          <div class="col-2">
+          <button class = "button">Save</button>
+          </div>
+              <div class="col-2">
+                <button class ="button">Save As</button>
+                </div>
+            </div>
+      </div>
+      
+      <div>
+        <DndContainer/>
+      </div>
+          
+          
+          </body>
+          </div>
+          
+        );
+      }
+  
+    
   
 
 function App() {
@@ -57,55 +118,40 @@ function App() {
     }, []);
     */
   return (
-    <div className="App">
-      <head>
-        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous"></link>
-      </head>
-      <body className="App-body">
-      
-      <div class = "jumbotron">
-        <div class = "container">
-          <div class = "row">
-            <div class = "col"> 
-              <h1 class="text-start">NCHS Parsons Problems</h1>
-            </div>
-            <div class = "col">
-              <h1 class = "text-end">Log In</h1>
-            </div>
-        </div>
-      </div>
-      
-      </div>
-      
-      <div class="container text-center">
-        <div class="row">
-          <div class="col-md-4" >
-          <button class = "button">Browse Problems Database</button>
-          </div>
-          <div class="col-md-3">
-              <PopUp />
-    
-          </div>
-          <div class="col-md-1">
-            
-          </div>
-          <div class="col-md-2">
-          <button class = "button">Save</button>
-          </div>
-          <div class="col-md-2">
-            <button class ="button">Save As</button>
-          </div>
-        </div>
-      </div>
-
-
-      <DndContainer/>          
-      
-      
-      </body>
-
-    </div>
-  )
+      <>
+            {/* This is the alias of BrowserRouter i.e. Router */}
+  
+                <Routes>
+                    {/* This route is for home component 
+          with exact path "/", in component props 
+          we passes the imported component*/}
+                    <Route
+                            exact
+                            path="/"
+                            element={<Home />}
+                        ></Route>
+  
+                    {/* This route is for about component 
+          with exact path "/about", in component 
+          props we passes the imported component*/}
+                    <Route
+                        path="/browse"
+                        element={<Browse />}
+                    />
+  
+                    {/* This route is for contactus component
+          with exact path "/contactus", in 
+          component props we passes the imported component*/}
+  
+  
+                    {/* If any route mismatches the upper 
+          route endpoints then, redirect triggers 
+          and redirects app to home component with to="/" */}
+                    {/* <Redirect to="/" /> */}
+  
+                </Routes>
+                </>
+    )
 } 
 
 export default App;

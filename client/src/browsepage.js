@@ -34,16 +34,13 @@ export function Browse()  {
           <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous"></link>
 
         </head>
-
-        <button class = "button" ><Link to="/">Homepage</Link></button>
-
-        <div class = "navbar">
+        <div class = "jumbotron">
           <div class = "container">
             <div class = "row">
               <div class = "col"> 
                 <h1 class="text-start">NCHS Parsons Problems</h1>
               </div>
-              <div class = "strong">
+              <div>
                 <h1 class = "text-end">Log In</h1>
               </div>
           </div>
@@ -74,9 +71,7 @@ export function Browse()  {
           </tbody>
           
     </table>
-    <button>
             <button class = "button" ><Link to="/">Back to Home</Link></button>
-            </button>
 
         </div>
       );

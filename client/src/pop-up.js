@@ -1,9 +1,8 @@
 import { useContext, useState } from 'react';
-import { useContext, useState } from 'react';
 import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
 import { FileProvider, fileContext } from './fileContext.js';
-import { FileProvider, fileContext } from './fileContext.js';
+
 
 export function PopUp() {
   //hooks - makes the popup 'appear' 
@@ -38,12 +37,12 @@ export function PopUp() {
       if (line.includes("\r")){
         var str = line.substring(0, line.indexOf("\r"));
         if (str.length !== 0){ // doesn't add lines that only contain \r 
-          json.push({id: count, name: str, positionx: null, positiony: null})
+          json.push({id: count, name: str, index: 0})
           count++;
         }
       }
       else if (line.length !== 0 ){ 
-           json.push({id: count, name: line, positionx: null, positiony: null });
+           json.push({id: count, name: line, index: 0});
            count++;
       }
   }
