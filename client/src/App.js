@@ -4,7 +4,6 @@
 import React from "react";
 import './App.css';
 import { DndContainer } from "./dnd-container.js";
-import { Upload } from "./filecomponent.js";
 import './index.css';
 import { PopUp } from "./pop-up.js";
   // You can use this function for sending POST requests You can modify it if you want to use it for GET requests as well
@@ -91,7 +90,7 @@ function App() {
             
           </div>
           <div class="col-md-2">
-            <Upload/>
+          <button class = "button">Save</button>
           </div>
           <div class="col-md-2">
             <button class ="button">Save As</button>

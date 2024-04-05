@@ -63,7 +63,10 @@ export function Upload() {
             }
                 
         });
+        });
             
+        console.log(res.ok);
+    }
         console.log(res.ok);
     }
         catch (error){
