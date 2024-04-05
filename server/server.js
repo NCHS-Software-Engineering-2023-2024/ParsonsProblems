@@ -36,7 +36,6 @@ connection.connect((err) =>
     console.log("Connected to the database!");
     connection.query("SELECT `Problem Name` AS Name, `File Type` AS Type, Comments AS Comments, Date AS Date FROM Files", function (err, result) {
       if (err) throw err;
-      console.log("result: " + result)
         app.get('/Problems', (req, res) => {
           res.json({ data: result});
           console.log(data);

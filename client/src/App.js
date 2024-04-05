@@ -2,18 +2,16 @@
 // Dr. Miller
 // Start your React app using npm start while in the client directory
 import React from "react";
+import {
+  Link,
+  Route,
+  Routes
+} from "react-router-dom";
 import './App.css';
+import { Browse } from "./browsepage.js";
 import { DndContainer } from "./dnd-container.js";
 import './index.css';
 import { PopUp } from "./pop-up.js";
-import { Browse } from "./browsepage.js";
-import {
-  BrowserRouter as Router,
-  Routes,
-  Route,
-  Link,
-  render
-} from "react-router-dom";
 
   // You can use this function for sending POST requests You can modify it if you want to use it for GET requests as well
   // This is an asynchronous function meaning that it returns a Promise
@@ -54,12 +52,12 @@ import {
       </head>
       <body className="App-body">
   
-      <div class = "jumbotron">
+      <div class = "navbar">
         <div class = "container-fluid">
           <div class = "row">
             <div class = "col"> 
-              <h1 class="text-start">NCHS Parsons Problems</h1>
-              <h1 class = "text-end">Log In</h1>
+              <h1>NCHS Parsons Problems</h1>
+            <div class = "col"></div>
             </div>
             
         </div>
@@ -68,7 +66,7 @@ import {
       </div>
       
       <div class="container text-center">
-        <div class="row">
+        <div class="row mt-4">
           <div class="col-4" >
             <button class = "button" ><Link to="/browse">Browse Problems Database</Link></button>
           </div>

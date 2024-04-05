@@ -1,17 +1,11 @@
 // App.jsx
  
-import React, { useState, useEffect } from "react";
-import './browsepage.css';
-import { DndContainer } from "./dnd-container.js";
-import './index.css';
-import { PopUp } from "./pop-up.js";
+import React, { useEffect, useState } from "react";
 import {
-  BrowserRouter as Router,
-  Routes,
-  Route,
-  Link,
-  render
+  Link
 } from "react-router-dom";
+import './browsepage.css';
+import './index.css';
 
 
 export function Browse()  {
@@ -34,18 +28,28 @@ export function Browse()  {
           <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous"></link>
 
         </head>
-        <div class = "jumbotron">
-          <div class = "container">
+        <div class = "navbar">
+          <div class = "container-fluid">
             <div class = "row">
               <div class = "col"> 
-                <h1 class="text-start">NCHS Parsons Problems</h1>
-              </div>
-              <div>
-                <h1 class = "text-end">Log In</h1>
+                <h1>NCHS Parsons Problems</h1>
               </div>
           </div>
         </div>
         </div>
+        <div class = "container">
+            <div class = "row mt-4">
+                <div class = "col-4">
+                  <button class = "button" ><Link to="/">Back to Home</Link></button>
+                </div>
+                <div class = "col-4"></div>
+                <div class = "col-4">
+                  <button class = "button">Upload</button>
+                </div>
+            </div>
+
+        </div>
+        <div class = "container-fluid mt-4">
         <table class = "center">
        
           <thead>
@@ -63,7 +67,7 @@ export function Browse()  {
                 <td>{Problem.Name}</td>
                 <td>{Problem.Type}</td>
                 <td>{Problem.Comments}</td>
-                <td>{Problem.Date}</td>
+                <td>{Problem.Date.substring(0,10)}</td>
               </tr>
 
               ))}
@@ -71,7 +75,7 @@ export function Browse()  {
           </tbody>
           
     </table>
-            <button class = "button" ><Link to="/">Back to Home</Link></button>
+    </div>
 
         </div>
       );
