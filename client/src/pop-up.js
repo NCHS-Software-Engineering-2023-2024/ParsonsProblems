@@ -49,7 +49,7 @@ export function PopUp() {
   
   // only sets the file when submit button is clicked to limit rerenders
   const handleSubmit = async (event) => {
-      event.preventDefault();
+      //event.preventDefault();
       setFile(json);
       console.log(file);
   }
@@ -73,12 +73,11 @@ export function PopUp() {
             <FileProvider>
               <form onSubmit = {handleSubmit}>
                 <input type = "file" accept = ".txt, .java, .py" onChange = {handleFileChange} />
-                <input type = "submit"></input>
               </form>
             </FileProvider>
         </Modal.Body>
         <Modal.Footer>
-          <Button variant="secondary" onClick={handleClose}>
+          <Button variant="secondary" onClick={() => {handleSubmit(); handleClose(); }}>
             Close
           </Button>
         </Modal.Footer>
