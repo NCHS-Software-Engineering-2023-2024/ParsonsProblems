@@ -73,7 +73,9 @@ app.put('/put', (req, res) => {
     else {
       console.log("uploading...");
       console.log(req.body);
-      upload.query("INSERT INTO Files VALUES (req.body.name, req.body.type, req.body.comments, req.body.date, req.body.problem)");
+      //"INSERT INTO Files VALUES ('req.body.name', req.body.type, req.body.comments, req.body.date, req.body.problem)"
+      let sql = "INSERT INTO Files VALUES ("+req.body.name+", " +req.body.type+", "+ req.body.comments+", "+ req.body.date+", "+ JSON.stringify(req.body.problem)+")";
+      upload.query(sql);
       if (err) console.log("err "+ err);
     }
   })

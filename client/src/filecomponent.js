@@ -46,12 +46,12 @@ export function Upload() {
       if (line.includes("\r")){
         var str = line.substring(0, line.indexOf("\r"));
         if (str.length !== 0){ // doesn't add lines that only contain \r 
-          json.push({id: count, name: str, positionx: null, positiony: null})
+          json.push({id: count, name: str, index: 0})
           count++;
         }
       }
       else if (line.length !== 0 ){ 
-           json.push({id: count, name: line, positionx: null, positiony: null });
+           json.push({id: count, name: line, index: 0});
            count++;
       }
   }
@@ -105,7 +105,8 @@ export function Upload() {
         </Modal.Header>
         <Modal.Body>
             <FileProvider>
-              <form onSubmit = {handleSubmit}>
+              <form onSubmit = {handleSubmit} >
+                <div class = "formwrapper">
                 <div>
                     <input type = "file" accept = ".txt, .java, .py" id = "problem" onChange = {handleFileChange}/>  
                 </div>
@@ -122,6 +123,7 @@ export function Upload() {
                   <input type = "date" id = "date" onInput = {event => setDate(event.target.value)}></input>
                 </div>
                 <input type = "submit"></input>
+                </div>
               </form>
             </FileProvider>
         </Modal.Body>
