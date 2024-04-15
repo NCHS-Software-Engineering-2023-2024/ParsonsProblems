@@ -6,7 +6,7 @@ import {
 } from "react-router-dom";
 import './browsepage.css';
 import './index.css';
-
+import { Upload } from "./filecomponent";
 
 export function Browse()  {
     const baseURL  = 'http://localhost:8000/'
@@ -44,7 +44,7 @@ export function Browse()  {
                 </div>
                 <div class = "col-4"></div>
                 <div class = "col-4">
-                  <button class = "button">Upload</button>
+                  <Upload />
                 </div>
             </div>
 

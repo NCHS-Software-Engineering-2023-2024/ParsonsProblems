@@ -4,32 +4,42 @@ import Modal from 'react-bootstrap/Modal';
 import { FileProvider, fileContext } from './fileContext.js';
 
 export function Upload() {
-  //hooks - makes the popup 'appear' 
+  //hooks - for reading inputs from user
   const [show, setShow] = useState(false);
+
+  const [type, setType] = useState("");
+  const [name, setName] = useState("");
+  const [comments, setComments] = useState("");
+  const [content, setContent] = useState("");
+  const [date, setDate] = useState("");
+
+  //hooks - makes the popup 'appear' 
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
 
   const {file, setFile} = useContext(fileContext);// to update dnd-container's file without sending props
     
-  const [content, setContent] = useState("");
+  
   const handleFileChange = (event) => {
-    if (event.target.files[0].name.slice(-4) !== ".txt" ||
-        event.target.files[0].name.slice(-5) !== ".java" ||
-        event.target.files[0].name.slice(-3) !== ".py"){
-          alert("The file type you selected is not supported.");
+    if (event.target.files[0].name.slice(-4) === ".txt" ||
+        event.target.files[0].name.slice(-5) === ".java" ||
+        event.target.files[0].name.slice(-3) === ".py"){
+          
+          setType(event.target.files[0].type);
+          console.log(type);
+          const reader = new FileReader();
+          reader.onload = function() {
+            //console.log(reader.result);
+            setContent(reader.result); // to parse outside of handleFileChange
+          }
+          reader.readAsText(event.target.files[0]);
         }
     else {
-        const reader = new FileReader();
-      reader.onload = function() {
-          //console.log(reader.result);
-          setContent(reader.result); // to parse outside of handleFileChange
-      }
-      
+          alert("The file type you selected is not supported.");
         }
     }
-    
 
-  var json = [];
+  const json = [];
   var count = 0;
   // file contents need to be added to an array for dnd
   for (const line of content.split("\n")){
@@ -48,25 +58,26 @@ export function Upload() {
   
   // only sets the file when submit button is clicked to limit rerenders
   const handleSubmit = async (event) => {
-      event.preventDefault();
-      setFile(json);
+    event.preventDefault();
       
-            
+    const put = { type: type,
+                  name: name, 
+                  problem: json,
+                  date: date,
+                  comments: comments 
+                };
+
+    console.log(JSON.stringify(put));
     try {
-        const res = await fetch("", {// change url to send to different place
+        const res = await fetch("http://localhost:8000/put", {
             method: 'PUT',
             headers:{
                 'Content-Type': 'application/json'
             },
-            body: {
+            body: JSON.stringify(put)
                 
-            }
-                
-        });
         });
             
-        console.log(res.ok);
-    }
         console.log(res.ok);
     }
         catch (error){
@@ -74,5 +85,52 @@ export function Upload() {
         }
   }
 
+  
 
+  return (
+    <>
+      <button class = "button" onClick={handleShow}>
+        Save
+      </button>
 
+      <Modal
+        show={show}
+        onHide={handleClose}
+        backdrop="static"
+        keyboard={false}
+        centered = {true}
+      >
+        <Modal.Header closeButton>
+          <Modal.Title>Save a problem</Modal.Title>
+        </Modal.Header>
+        <Modal.Body>
+            <FileProvider>
+              <form onSubmit = {handleSubmit}>
+                <div>
+                    <input type = "file" accept = ".txt, .java, .py" id = "problem" onChange = {handleFileChange}/>  
+                </div>
+                <div>
+                  <label for = "name">Problem Name</label>
+                  <input type = "text" id = "name" onInput = {event => setName(event.target.value)}></input>
+                </div>
+                <div>
+                    <label for = "comments">Comments</label>
+                    <textarea id = "comments" placeholder='Enter comments here' onInput = {event => setComments(event.target.value)}></textarea>
+                </div>   
+                <div>
+                  <label for = "date">Date</label>
+                  <input type = "date" id = "date" onInput = {event => setDate(event.target.value)}></input>
+                </div>
+                <input type = "submit"></input>
+              </form>
+            </FileProvider>
+        </Modal.Body>
+        <Modal.Footer>
+          <Button variant="secondary" onClick={handleClose}>
+            Close
+          </Button>
+        </Modal.Footer>
+      </Modal>
+    </>
+  );
+}

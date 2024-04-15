@@ -58,6 +58,25 @@ app.get('/message', (req, res) => {
     
 });
 
+const upload = mysql.createConnection({
+  host: 'db.redhawks.us',
+  user: 'redhawk_parsons', 
+  password: 'Qiprufecr*22@lc0fru',
+  database: 'redhawk_parsons'
+});
 
+app.put('/put', (req, res) => {
+  upload.connect((err) => {
+    if (err){
+      console.log("err "+ err);
+    }
+    else {
+      console.log("uploading...");
+      console.log(req.body);
+      upload.query("INSERT INTO Files VALUES (req.body.name, req.body.type, req.body.comments, req.body.date, req.body.problem)");
+      if (err) console.log("err "+ err);
+    }
+  })
+});
 
 
