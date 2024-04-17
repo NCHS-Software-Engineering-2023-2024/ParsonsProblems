@@ -19,8 +19,8 @@ export const Shuffle = (items) => {
 //implement a better algorithm later.
 export const Grade = (items) => {
   const grades = items.slice(0);
-  for (let currentIndex = 1; currentIndex <= items.length; currentIndex++) {
-    grades[currentIndex] = (items[currentIndex-1].id == currentIndex) ? "#aaffaa" : "#ffaaaa";
+  for (let currentIndex = 0; currentIndex < items.length; currentIndex++) {
+    grades[currentIndex] = (items[currentIndex].id == currentIndex) ? "#aaffaa" : "#ffaaaa";
   }
   return grades;
 }

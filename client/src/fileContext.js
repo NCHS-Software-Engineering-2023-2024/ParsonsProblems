@@ -8,18 +8,18 @@ export const FileProvider = ({children}) => {
                             // initally loaded problem
     const [file, setFile] = useState([
     {
-        id: 1,
-        name: 'firstasdjkahsaskakskdjasjkdjkakjsssssssssssssskjskkdasd aasdasdakslk',
+        id: 0,
+        name: 'This',
         indent: 0,
     },
     {
-        id: 2,
-        name: 'second',
+        id: 1,
+        name: 'is a',
         indent: 1,
     },
     {
-        id: 3,
-        name: 'third',
+        id: 2,
+        name: 'sample problem',
         indent: 2,
     }]);
     return (
