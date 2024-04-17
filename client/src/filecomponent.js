@@ -105,31 +105,26 @@ export function Upload() {
         </Modal.Header>
         <Modal.Body>
             <FileProvider>
-              <form onSubmit = {handleSubmit} >
-                <div class = "formwrapper">
-                <div>
-                    <input type = "file" accept = ".txt, .java, .py" id = "problem" onChange = {handleFileChange}/>  
-                </div>
-                <div>
-                  <label for = "name">Problem Name</label>
-                  <input type = "text" id = "name" onInput = {event => setName(event.target.value)}></input>
-                </div>
-                <div>
-                    <label for = "comments">Comments</label>
-                    <textarea id = "comments" placeholder='Enter comments here' onInput = {event => setComments(event.target.value)}></textarea>
-                </div>   
-                <div>
-                  <label for = "date">Date</label>
-                  <input type = "date" id = "date" onInput = {event => setDate(event.target.value)}></input>
-                </div>
-                <input type = "submit"></input>
-                </div>
+              <form class = "loadfile" onSubmit = {handleSubmit} style={{display:"block",   }}>
+                <input type = "file" accept = ".txt, .java, .py" id = "problem" onChange = {handleFileChange}/>  
+                <br/>
+                <label for = "name">Problem Name</label>
+                <br/>
+                <input type = "text" id = "name" onInput = {event => setName(event.target.value)}></input>
+                <br/>
+                <label for = "comments">Comments</label>
+                <br/>
+                <textarea id = "comments" rows = "5" cols = "50" placeholder='Enter comments here' onInput = {event => setComments(event.target.value)}></textarea>
+                <br/>
+                <label for = "date">Date</label>
+                <br/>
+                <input type = "date" id = "date" onInput = {event => setDate(event.target.value)}></input>
               </form>
             </FileProvider>
         </Modal.Body>
         <Modal.Footer>
-          <Button variant="secondary" onClick={handleClose}>
-            Close
+          <Button variant="secondary" onClick={()=> {handleClose(); handleSubmit()}}>
+            Upload
           </Button>
         </Modal.Footer>
       </Modal>

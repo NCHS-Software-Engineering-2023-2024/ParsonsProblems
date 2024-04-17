@@ -38,7 +38,7 @@ connection.connect((err) =>
       if (err) throw err;
         app.get('/Problems', (req, res) => {
           res.json({ data: result});
-          console.log(data);
+          
         });
       });
     };
@@ -73,12 +73,8 @@ app.put('/put', (req, res) => {
     else {
       console.log("uploading...");
       console.log(req.body);
-      //"INSERT INTO Files VALUES ('req.body.name', req.body.type, req.body.comments, req.body.date, req.body.problem)"
-      let json = JSON.stringify(req.body.problem);
-      let problem = "'"+json.slice(1, json.length-1)+"'";
-      console.log(problem);
-      let sql = "INSERT INTO Files VALUES ("+req.body.name+", " +req.body.type+", "+ req.body.comments+", "+ req.body.date+", "+problem+")";
-      upload.query(sql);
+      let sql = "INSERT INTO Files VALUES (?, ?, ?, ?, ?)";
+      upload.query(sql, [req.body.name, req.body.type, req.body.comments, req.body.date, JSON.stringify(req.body.problem)]);
       if (err) console.log("err "+ err);
     }
   })
