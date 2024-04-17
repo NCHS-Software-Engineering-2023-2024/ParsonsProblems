@@ -58,7 +58,7 @@ export function Upload() {
   
   // only sets the file when submit button is clicked to limit rerenders
   const handleSubmit = async (event) => {
-    event.preventDefault();
+    //event.preventDefault();
       
     const put = { type: type,
                   name: name, 
@@ -105,7 +105,7 @@ export function Upload() {
         </Modal.Header>
         <Modal.Body>
             <FileProvider>
-              <form class = "loadfile" onSubmit = {handleSubmit} style={{display:"block",   }}>
+              <form class = "loadfile" style={{display:"block"}}>
                 <input type = "file" accept = ".txt, .java, .py" id = "problem" onChange = {handleFileChange}/>  
                 <br/>
                 <label for = "name">Problem Name</label>

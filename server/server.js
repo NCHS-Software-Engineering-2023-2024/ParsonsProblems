@@ -47,8 +47,6 @@ connection.connect((err) =>
 
 
 
-//app.use(fileUpload());
-
 // This is an example GET request endpoint
 // req is the request object that was sent
 // res is the result object of the request

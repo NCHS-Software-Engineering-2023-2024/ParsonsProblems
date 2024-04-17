@@ -5,22 +5,33 @@ import {
   Link
 } from "react-router-dom";
 import './browsepage.css';
-import './index.css';
 import { Upload } from "./filecomponent";
+import './index.css';
 
 export function Browse()  {
     const baseURL  = 'http://localhost:8000/'
     const [file, setFiles] = useState([]);
+    const [sorting, setSorting] = useState({ field: 'name', ascending: false })
 
     useEffect(() => {
         fetch(`${baseURL}Problems`) // use backticks instead of apostrophes
             .then((res) => res.json())
             .then((data) => {setFiles(data.data)})
-
     }, []);
     console.log(file);
     
-    
+    useEffect(() => {
+      const copy = JSON.parse(JSON.stringify(file));
+
+      const sort = copy.sort((a, b) => {
+        return a[sorting.key].localeCompare(b[sorting.key]);
+      })
+      setFiles(sorting.ascending ? sort :sort.reverse());
+    }, [file, sorting])
+
+    function applySorting () {
+      setSorting({ key: key, ascending: ascending });
+    }
 
     return (
         <div>
@@ -28,7 +39,7 @@ export function Browse()  {
           <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous"></link>
 
         </head>
-        <div class = "navbar">
+        <div class = "navbar" onClick={() => applySorting('name', !sorting.ascending)}>
           <div class = "container-fluid">
             <div class = "row">
               <div class = "col"> 
@@ -64,10 +75,10 @@ export function Browse()  {
           {file.map((Problem)=>(
              
               <tr>
-                <td>{Problem.Name}</td>
-                <td>{Problem.Type}</td>
+                <td style={{textAlign:"center"}}>{Problem.Name}</td>
+                <td style={{textAlign:"center"}}>{Problem.Type}</td>
                 <td>{Problem.Comments}</td>
-                <td>{Problem.Date.substring(0,10)}</td>
+                <td style={{textAlign:"center"}}>{Problem.Date.substring(0,10)}</td>
               </tr>
 
               ))}
