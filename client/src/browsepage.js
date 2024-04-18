@@ -1,6 +1,6 @@
 // App.jsx
  
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useMemo, useState } from "react";
 import {
   Link
 } from "react-router-dom";
@@ -10,36 +10,50 @@ import './index.css';
 
 export function Browse()  {
     const baseURL  = 'http://localhost:8000/'
-    const [file, setFiles] = useState([]);
-    const [sorting, setSorting] = useState({ field: 'name', ascending: false })
+    const [files, setFiles] = useState([]);
+    const [sortKey, setSortKey] = useState(null);
+    const [sortDirection, setSortDirection] = useState('ascending');
 
     useEffect(() => {
         fetch(`${baseURL}Problems`) // use backticks instead of apostrophes
             .then((res) => res.json())
             .then((data) => {setFiles(data.data)})
     }, []);
-    console.log(file);
+    //console.log(files);
+
     
-    useEffect(() => {
-      const copy = JSON.parse(JSON.stringify(file));
 
-      const sort = copy.sort((a, b) => {
-        return a[sorting.key].localeCompare(b[sorting.key]);
-      })
-      setFiles(sorting.ascending ? sort :sort.reverse());
-    }, [file, sorting])
+    const handleSort = (key) => {
+      if (sortKey === key){
+        setSortDirection(sortDirection === 'ascending' ? 'descending' : 'ascending');
+      }
+      else {
+        setSortKey(key)
+        setSortDirection('ascending');
+      }
+    };
 
-    function applySorting () {
-      setSorting({ key: key, ascending: ascending });
+  const sortedData = useMemo(() => {
+    if (!sortKey) return files;
+    return [...files].sort((a, b) => {
+    const A = a[sortKey].toLowerCase();
+    const B = b[sortKey].toLowerCase();
+    if (A < B){
+      return sortDirection === 'ascending' ? -1 : 1;
     }
-
+    if (A > B){
+      return sortDirection === 'ascending' ? 1 : -1;
+    }
+    return 0;
+    });
+  }, [files, sortKey, sortDirection]);
     return (
         <div>
         <head>
           <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous"></link>
 
         </head>
-        <div class = "navbar" onClick={() => applySorting('name', !sorting.ascending)}>
+        <div class = "navbar">
           <div class = "container-fluid">
             <div class = "row">
               <div class = "col"> 
@@ -65,16 +79,16 @@ export function Browse()  {
        
           <thead>
             <tr class = "tr">
-            <th class = "th">Problem Name</th>
-            <th>File Type</th>
-            <th>Comments</th>
-            <th>Date</th>
+            <th onClick={() => handleSort('Name')}>Problem Name</th>
+            <th onClick={() => handleSort('Type')}>File Type</th>
+            <th onClick={() => handleSort('Comments')}>Comments</th>
+            <th onClick={() => handleSort('Date')}>Date</th>
             </tr>
           </thead>
           <tbody>
-          {file.map((Problem)=>(
+          {sortedData.map((Problem, index)=>(
              
-              <tr>
+              <tr key = {index}>
                 <td style={{textAlign:"center"}}>{Problem.Name}</td>
                 <td style={{textAlign:"center"}}>{Problem.Type}</td>
                 <td>{Problem.Comments}</td>
