@@ -74,8 +74,14 @@ app.put('/put', (req, res) => {
       let sql = "INSERT INTO Files VALUES (?, ?, ?, ?, ?)";
       upload.query(sql, [req.body.name, req.body.type, req.body.comments, req.body.date, JSON.stringify(req.body.problem)]);
       if (err) console.log("err "+ err);
+      else updatemap(req);
     }
   })
 });
 
+function updatemap (newdata) {
+  app.get('/newdata', (req, res) => {
+    res.json({added : newdata});
+  });
 
+}

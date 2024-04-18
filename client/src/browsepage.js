@@ -47,6 +47,10 @@ export function Browse()  {
     return 0;
     });
   }, [files, sortKey, sortDirection]);
+
+    const update = await fetch (`${baseURL}newdata`)
+
+
     return (
         <div>
         <head>
