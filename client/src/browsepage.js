@@ -15,13 +15,15 @@ export function Browse()  {
     const [sortDirection, setSortDirection] = useState('ascending');
 
     useEffect(() => {
-        fetch(`${baseURL}Problems`) // use backticks instead of apostrophes
-            .then((res) => res.json())
-            .then((data) => {setFiles(data.data)})
+        getProblems();
     }, []);
     //console.log(files);
 
-    
+    function getProblems() {
+      fetch(`${baseURL}Problems`) // use backticks instead of apostrophes
+            .then((res) => res.json())
+            .then((data) => {setFiles(data.data)})
+    }
 
     const handleSort = (key) => {
       if (sortKey === key){
@@ -48,8 +50,6 @@ export function Browse()  {
     });
   }, [files, sortKey, sortDirection]);
 
-    const update = await fetch (`${baseURL}newdata`)
-
 
     return (
         <div>
@@ -73,7 +73,7 @@ export function Browse()  {
                 </div>
                 <div class = "col-4"></div>
                 <div class = "col-4">
-                  <Upload />
+                  <Upload callback={() => getProblems()}/>
                 </div>
             </div>
 

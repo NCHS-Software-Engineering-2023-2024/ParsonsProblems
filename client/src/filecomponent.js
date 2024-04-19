@@ -3,7 +3,7 @@ import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
 import { FileProvider, fileContext } from './fileContext.js';
 
-export function Upload() {
+export function Upload(props = null) {
   //hooks - for reading inputs from user
   const [show, setShow] = useState(false);
 
@@ -79,6 +79,7 @@ export function Upload() {
         });
             
         console.log(res.ok);
+        props.callback();
     }
         catch (error){
             console.error('upload error');
