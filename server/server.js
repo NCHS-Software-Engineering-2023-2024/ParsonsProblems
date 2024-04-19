@@ -43,7 +43,7 @@ connection.connect((err) =>
       });
     };
   });
-  
+
 
 
 
@@ -64,17 +64,18 @@ const upload = mysql.createConnection({
 });
 
 app.put('/put', (req, res) => {
-  upload.connect((err) => {
-    if (err){
-      console.log("err "+ err);
-    }
-    else {
+  //upload.connect((err) => {
+    //if (err){
+      //console.log("err "+ err);
+    //}
+    //else {
       console.log("uploading...");
       console.log(req.body);
       let sql = "INSERT INTO Files VALUES (?, ?, ?, ?, ?)";
       upload.query(sql, [req.body.name, req.body.type, req.body.comments, req.body.date, JSON.stringify(req.body.problem)]);
-      if (err) console.log("err "+ err)
-    }
-  })
+      //if (err) console.log("err "+ err)
+    //}
+    
+  
 });
 
