@@ -77,7 +77,7 @@ export function Upload(props) {
             body: JSON.stringify(put)
         })
         .then(props.callback())
-        //props.callback();
+        .then(alert("Refresh the page to see the added problem."));
     }
         catch (error){
             console.error('upload error');

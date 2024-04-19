@@ -19,11 +19,11 @@ export function Browse()  {
     }, []);
     //console.log(files);
 
-    function getProblems() {
+    async function getProblems() {
       console.log("hiiiiiiiii")
-      fetch(`${baseURL}Problems`) // use backticks instead of apostrophes
+      await fetch(`${baseURL}Problems`) // use backticks instead of apostrophes
             .then((res) => res.json())
-            .then((data) => {setFiles(data.data)})
+            .then((data) => {setFiles(data.data); console.log(data.data)})
 
       console.log(files);
     }

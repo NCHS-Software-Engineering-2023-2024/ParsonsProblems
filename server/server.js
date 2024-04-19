@@ -34,14 +34,23 @@ connection.connect((err) =>
     console.log("Error connecting to the database", err);
   }else {
     console.log("Connected to the database!");
-    connection.query("SELECT `Problem Name` AS Name, `File Type` AS Type, Comments AS Comments, Date AS Date FROM Files", function (err, result) {
-      if (err) throw err;
-        app.get('/Problems', (req, res) => {
-          res.json({ data: result});
-          
+    function fetchFromDatabase(callback){ // callback function to allow the database page to update when a problem is added
+      connection.query("SELECT `Problem Name` AS Name, `File Type` AS Type, Comments AS Comments, Date AS Date FROM Files", function (err, result) {
+        if (err) callback(err, result);
+        else callback(null, result);
         });
-      });
+    }
     };
+    app.get('/Problems', (req, res) => {
+      fetchFromDatabase((err, data) => {
+        if (err) throw err;
+        else{
+          res.json({ data });
+          console.log(data);
+        }
+        
+      });
+    });
   });
 
 
