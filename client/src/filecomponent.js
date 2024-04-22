@@ -127,3 +127,90 @@ export function Upload(props) {
     </>
   );
 }
+
+export function Save(buttontype = '', props) {
+  //hooks - for reading inputs from user
+  const [show, setShow] = useState(false);
+  const [type, setType] = useState("");
+  const [name, setName] = useState("");
+  const [comments, setComments] = useState("");
+  const [content, setContent] = useState("");
+  const [date, setDate] = useState("");
+
+  const {file, setFile} = useContext(fileContext);
+
+  const handleClose = () => setShow(false);
+  const handleShow = () => setShow(true);
+  
+
+  // only sets the file when submit button is clicked to limit rerenders
+  const handleSubmit = async (event) => {
+    //event.preventDefault();
+      
+    const json = { type: type,
+                  name: name, 
+                  problem: file,
+                  date: date,
+                  comments: comments 
+                };
+
+    console.log(JSON.stringify(json));
+      try {
+        await fetch("http://localhost:8000/update", {
+            method: 'UPDATE',
+            headers:{
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(json)
+        })
+        .then(props.callback())
+        .then(alert("Updated database entry"));
+      }
+        catch (error){
+            console.error('upload error');
+        }
+
+    }
+    
+  return (
+    <>
+      <button class = "button" onClick={handleShow}>
+        Save
+      </button>
+
+      <Modal
+        show={show}
+        onHide={handleClose}
+        backdrop="static"
+        keyboard={false}
+        centered = {true}
+      >
+        <Modal.Header closeButton>
+          <Modal.Title>Save a problem</Modal.Title>
+        </Modal.Header>
+        <Modal.Body>
+            <FileProvider>
+              <form class = "loadfile" style={{display:"block"}}>
+                <label for = "name">Problem Name</label>
+                <br/>
+                <input type = "text" id = "name" onInput = {event => setName(event.target.value)}></input>
+                <br/>
+                <label for = "comments">Comments</label>
+                <br/>
+                <textarea id = "comments" rows = "5" cols = "50" placeholder='Enter comments here' onInput = {event => setComments(event.target.value)}></textarea>
+                <br/>
+                <label for = "date">Date</label>
+                <br/>
+                <input type = "date" id = "date" onInput = {event => setDate(event.target.value)}></input>
+              </form>
+            </FileProvider>
+        </Modal.Body>
+        <Modal.Footer>
+          <Button variant="secondary" onClick={()=> {handleClose(); handleSubmit()}}>
+            Save
+          </Button>
+        </Modal.Footer>
+      </Modal>
+    </>
+  );
+}
