@@ -35,7 +35,7 @@ connection.connect((err) =>
   }else {
     console.log("Connected to the database!");
     function fetchFromDatabase(callback){ // callback function to allow the database page to update when a problem is added
-      connection.query("SELECT `Problem Name` AS Name, `File Type` AS Type, Comments AS Comments, Date AS Date FROM Files", function (err, result) {
+      connection.query("SELECT `Problem Name` AS Name, `File Type` AS Type, Comments AS Comments, Date AS Date, Problem AS Problem FROM Files", function (err, result) {
         if (err) callback(err, result);
         else callback(null, result);
         });
@@ -85,14 +85,15 @@ app.put('/put', (req, res) => {
       //if (err) console.log("err "+ err)
     //}
 });
-
+/*
 const update = mysql.createConnection({
   host: 'db.redhawks.us',
   user: 'redhawk_parsons', 
   password: 'Qiprufecr*22@lc0fru',
   database: 'redhawk_parsons'
 });
-app.update('/update', (req, res) => {
+update.query('/update', (req, res) => {
   let sql = "SET `Problem Name` = (?), `File Type` = (?), Comments = (?), Date = (?) WHERE Problem = (?)";
   update.query(sql, [req.body.name, req.body.type, req.body.comments, req.body.date, JSON.stringify(req.body.problem)]);
 });
+*/

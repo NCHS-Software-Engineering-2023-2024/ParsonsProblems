@@ -1,7 +1,7 @@
 import { useContext, useState } from 'react';
 import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
-import { FileProvider, fileContext } from './fileContext.js';
+import { fileContext } from './fileContext.js';
 
 export function Upload(props) {
   //hooks - for reading inputs from user
@@ -100,7 +100,6 @@ export function Upload(props) {
           <Modal.Title>Save a problem</Modal.Title>
         </Modal.Header>
         <Modal.Body>
-            <FileProvider>
               <form class = "loadfile" style={{display:"block"}}>
                 <input type = "file" accept = ".txt, .java, .py" id = "problem" onChange = {handleFileChange}/>  
                 <br/>
@@ -116,7 +115,6 @@ export function Upload(props) {
                 <br/>
                 <input type = "date" id = "date" onInput = {event => setDate(event.target.value)}></input>
               </form>
-            </FileProvider>
         </Modal.Body>
         <Modal.Footer>
           <Button variant="secondary" onClick={()=> {handleClose(); handleSubmit()}}>
@@ -189,21 +187,19 @@ export function Save(buttontype = '', props) {
           <Modal.Title>Save a problem</Modal.Title>
         </Modal.Header>
         <Modal.Body>
-            <FileProvider>
-              <form class = "loadfile" style={{display:"block"}}>
-                <label for = "name">Problem Name</label>
-                <br/>
-                <input type = "text" id = "name" onInput = {event => setName(event.target.value)}></input>
-                <br/>
-                <label for = "comments">Comments</label>
-                <br/>
-                <textarea id = "comments" rows = "5" cols = "50" placeholder='Enter comments here' onInput = {event => setComments(event.target.value)}></textarea>
-                <br/>
-                <label for = "date">Date</label>
-                <br/>
-                <input type = "date" id = "date" onInput = {event => setDate(event.target.value)}></input>
-              </form>
-            </FileProvider>
+          <form class = "loadfile" style={{display:"block"}}>
+            <label for = "name">Problem Name</label>
+            <br/>
+            <input type = "text" id = "name" onInput = {event => setName(event.target.value)}></input>
+            <br/>
+            <label for = "comments">Comments</label>
+            <br/>
+            <textarea id = "comments" rows = "5" cols = "50" placeholder='Enter comments here' onInput = {event => setComments(event.target.value)}></textarea>
+            <br/>
+            <label for = "date">Date</label>
+            <br/>
+            <input type = "date" id = "date" onInput = {event => setDate(event.target.value)}></input>
+          </form>
         </Modal.Body>
         <Modal.Footer>
           <Button variant="secondary" onClick={()=> {handleClose(); handleSubmit()}}>

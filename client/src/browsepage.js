@@ -1,19 +1,19 @@
 // App.jsx
  
-import React, { useEffect, useMemo, useState } from "react";
+import React, { useContext, useEffect, useMemo, useState } from "react";
 import {
   Link
 } from "react-router-dom";
 import './browsepage.css';
+import { FileProvider, fileContext } from "./fileContext";
 import { Upload } from "./filecomponent";
 import './index.css';
-
 export function Browse()  {
     const baseURL  = 'http://localhost:8000/'
     const [files, setFiles] = useState([]);
     const [sortKey, setSortKey] = useState(null);
     const [sortDirection, setSortDirection] = useState('ascending');
-
+    const {file, setFile} = useContext(fileContext());
     useEffect(() => {
         getProblems();
     }, []);
@@ -96,7 +96,12 @@ export function Browse()  {
           {sortedData.map((Problem, index)=>(
              
               <tr key = {index}>
-                <td style={{textAlign:"center"}}>{Problem.Name}</td>
+                <FileProvider>
+                  <td style={{textAlign:"center", cursor:"pointer"}} onclick = {() => setFile(Problem.Problem)}><Link to="/">{Problem.Name}</Link></td>
+                </FileProvider>
+                
+                
+                
                 <td style={{textAlign:"center"}}>{Problem.Type}</td>
                 <td>{Problem.Comments}</td>
                 <td style={{textAlign:"center"}}>{Problem.Date.substring(0,10)}</td>

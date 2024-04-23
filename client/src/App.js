@@ -119,7 +119,7 @@ function App() {
   return (
       <>
             {/* This is the alias of BrowserRouter i.e. Router */}
-  
+              
                 <Routes>
                     {/* This route is for home component 
           with exact path "/", in component props 
