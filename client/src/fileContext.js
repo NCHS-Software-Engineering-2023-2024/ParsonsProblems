@@ -9,17 +9,17 @@ export const FileProvider = ({children}) => {
     const [file, setFile] = useState([
     {
         id: 1,
-        name: 'firstasdjkahsaskakskdjasjkdjkakjsssssssssssssskjskkdasd aasdasdakslk',
+        name: 'numba 1',
         indent: 0,
     },
     {
         id: 2,
-        name: 'second',
+        name: 'Numba 2',
         indent: 1,
     },
     {
         id: 3,
-        name: 'third',
+        name: 'NUMBA 3',
         indent: 2,
     }]);
     return (

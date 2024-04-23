@@ -31,18 +31,18 @@ export function PopUp() {
     
 
   var json = [];
-  var count = 0;
+  var count = 1;
   // file contents need to be added to an array for dnd
   for (const line of content.split("\n")){
       if (line.includes("\r")){
         var str = line.substring(0, line.indexOf("\r"));
         if (str.length !== 0){ // doesn't add lines that only contain \r 
-          json.push({id: count, name: str, index: 0})
+          json.push({id: count, name: str})
           count++;
         }
       }
       else if (line.length !== 0 ){ 
-           json.push({id: count, name: line, index: 0});
+           json.push({id: count, name: line});
            count++;
       }
   }

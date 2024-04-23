@@ -43,7 +43,7 @@ import {
         {...attributes}
         {...listeners}
       >
-        {props.id.id + props.id.name + props.id.index}
+        {props.id.name}
       </div>
     );
   }
