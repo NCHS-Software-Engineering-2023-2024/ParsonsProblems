@@ -28,27 +28,30 @@ body {
 
 .sortable-list {
 	margin: auto;
+	margin-top: 2rem;
+	margin-bottom: 2rem;
 	width: 40rem; 
 	align-content: right;
-	background: #ffffff; 
+	background: #ffffdd; 
 	border-radius: 10px; 
-	padding: 20px; 
-	box-shadow: 0 1px 1px rgba(133, 133, 133, 0.1); 
+	padding: 20px 10px; 
+	box-shadow: 0 1px 1px rgba(0, 0, 0, 0.1); 
 } 
 
 .sortable-list .item { 
-	margin-top: 1rem; 
+	margin-top: 0.5rem; 
 	border: 1px solid #ccc; 
 	justify-content: space-between; 
+	background: #efefef; 
+	font-family: 'Courier New', monospace;
 	list-style: none; 
 	display: flex; 
 	cursor: move; 
-	background: #ffffff; 
 	align-items: center; 
 	border-radius: 5px; 
 	padding: .5rem .5rem;
 	margin-bottom: 10px; 
-	box-shadow: 0 1px 1px rgba(0, 0, 0, 0.1); 
+	box-shadow: 0 1px 1px rgba(0, 0, 0, 0.05); 
 } 
 
 .item .details { 
@@ -75,5 +78,5 @@ body {
 .item.dragging i { 
 	opacity: 0.8; 
 	transform: scale(1.02); 
-	background: #f0f0f0; 
+	background: #ffffff; 
 }

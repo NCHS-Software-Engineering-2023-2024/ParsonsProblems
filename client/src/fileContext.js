@@ -8,6 +8,7 @@ export const FileProvider = ({children}) => {
                             // initally loaded problem
     const [file, setFile] = useState([
     {
+<<<<<<< HEAD
         id: 1,
         name: 'numba 1',
         indent: 0,
@@ -20,6 +21,20 @@ export const FileProvider = ({children}) => {
     {
         id: 3,
         name: 'NUMBA 3',
+=======
+        id: 0,
+        name: 'This',
+        indent: 0,
+    },
+    {
+        id: 1,
+        name: 'is a',
+        indent: 1,
+    },
+    {
+        id: 2,
+        name: 'sample problem',
+>>>>>>> dc6e74479388a163645890e6d976bebef252b50e
         indent: 2,
     }]);
     return (
