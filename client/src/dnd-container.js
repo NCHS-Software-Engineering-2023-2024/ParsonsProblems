@@ -1,53 +1,4 @@
 import {
-<<<<<<< HEAD
-    DndContext,
-    KeyboardSensor,
-    PointerSensor,
-    useSensor,
-    useSensors
-  } from "@dnd-kit/core";
-  import "./index.css";
-  
-  import {
-    SortableContext,
-    arrayMove,
-    sortableKeyboardCoordinates,
-    useSortable
-  } from "@dnd-kit/sortable";
-  import { CSS } from "@dnd-kit/utilities";
-  import React, { useEffect, useState } from "react";
-  import { fileContext } from "./fileContext.js";
-  import { snapGridModifier } from "./snapGridModifier.ts";
-  import { Grade, Shuffle } from "./dnd-grading"
-  import "./index.css";
-  
-  function SortableItem(props) {
-    const {
-      attributes,
-      listeners,
-      setNodeRef,
-      transform,
-      transition
-    } = useSortable({ id: props.id });
-  
-    const style = {
-      transform: CSS.Transform.toString(transform),
-      transition,
-      background: props.grade
-    };
-  
-    return (
-      <div
-        className="item"
-        ref={setNodeRef}
-        style={style}
-        {...attributes}
-        {...listeners}
-      >
-        {props.id.name}
-      </div>
-    );
-=======
   DndContext,
   KeyboardSensor,
   PointerSensor,
@@ -64,10 +15,10 @@ import {
 } from "@dnd-kit/sortable";
 import { CSS } from "@dnd-kit/utilities";
 import React, { useEffect, useState } from "react";
+import { Grade, Shuffle } from "./dnd-grading";
 import { fileContext } from "./fileContext.js";
-import { snapGridModifier } from "./snapGridModifier.ts";
-import { Grade, Shuffle } from "./dnd-grading"
 import "./index.css";
+import { snapGridModifier } from "./snapGridModifier.ts";
 
 function SortableItem(props) {
   const {
@@ -109,7 +60,6 @@ export const DndContainer = () => {
 
   function handleGrade() {
     setGrade(Grade(items));
->>>>>>> dc6e74479388a163645890e6d976bebef252b50e
   }
   function resetGrade() {
     setGrade(new Array(""));

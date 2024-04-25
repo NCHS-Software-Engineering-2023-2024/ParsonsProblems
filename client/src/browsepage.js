@@ -1,26 +1,56 @@
 // App.jsx
  
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useMemo, useState } from "react";
 import {
   Link
 } from "react-router-dom";
 import './browsepage.css';
+import { fileContext } from "./fileContext";
+import { Upload } from "./filecomponent";
 import './index.css';
-
-
 export function Browse()  {
     const baseURL  = 'http://localhost:8000/'
-    const [file, setFiles] = useState([]);
-
+    const [files, setFiles] = useState([]);
+    const [sortKey, setSortKey] = useState(null);
+    const [sortDirection, setSortDirection] = useState('ascending');
+    const {file, setFile} = useContext(fileContext);
     useEffect(() => {
-        fetch(`${baseURL}Problems`) // use backticks instead of apostrophes
-            .then((res) => res.json())
-            .then((data) => {setFiles(data.data)})
-
+        getProblems();
     }, []);
-    console.log(file);
-    
-    
+    //console.log(files);
+
+    async function getProblems() {
+      await fetch(`${baseURL}Problems`) // use backticks instead of apostrophes
+            .then((res) => res.json())
+            .then((data) => {setFiles(data.data); console.log(data.data)})
+
+      console.log(files);
+    }
+
+    const handleSort = (key) => {
+      if (sortKey === key){
+        setSortDirection(sortDirection === 'ascending' ? 'descending' : 'ascending');
+      }
+      else {
+        setSortKey(key)
+        setSortDirection('ascending');
+      }
+    };
+
+  const sortedData = useMemo(() => {
+    if (!sortKey) return files;
+    return [...files].sort((a, b) => {
+    const A = a[sortKey].toLowerCase();
+    const B = b[sortKey].toLowerCase();
+    if (A < B){
+      return sortDirection === 'ascending' ? -1 : 1;
+    }
+    if (A > B){
+      return sortDirection === 'ascending' ? 1 : -1;
+    }
+    return 0;
+    });
+  }, [files, sortKey, sortDirection]);
 
     return (
         <div>
@@ -44,7 +74,7 @@ export function Browse()  {
                 </div>
                 <div class = "col-4"></div>
                 <div class = "col-4">
-                  <button class = "button">Upload</button>
+                  <Upload callback={() => getProblems()}/>
                 </div>
             </div>
 
@@ -54,20 +84,20 @@ export function Browse()  {
        
           <thead>
             <tr class = "tr">
-            <th class = "th">Problem Name</th>
-            <th>File Type</th>
-            <th>Comments</th>
-            <th>Date</th>
+            <th onClick={() => handleSort('Name')}>Problem Name</th>
+            <th onClick={() => handleSort('Type')}>File Type</th>
+            <th onClick={() => handleSort('Comments')}>Comments</th>
+            <th onClick={() => handleSort('Date')}>Date</th>
             </tr>
           </thead>
           <tbody>
-          {file.map((Problem)=>(
+          {sortedData.map((Problem, index)=>(
              
-              <tr>
-                <td>{Problem.Name}</td>
-                <td>{Problem.Type}</td>
+              <tr key = {index}>
+                <td style={{textAlign:"center", cursor:"pointer"}} onClick = {() => setFile(JSON.parse(Problem.Problem.replaceAll("/\\", "")))}><Link to="/">{Problem.Name}</Link></td>
+                <td style={{textAlign:"center"}}>{Problem.Type}</td>
                 <td>{Problem.Comments}</td>
-                <td>{Problem.Date.substring(0,10)}</td>
+                <td style={{textAlign:"center"}}>{Problem.Date.substring(0,10)}</td>
               </tr>
 
               ))}
