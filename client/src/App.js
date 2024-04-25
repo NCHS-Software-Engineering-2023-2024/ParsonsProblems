@@ -13,6 +13,7 @@ import { DndContainer } from "./dnd-container.js";
 import { Save, Upload } from "./filecomponent.js";
 import './index.css';
 import { PopUp } from "./pop-up.js";
+import { FileProvider } from "./fileContext.js";
 
   // You can use this function for sending POST requests You can modify it if you want to use it for GET requests as well
   // This is an asynchronous function meaning that it returns a Promise
@@ -119,36 +120,19 @@ function App() {
   return (
       <>
             {/* This is the alias of BrowserRouter i.e. Router */}
-              
+              <FileProvider>
                 <Routes>
-                    {/* This route is for home component 
-          with exact path "/", in component props 
-          we passes the imported component*/}
                     <Route
-                            exact
-                            path="/"
-                            element={<Home />}
-                        ></Route>
-  
-                    {/* This route is for about component 
-          with exact path "/about", in component 
-          props we passes the imported component*/}
+                          exact
+                          path="/"
+                          element={<Home />}
+                    ></Route>
                     <Route
                         path="/browse"
                         element={<Browse />}
                     />
-  
-                    {/* This route is for contactus component
-          with exact path "/contactus", in 
-          component props we passes the imported component*/}
-  
-  
-                    {/* If any route mismatches the upper 
-          route endpoints then, redirect triggers 
-          and redirects app to home component with to="/" */}
-                    {/* <Redirect to="/" /> */}
-  
                 </Routes>
+              </FileProvider>
                 </>
     )
 } 

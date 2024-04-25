@@ -46,7 +46,7 @@ connection.connect((err) =>
         if (err) throw err;
         else{
           res.json({ data });
-          console.log(data);
+          //console.log(data);
         }
         
       });

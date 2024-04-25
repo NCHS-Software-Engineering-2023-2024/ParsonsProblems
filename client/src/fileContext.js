@@ -6,6 +6,7 @@ export const fileContext = createContext();
 
 export const FileProvider = ({children}) => {
                             // initally loaded problem
+    
     const [file, setFile] = useState([
     {
         id: 1,

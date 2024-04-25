@@ -5,7 +5,7 @@ import {
   Link
 } from "react-router-dom";
 import './browsepage.css';
-import { FileProvider, fileContext } from "./fileContext";
+import { FileProvider, fileContext} from "./fileContext";
 import { Upload } from "./filecomponent";
 import './index.css';
 export function Browse()  {
@@ -13,14 +13,13 @@ export function Browse()  {
     const [files, setFiles] = useState([]);
     const [sortKey, setSortKey] = useState(null);
     const [sortDirection, setSortDirection] = useState('ascending');
-    const {file, setFile} = useContext(fileContext());
+    const {file, setFile} = useContext(fileContext);
     useEffect(() => {
         getProblems();
     }, []);
     //console.log(files);
 
     async function getProblems() {
-      console.log("hiiiiiiiii")
       await fetch(`${baseURL}Problems`) // use backticks instead of apostrophes
             .then((res) => res.json())
             .then((data) => {setFiles(data.data); console.log(data.data)})
@@ -52,7 +51,6 @@ export function Browse()  {
     return 0;
     });
   }, [files, sortKey, sortDirection]);
-
 
     return (
         <div>
@@ -96,12 +94,7 @@ export function Browse()  {
           {sortedData.map((Problem, index)=>(
              
               <tr key = {index}>
-                <FileProvider>
-                  <td style={{textAlign:"center", cursor:"pointer"}} onclick = {() => setFile(Problem.Problem)}><Link to="/">{Problem.Name}</Link></td>
-                </FileProvider>
-                
-                
-                
+                <td style={{textAlign:"center", cursor:"pointer"}} onClick = {() => setFile(JSON.parse(Problem.Problem.replaceAll("/\\", "")))}><Link to="/">{Problem.Name}</Link></td>
                 <td style={{textAlign:"center"}}>{Problem.Type}</td>
                 <td>{Problem.Comments}</td>
                 <td style={{textAlign:"center"}}>{Problem.Date.substring(0,10)}</td>
