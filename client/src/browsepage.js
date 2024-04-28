@@ -13,7 +13,7 @@ export function Browse()  {
     const [files, setFiles] = useState([]);
     const [sortKey, setSortKey] = useState(null);
     const [sortDirection, setSortDirection] = useState('ascending');
-    const {file, setFile} = useContext(fileContext);
+    const {setFile, setId} = useContext(fileContext);
     useEffect(() => {
         getProblems();
     }, []);
@@ -74,7 +74,7 @@ export function Browse()  {
                 </div>
                 <div class = "col-4"></div>
                 <div class = "col-4">
-                  <Upload callback={() => getProblems()}/>
+                  <Upload input = {"Upload"} callback={() => getProblems()}/>
                 </div>
             </div>
 
@@ -94,7 +94,7 @@ export function Browse()  {
           {sortedData.map((Problem, index)=>(
              
               <tr key = {index}>
-                <td style={{textAlign:"center", cursor:"pointer"}} onClick = {() => setFile(JSON.parse(Problem.Problem.replaceAll("/\\", "")))}><Link to="/">{Problem.Name}</Link></td>
+                <td style={{textAlign:"center", cursor:"pointer"}} onClick = {() => {setFile(JSON.parse(Problem.Problem.replace("/\\/g", ""))); setId(Problem.id)}}><Link to="/">{Problem.Name}</Link></td>
                 <td style={{textAlign:"center"}}>{Problem.Type}</td>
                 <td>{Problem.Comments}</td>
                 <td style={{textAlign:"center"}}>{Problem.Date.substring(0,10)}</td>

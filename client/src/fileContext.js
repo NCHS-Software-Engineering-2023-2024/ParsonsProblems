@@ -6,7 +6,7 @@ export const fileContext = createContext();
 
 export const FileProvider = ({children}) => {
                             // initally loaded problem
-    
+    const [id, setId] = useState();
     const [file, setFile] = useState([
     {
         id: 1,
@@ -24,7 +24,7 @@ export const FileProvider = ({children}) => {
         indent: 2,
     }]);
     return (
-    <fileContext.Provider value = {{file, setFile}}>
+    <fileContext.Provider value = {{file, setFile, id, setId}}>
         {children}
     </fileContext.Provider>
     );

@@ -3,30 +3,35 @@ import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
 import { fileContext } from './fileContext.js';
 
-export function Upload(props) {
+String.prototype.hashCode = function () {
+  var hash = 0, i, chr;
+  if (this.length === 0) return hash;
+  for (i = 0; i < this.length; i++) {
+    chr = this.charCodeAt(i);
+    hash = ((hash << 5) - hash) + chr
+    hash |=0;
+  }
+  return hash;
+}
+
+export function Upload({input}, callback) {
   //hooks - for reading inputs from user
   const [show, setShow] = useState(false);
-
   const [type, setType] = useState("");
   const [name, setName] = useState("");
   const [comments, setComments] = useState("");
   const [content, setContent] = useState("");
   const [date, setDate] = useState("");
-
   //hooks - makes the popup 'appear' 
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
 
-  const {file, setFile} = useContext(fileContext);// to update dnd-container's file without sending props
-    
-  
   const handleFileChange = (event) => {
     if (event.target.files[0].name.slice(-4) === ".txt" ||
         event.target.files[0].name.slice(-5) === ".java" ||
         event.target.files[0].name.slice(-3) === ".py"){
           
           setType(event.target.files[0].type);
-          console.log(type);
           const reader = new FileReader();
           reader.onload = function() {
             //console.log(reader.result);
@@ -64,7 +69,8 @@ export function Upload(props) {
                   name: name, 
                   problem: json,
                   date: date,
-                  comments: comments 
+                  comments: comments, 
+                  id: name.hashCode()
                 };
 
     console.log(JSON.stringify(put));
@@ -76,17 +82,17 @@ export function Upload(props) {
             },
             body: JSON.stringify(put)
         })
-        .then(props.callback())
+        .then(callback)
         .then(alert("Refresh the page to see the added problem."));
     }
         catch (error){
-            console.error('upload error');
+            console.error(error);
         }
   }
   return (
     <>
       <button class = "button" onClick={handleShow}>
-        Save
+        {input}
       </button>
 
       <Modal
@@ -118,7 +124,7 @@ export function Upload(props) {
         </Modal.Body>
         <Modal.Footer>
           <Button variant="secondary" onClick={()=> {handleClose(); handleSubmit()}}>
-            Upload
+            {input}
           </Button>
         </Modal.Footer>
       </Modal>
@@ -126,7 +132,7 @@ export function Upload(props) {
   );
 }
 
-export function Save(buttontype = '', props) {
+export function Edit({input}, props) {
   //hooks - for reading inputs from user
   const [show, setShow] = useState(false);
   const [type, setType] = useState("");
@@ -135,12 +141,11 @@ export function Save(buttontype = '', props) {
   const [content, setContent] = useState("");
   const [date, setDate] = useState("");
 
-  const {file, setFile} = useContext(fileContext);
+  const {file, id} = useContext(fileContext);
 
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
   
-
   // only sets the file when submit button is clicked to limit rerenders
   const handleSubmit = async (event) => {
     //event.preventDefault();
@@ -149,13 +154,14 @@ export function Save(buttontype = '', props) {
                   name: name, 
                   problem: file,
                   date: date,
-                  comments: comments 
+                  comments: comments, 
+                  id: id
                 };
 
     console.log(JSON.stringify(json));
       try {
         await fetch("http://localhost:8000/update", {
-            method: 'UPDATE',
+            method: 'PUT',
             headers:{
                 'Content-Type': 'application/json'
             },
@@ -173,7 +179,7 @@ export function Save(buttontype = '', props) {
   return (
     <>
       <button class = "button" onClick={handleShow}>
-        Save
+        {input}
       </button>
 
       <Modal
@@ -203,7 +209,7 @@ export function Save(buttontype = '', props) {
         </Modal.Body>
         <Modal.Footer>
           <Button variant="secondary" onClick={()=> {handleClose(); handleSubmit()}}>
-            Save
+            {input}
           </Button>
         </Modal.Footer>
       </Modal>

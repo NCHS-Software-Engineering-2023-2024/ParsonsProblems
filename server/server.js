@@ -35,7 +35,7 @@ connection.connect((err) =>
   }else {
     console.log("Connected to the database!");
     function fetchFromDatabase(callback){ // callback function to allow the database page to update when a problem is added
-      connection.query("SELECT `Problem Name` AS Name, `File Type` AS Type, Comments AS Comments, Date AS Date, Problem AS Problem FROM Files", function (err, result) {
+      connection.query("SELECT `Problem Name` AS Name, `File Type` AS Type, Comments AS Comments, Date AS Date, Problem AS Problem, id AS id FROM Files", function (err, result) {
         if (err) callback(err, result);
         else callback(null, result);
         });
@@ -80,12 +80,12 @@ app.put('/put', (req, res) => {
     //else {
       console.log("uploading...");
       console.log(req.body);
-      let sql = "INSERT INTO Files VALUES (?, ?, ?, ?, ?)";
-      upload.query(sql, [req.body.name, req.body.type, req.body.comments, req.body.date, JSON.stringify(req.body.problem)]);
+      let sql = "INSERT INTO Files VALUES (?, ?, ?, ?, ?, ?)";
+      upload.query(sql, [req.body.name, req.body.type, req.body.comments, req.body.date, JSON.stringify(req.body.problem), req.body.id]);
       //if (err) console.log("err "+ err)
     //}
 });
-/*
+
 const update = mysql.createConnection({
   host: 'db.redhawks.us',
   user: 'redhawk_parsons', 
@@ -93,7 +93,6 @@ const update = mysql.createConnection({
   database: 'redhawk_parsons'
 });
 update.query('/update', (req, res) => {
-  let sql = "SET `Problem Name` = (?), `File Type` = (?), Comments = (?), Date = (?) WHERE Problem = (?)";
-  update.query(sql, [req.body.name, req.body.type, req.body.comments, req.body.date, JSON.stringify(req.body.problem)]);
+  let sql = "SET `Problem Name` = (?), `File Type` = (?), Comments = (?), Date = (?) WHERE id = (?)";
+  update.query(sql, [req.body.name, req.body.type, req.body.comments, req.body.date, req.body.id]);
 });
-*/

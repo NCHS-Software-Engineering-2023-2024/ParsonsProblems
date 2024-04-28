@@ -78,7 +78,7 @@ export function PopUp() {
         </Modal.Body>
         <Modal.Footer>
           <Button variant="secondary" onClick={() => {handleSubmit(); handleClose(); }}>
-            Close
+            Import
           </Button>
         </Modal.Footer>
       </Modal>

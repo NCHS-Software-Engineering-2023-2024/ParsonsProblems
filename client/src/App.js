@@ -10,7 +10,7 @@ import {
 import './App.css';
 import { Browse } from "./browsepage.js";
 import { DndContainer } from "./dnd-container.js";
-import { Save, Upload } from "./filecomponent.js";
+import { Edit, Upload } from "./filecomponent.js";
 import './index.css';
 import { PopUp } from "./pop-up.js";
 import { FileProvider } from "./fileContext.js";
@@ -79,10 +79,10 @@ import { FileProvider } from "./fileContext.js";
   
           </div>
           <div class="col-2">
-            <Save buttontype = 'save' />
+            <Edit input = {"Edit"} />
           </div>
               <div class="col-2">
-                <Upload />
+                <Upload input = {"Save As"} />
               </div>
             </div>
       </div>
