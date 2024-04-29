@@ -60,29 +60,32 @@ export function Browse()  {
 
     const deleteRows = async () => {
       if (window.confirm("Delete the selected rows?")){
-        try {
-          const deletedIds = selectedRows.reduce((acc, isSelected, index) => {
-            if (isSelected){
-              acc.push(files[index].id);
-            }
-            return acc;
-          }, []);
-          await fetch ("http://localhost:8000/delete", {
-            method: 'PUT',
-            headers:{
-              'Content-Type': 'application/json'
-            },
-            body: JSON.stringify(deletedIds)
-          })
-          .then(alert("Refresh the page to see the updated database."))
-          const updatedTable = files.filter((Problem, index) => !selectedRows[index]);
-          setFiles(updatedTable);
-          //console.log(selectedRows)
-          
-          
-        }  
-        catch (error) {console.log(error)};
-        setSelectedRows(new Array(files.length).fill(false));
+        if (selectedRows === null) alert("You haven't selected any rows to delete.")
+        else{
+          try {
+            const deletedIds = selectedRows.reduce((acc, isSelected, index) => {
+              if (isSelected){
+                acc.push(files[index].id);
+              }
+              return acc;
+            }, []);
+            await fetch ("http://localhost:8000/delete", {
+              method: 'PUT',
+              headers:{
+                'Content-Type': 'application/json'
+              },
+              body: JSON.stringify(deletedIds)
+            })
+            .then(alert("Refresh the page to see the updated database."));
+
+            const updatedTable = files.filter((Problem, index) => !selectedRows[index]);
+            setFiles(updatedTable);
+            //console.log(selectedRows)
+            
+          }  
+          catch (error) {console.log(error)};
+          setSelectedRows(new Array(files.length).fill(false));
+        }
       }
     }
       
@@ -136,11 +139,13 @@ export function Browse()  {
                 <td>{Problem.Comments}</td>
                 <td style={{textAlign:"center"}}>{Problem.Date.substring(0,10)}</td>
                 <td>
+                  <div class = "checkbox"> 
                   <input 
                     type = "checkbox"
                     checked = {selectedRows[index]}
                     onChange = {() => handleRowSelect(index)}
                   />
+                  </div>
                 </td>
               </tr>
 

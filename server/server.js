@@ -94,6 +94,6 @@ const del = mysql.createConnection({
 });
 
 app.put('/delete', (req, res) => {
-  let sql = "DELETE FROM Files WHERE id = (?)";
-  del.query(sql, [req.body]);
+  let sql = `DELETE FROM Files WHERE id IN(${req.body})` ;
+  del.query(sql);
 })
