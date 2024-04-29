@@ -34,20 +34,27 @@ connection.connect((err) =>
     console.log("Error connecting to the database", err);
   }else {
     console.log("Connected to the database!");
-    connection.query("SELECT `Problem Name` AS Name, `File Type` AS Type, Comments AS Comments, Date AS Date FROM Files", function (err, result) {
-      if (err) throw err;
-        app.get('/Problems', (req, res) => {
-          res.json({ data: result});
-          console.log(data);
+    function fetchFromDatabase(callback){ // callback function to allow the database page to update when a problem is added
+      connection.query("SELECT `Problem Name` AS Name, `File Type` AS Type, Comments AS Comments, Date AS Date, Problem AS Problem, id AS id FROM Files", function (err, result) {
+        if (err) callback(err, result);
+        else callback(null, result);
         });
-      });
+    }
     };
+    app.get('/Problems', (req, res) => {
+      fetchFromDatabase((err, data) => {
+        if (err) throw err;
+        else{
+          res.json({ data });
+          console.log(data);
+        }
+        
+      });
+    });
   });
-  
 
 
 
-//app.use(fileUpload());
 
 // This is an example GET request endpoint
 // req is the request object that was sent
@@ -58,6 +65,24 @@ app.get('/message', (req, res) => {
     
 });
 
+const upload = mysql.createConnection({
+  host: 'db.redhawks.us',
+  user: 'redhawk_parsons', 
+  password: 'Qiprufecr*22@lc0fru',
+  database: 'redhawk_parsons'
+});
 
-
+app.put('/put', (req, res) => {
+  //upload.connect((err) => {
+    //if (err){
+      //console.log("err "+ err);
+    //}
+    //else {
+      console.log("uploading...");
+      console.log(req.body);
+      let sql = "INSERT INTO Files VALUES (?, ?, ?, ?, ?, ?)";
+      upload.query(sql, [req.body.name, req.body.type, req.body.comments, req.body.date, JSON.stringify(req.body.problem), req.body.id]);
+      //if (err) console.log("err "+ err)
+    //}
+});
 

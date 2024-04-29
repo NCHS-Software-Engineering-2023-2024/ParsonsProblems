@@ -3,6 +3,17 @@ import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
 import { fileContext } from './fileContext.js';
 
+String.prototype.hashCode = function () {
+  var hash = 0, i, chr;
+  if (this.length === 0) return hash;
+  for (i = 0; i < this.length; i++) {
+    chr = this.charCodeAt(i);
+    hash = ((hash << 5) - hash) + chr
+    hash |=0;
+  }
+  return hash;
+}
+
 export function Upload(props) {
   //hooks - for reading inputs from user
   const [show, setShow] = useState(false);
@@ -64,7 +75,8 @@ export function Upload(props) {
                   name: name, 
                   problem: json,
                   date: date,
-                  comments: comments 
+                  comments: comments, 
+                  id: name.hashCode()
                 };
 
     console.log(JSON.stringify(put));

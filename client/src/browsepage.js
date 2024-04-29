@@ -11,6 +11,7 @@ import './index.css';
 export function Browse()  {
     const baseURL  = 'http://localhost:8000/'
     const [files, setFiles] = useState([]);
+    const [selectedRows, setSelectedRows] = useState([]);
     const [sortKey, setSortKey] = useState(null);
     const [sortDirection, setSortDirection] = useState('ascending');
     const {file, setFile} = useContext(fileContext);
@@ -37,21 +38,47 @@ export function Browse()  {
       }
     };
 
-  const sortedData = useMemo(() => {
-    if (!sortKey) return files;
-    return [...files].sort((a, b) => {
-    const A = a[sortKey].toLowerCase();
-    const B = b[sortKey].toLowerCase();
-    if (A < B){
-      return sortDirection === 'ascending' ? -1 : 1;
-    }
-    if (A > B){
-      return sortDirection === 'ascending' ? 1 : -1;
-    }
-    return 0;
-    });
-  }, [files, sortKey, sortDirection]);
+    const sortedData = useMemo(() => {
+      if (!sortKey) return files;
+      return [...files].sort((a, b) => {
+      const A = a[sortKey].toLowerCase();
+      const B = b[sortKey].toLowerCase();
+      if (A < B){
+        return sortDirection === 'ascending' ? -1 : 1;
+      }
+      if (A > B){
+        return sortDirection === 'ascending' ? 1 : -1;
+      }
+      return 0;
+      });
+    }, [files, sortKey, sortDirection]);
 
+    const handleRowSelect = (id) => {
+      const updatedSelectedRows = [...selectedRows];
+      updatedSelectedRows[id] = !updatedSelectedRows[id];
+      setSelectedRows(updatedSelectedRows);
+    }
+
+    const deleteRows = () => {
+      try {
+        const deletedIds = selectedRows.reduce((acc, isSelected, index) => {
+          if (isSelected){
+            acc.push(files[index].id);
+          }
+          return acc;
+        }, []);
+        //fetch here
+
+        const updatedTable = files.filter((Problem, index) => !selectedRows[index]);
+        setFiles(updatedTable);
+        console.log(selectedRows)
+        
+        
+      }  
+      catch (error) {console.log(error)};
+      setSelectedRows(new Array(files.length).fill(false));
+
+    }
     return (
         <div>
         <head>
@@ -72,7 +99,9 @@ export function Browse()  {
                 <div class = "col-4">
                   <button class = "button" ><Link to="/">Back to Home</Link></button>
                 </div>
-                <div class = "col-4"></div>
+                <div class = "col-4">
+                  <button class = "button" onClick = {deleteRows}>Delete Selected Rows</button>
+                </div>
                 <div class = "col-4">
                   <Upload callback={() => getProblems()}/>
                 </div>
@@ -88,6 +117,7 @@ export function Browse()  {
             <th onClick={() => handleSort('Type')}>File Type</th>
             <th onClick={() => handleSort('Comments')}>Comments</th>
             <th onClick={() => handleSort('Date')}>Date</th>
+            <th style={{cursor: "default" }}></th>
             </tr>
           </thead>
           <tbody>
@@ -98,6 +128,13 @@ export function Browse()  {
                 <td style={{textAlign:"center"}}>{Problem.Type}</td>
                 <td>{Problem.Comments}</td>
                 <td style={{textAlign:"center"}}>{Problem.Date.substring(0,10)}</td>
+                <td>
+                  <input 
+                    type = "checkbox"
+                    checked = {selectedRows[index]}
+                    onChange = {() => handleRowSelect(index)}
+                  />
+                </td>
               </tr>
 
               ))}
