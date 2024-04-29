@@ -46,7 +46,7 @@ connection.connect((err) =>
         if (err) throw err;
         else{
           res.json({ data });
-          console.log(data);
+          //console.log(data);
         }
         
       });
@@ -86,3 +86,14 @@ app.put('/put', (req, res) => {
     //}
 });
 
+const del = mysql.createConnection({
+  host: 'db.redhawks.us',
+  user: 'redhawk_parsons', 
+  password: 'Qiprufecr*22@lc0fru',
+  database: 'redhawk_parsons'
+});
+
+app.put('/delete', (req, res) => {
+  let sql = "DELETE FROM Files WHERE id = (?)";
+  del.query(sql, [req.body]);
+})

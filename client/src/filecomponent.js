@@ -79,7 +79,7 @@ export function Upload(props) {
                   id: name.hashCode()
                 };
 
-    console.log(JSON.stringify(put));
+    //console.log(JSON.stringify(put));
     try {
         const res = await fetch("http://localhost:8000/put", {
             method: 'PUT',

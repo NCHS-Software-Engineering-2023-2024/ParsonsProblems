@@ -23,9 +23,9 @@ export function Browse()  {
     async function getProblems() {
       await fetch(`${baseURL}Problems`) // use backticks instead of apostrophes
             .then((res) => res.json())
-            .then((data) => {setFiles(data.data); console.log(data.data)})
+            .then((data) => setFiles(data.data))
 
-      console.log(files);
+      //console.log(files);
     }
 
     const handleSort = (key) => {
@@ -59,26 +59,34 @@ export function Browse()  {
       setSelectedRows(updatedSelectedRows);
     }
 
-    const deleteRows = () => {
-      try {
-        const deletedIds = selectedRows.reduce((acc, isSelected, index) => {
-          if (isSelected){
-            acc.push(files[index].id);
-          }
-          return acc;
-        }, []);
-        //fetch here
-
-        const updatedTable = files.filter((Problem, index) => !selectedRows[index]);
-        setFiles(updatedTable);
-        console.log(selectedRows)
-        
-        
-      }  
-      catch (error) {console.log(error)};
-      setSelectedRows(new Array(files.length).fill(false));
-
+    const deleteRows = async () => {
+      if (window.confirm("Delete the selected rows?")){
+        try {
+          const deletedIds = selectedRows.reduce((acc, isSelected, index) => {
+            if (isSelected){
+              acc.push(files[index].id);
+            }
+            return acc;
+          }, []);
+          await fetch ("http://localhost:8000/delete", {
+            method: 'PUT',
+            headers:{
+              'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(deletedIds)
+          })
+          .then(alert("Refresh the page to see the updated database."))
+          const updatedTable = files.filter((Problem, index) => !selectedRows[index]);
+          setFiles(updatedTable);
+          //console.log(selectedRows)
+          
+          
+        }  
+        catch (error) {console.log(error)};
+        setSelectedRows(new Array(files.length).fill(false));
+      }
     }
+      
     return (
         <div>
         <head>
