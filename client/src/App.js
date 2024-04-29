@@ -9,7 +9,7 @@ import {
 } from "react-router-dom";
 import './App.css';
 import { Browse } from "./browsepage.js";
-import { DndContainer } from "./dnd-container.js";
+import { DndContainer } from "./drag-and-drop/dnd-container.js";
 import { PopUp } from "./pop-up.js";
 
   // You can use this function for sending POST requests You can modify it if you want to use it for GET requests as well

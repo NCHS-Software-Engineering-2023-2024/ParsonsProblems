@@ -17,7 +17,7 @@ import {
 } from "@dnd-kit/sortable";
 import { CSS } from "@dnd-kit/utilities";
 import React, { useEffect, useState, useMemo } from "react";
-import { fileContext } from "./fileContext.js";
+import { fileContext } from "../fileContext.js";
 import { snapGridModifier } from "./snapGridModifier.ts";
 import { Grade, Shuffle } from "./dnd-grading"
 
