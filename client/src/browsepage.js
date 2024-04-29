@@ -7,7 +7,6 @@ import {
 import './browsepage.css';
 import { fileContext } from "./fileContext";
 import { Upload } from "./filecomponent";
-import './index.css';
 export function Browse()  {
     const baseURL  = 'http://localhost:8000/'
     const [files, setFiles] = useState([]);

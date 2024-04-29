@@ -10,7 +10,6 @@ import {
 import './App.css';
 import { Browse } from "./browsepage.js";
 import { DndContainer } from "./dnd-container.js";
-import './index.css';
 import { PopUp } from "./pop-up.js";
 
   // You can use this function for sending POST requests You can modify it if you want to use it for GET requests as well
@@ -81,8 +80,8 @@ import { PopUp } from "./pop-up.js";
           </div>
               <div class="col-2">
                 <button class ="button">Save As</button>
-                </div>
-            </div>
+              </div>
+          </div>
       </div>
       
       <div>

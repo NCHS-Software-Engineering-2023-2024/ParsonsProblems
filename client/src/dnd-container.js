@@ -1,24 +1,25 @@
 import {
   DndContext,
+  DragOverlay,
   KeyboardSensor,
   PointerSensor,
   useSensor,
   useSensors
 } from "@dnd-kit/core";
-import "./index.css";
+import "./dnd-container.css";
 
 import {
   SortableContext,
   arrayMove,
+  rectSortingStrategy,
   sortableKeyboardCoordinates,
   useSortable
 } from "@dnd-kit/sortable";
 import { CSS } from "@dnd-kit/utilities";
-import React, { useEffect, useState } from "react";
-import { Grade, Shuffle } from "./dnd-grading";
+import React, { useEffect, useState, useMemo } from "react";
 import { fileContext } from "./fileContext.js";
-import "./index.css";
 import { snapGridModifier } from "./snapGridModifier.ts";
+import { Grade, Shuffle } from "./dnd-grading"
 
 function SortableItem(props) {
   const {
@@ -30,9 +31,9 @@ function SortableItem(props) {
   } = useSortable({ id: props.id });
 
   const style = {
-    transform: CSS.Transform.toString(transform),
-    transition,
-    background: props.grade
+    transform: CSS.Translate.toString(transform),
+    background: props.grade,
+    userSelect:"none"
   };
 
   return (
@@ -58,6 +59,7 @@ export const DndContainer = () => {
     setItems(Shuffle(file));
   }, [file])
 
+
   function handleGrade() {
     setGrade(Grade(items));
   }
@@ -81,15 +83,13 @@ export const DndContainer = () => {
     setActiveId(event.active.id);
   }
   function handleDragOver(event, targetItem) {
-
     const { active, over } = event;
-
     if (activeId !== over.id) {
       setItems((items) => {
         resetGrade();
         const oldIndex = items.indexOf(activeId);
         const newIndex = items.indexOf(over.id);
-
+        
         return arrayMove(items, oldIndex, newIndex);
       });
     }
@@ -110,15 +110,22 @@ export const DndContainer = () => {
             modifiers={[snapGridModifier]}
             
           >
+            <DragOverlay 
+            >
+              {<SortableItem 
+              id={activeId}
+              />}
+            </DragOverlay>
               <SortableContext
-                items={items}
+                items={items.map((i) => i.id)}
+                strategy={rectSortingStrategy}
               >
                 {items.map((item, index) => (
                   <SortableItem 
-                    key={item} 
+                    className="item"
+                    key={item.id} 
                     id={item}
-                    index={index}
-                    grade={grade[item.id]}
+                    grade={(activeId != index) ? grade[item.id] : "#000000"}
                   />
                 ))}
               </SortableContext>
