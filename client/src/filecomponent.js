@@ -113,11 +113,11 @@ export function Upload(props) {
         </Modal.Header>
         <Modal.Body>
               <form class = "loadfile" style={{display:"block"}}>
-                <input type = "file" accept = ".txt, .java, .py" id = "problem" onChange = {handleFileChange}/>  
+                <input required="true" type = "file" accept = ".txt, .java, .py" id = "problem" onChange = {handleFileChange}/>  
                 <br/>
                 <label for = "name">Problem Name</label>
                 <br/>
-                <input type = "text" id = "name" onInput = {event => setName(event.target.value)}></input>
+                <input required type = "text" id = "name" onInput = {event => setName(event.target.value)}></input>
                 <br/>
                 <label for = "comments">Comments</label>
                 <br/>

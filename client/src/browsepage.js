@@ -60,7 +60,9 @@ export function Browse()  {
 
     const deleteRows = async () => {
       if (window.confirm("Delete the selected rows?")){
-        if (selectedRows === null) alert("You haven't selected any rows to delete.")
+        if (selectedRows === null){
+          alert("You haven't selected any rows to delete.");
+        } 
         else{
           try {
             const deletedIds = selectedRows.reduce((acc, isSelected, index) => {
@@ -138,9 +140,9 @@ export function Browse()  {
                 <td style={{textAlign:"center"}}>{Problem.Type}</td>
                 <td>{Problem.Comments}</td>
                 <td style={{textAlign:"center"}}>{Problem.Date.substring(0,10)}</td>
-                <td>
+                <td style={{textAlign:"center"}}>
                   <div class = "checkbox"> 
-                  <input 
+                  <input style = {{width:"20px", height:"20px"}}
                     type = "checkbox"
                     checked = {selectedRows[index]}
                     onChange = {() => handleRowSelect(index)}
