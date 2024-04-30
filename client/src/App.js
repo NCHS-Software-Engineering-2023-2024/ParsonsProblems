@@ -56,32 +56,39 @@ import { PopUp } from "./pop-up.js";
           <div class = "row">
             <div class = "col"> 
               <h1>NCHS Parsons Problems</h1>
-            <div class = "col"></div>
+              <div class = "col"></div>
             </div>
             
+          </div>
         </div>
-      </div>
   
       </div>
       
       <div class="container text-center">
         <div class="row mt-4">
+          
           <div class="col-4" >
-            <button class = "button" ><Link to="/browse">Browse Problems Database</Link></button>
+            <button class = "button" >
+              <Link to="/browse">Browse Problems Database</Link>
+            </button>
           </div>
+
           <div class="col-3">
             <PopUp />
           </div>
+          
           <div class="col-1">
-  
           </div>
+
           <div class="col-2">
-          <button class = "button">Save</button>
+            <button class = "button">Save</button>
           </div>
-              <div class="col-2">
-                <button class ="button">Save As</button>
-              </div>
+
+          <div class="col-2">
+            <button class ="button">Save As</button>
           </div>
+          
+        </div>
       </div>
       
       <div>
@@ -89,8 +96,8 @@ import { PopUp } from "./pop-up.js";
       </div>
           
           
-          </body>
-          </div>
+      </body>
+      </div>
           
         );
       }

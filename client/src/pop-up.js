@@ -2,7 +2,7 @@ import { useContext, useState } from 'react';
 import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
 import { FileProvider, fileContext } from './fileContext.js';
-
+import "./App.css";
 
 export function PopUp() {
   //hooks - makes the popup 'appear' 

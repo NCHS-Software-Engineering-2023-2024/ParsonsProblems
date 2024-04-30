@@ -95,11 +95,6 @@ export const DndContainer = () => {
     }
   };
 
-  /**
-   * 1) correct num indents is stored in the problem file
-   * 2) CURRENT num indents is .... known by....the items array?
-   * 3) render flexbox to the left of the element 
-   */
   return (
     <>
       <div className="sortable-list">
@@ -116,19 +111,19 @@ export const DndContainer = () => {
               id={activeId}
               />}
             </DragOverlay>
-              <SortableContext
-                items={items.map((i) => i.id)}
-                strategy={rectSortingStrategy}
-              >
-                {items.map((item, index) => (
-                  <SortableItem 
-                    className="item"
-                    key={item.id} 
-                    id={item}
-                    grade={(activeId != index) ? grade[item.id] : "#000000"}
-                  />
-                ))}
-              </SortableContext>
+            <SortableContext
+              items={items.map((i) => i.id)}
+              strategy={rectSortingStrategy}
+            >
+              {items.map((item, index) => (
+                <SortableItem 
+                  className="item"
+                  key={item.id} 
+                  id={item}
+                  grade={(activeId != index) ? grade[item.id] : "#000000"}
+                />
+              ))}
+            </SortableContext>
 
           </DndContext>
           
