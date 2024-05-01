@@ -50,7 +50,7 @@ export function PopUp() {
   // only sets the file when submit button is clicked to limit rerenders
   const handleSubmit = async (event) => {
       //event.preventDefault();
-      setFile(json);
+      setFile(0,json);
       console.log(file);
   }
   return (

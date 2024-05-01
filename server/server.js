@@ -97,3 +97,14 @@ app.put('/delete', (req, res) => {
   let sql = `DELETE FROM Files WHERE id IN(${req.body})` ;
   del.query(sql);
 })
+
+const update = mysql.createConnection({
+  host: 'db.redhawks.us',
+  user: 'redhawk_parsons', 
+  password: 'Qiprufecr*22@lc0fru',
+  database: 'redhawk_parsons'
+});
+update.query('/update', (req, res) => {
+  let sql = "SET `Problem Name` = (?), `File Type` = (?), Comments = (?), Date = (?) WHERE id = (?)";
+  update.query(sql, [req.body.name, req.body.type, req.body.comments, req.body.date, req.body.id]);
+});

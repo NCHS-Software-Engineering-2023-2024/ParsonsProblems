@@ -115,7 +115,7 @@ export function Browse()  {
                   <button class = "button" onClick = {deleteRows}>Delete Selected Rows</button>
                 </div>
                 <div class = "col-4">
-                  <Upload callback={() => getProblems()}/>
+                  <Upload input = {"Upload"} callback={() => getProblems()}/>
                 </div>
             </div>
 

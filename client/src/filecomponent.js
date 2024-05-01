@@ -14,7 +14,7 @@ String.prototype.hashCode = function () {
   return hash;
 }
 
-export function Upload(props) {
+export function Upload({input}, callback) {
   //hooks - for reading inputs from user
   const [show, setShow] = useState(false);
 
@@ -29,7 +29,6 @@ export function Upload(props) {
   const handleShow = () => setShow(true);
 
   const {file, setFile} = useContext(fileContext);// to update dnd-container's file without sending props
-    
   
   const handleFileChange = (event) => {
     if (event.target.files[0].name.slice(-4) === ".txt" ||
@@ -70,7 +69,7 @@ export function Upload(props) {
   // only sets the file when submit button is clicked to limit rerenders
   const handleSubmit = async (event) => {
     //event.preventDefault();
-      
+
     const put = { type: type,
                   name: name, 
                   problem: json,
@@ -78,7 +77,7 @@ export function Upload(props) {
                   comments: comments, 
                   id: name.hashCode()
                 };
-
+    setFile(name.hashCode(), file[1])
     //console.log(JSON.stringify(put));
     try {
         const res = await fetch("http://localhost:8000/put", {
@@ -88,7 +87,7 @@ export function Upload(props) {
             },
             body: JSON.stringify(put)
         })
-        .then(props.callback())
+        .then(callback)
         .then(alert("Refresh the page to see the added problem."));
     }
         catch (error){
@@ -98,7 +97,7 @@ export function Upload(props) {
   return (
     <>
       <button class = "button" onClick={handleShow}>
-        Save
+        {input}
       </button>
 
       <Modal
@@ -130,7 +129,7 @@ export function Upload(props) {
         </Modal.Body>
         <Modal.Footer>
           <Button variant="secondary" onClick={()=> {handleClose(); handleSubmit()}}>
-            Upload
+            {input}
           </Button>
         </Modal.Footer>
       </Modal>
@@ -138,54 +137,53 @@ export function Upload(props) {
   );
 }
 
-export function Save(buttontype = '', props) {
+export function Save(callback) {
   //hooks - for reading inputs from user
   const [show, setShow] = useState(false);
+
   const [type, setType] = useState("");
   const [name, setName] = useState("");
   const [comments, setComments] = useState("");
-  const [content, setContent] = useState("");
   const [date, setDate] = useState("");
 
-  const {file, setFile} = useContext(fileContext);
-
+  //hooks - makes the popup 'appear' 
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
-  
+
+  const {file, setFile} = useContext(fileContext);// to update dnd-container's file without sending props
 
   // only sets the file when submit button is clicked to limit rerenders
   const handleSubmit = async (event) => {
     //event.preventDefault();
       
-    const json = { type: type,
+    const update = { type: type,
                   name: name, 
-                  problem: file,
+                  problem: json,
                   date: date,
-                  comments: comments 
+                  comments: comments, 
+                  id: file[0]
                 };
 
-    console.log(JSON.stringify(json));
-      try {
+    //console.log(JSON.stringify(put));
+    try {
         await fetch("http://localhost:8000/update", {
-            method: 'UPDATE',
+            method: 'PUT',
             headers:{
                 'Content-Type': 'application/json'
             },
-            body: JSON.stringify(json)
+            body: JSON.stringify(update)
         })
-        .then(props.callback())
-        .then(alert("Updated database entry"));
-      }
+        .then(callback())
+        .then(alert("Refresh the page to see the updated problem on the database page."));
+    }
         catch (error){
             console.error('upload error');
         }
-
-    }
-    
+  }
   return (
     <>
       <button class = "button" onClick={handleShow}>
-        Save
+        Update Problem
       </button>
 
       <Modal
@@ -196,22 +194,22 @@ export function Save(buttontype = '', props) {
         centered = {true}
       >
         <Modal.Header closeButton>
-          <Modal.Title>Save a problem</Modal.Title>
+          <Modal.Title>Edit database entry</Modal.Title>
         </Modal.Header>
         <Modal.Body>
-          <form class = "loadfile" style={{display:"block"}}>
-            <label for = "name">Problem Name</label>
-            <br/>
-            <input type = "text" id = "name" onInput = {event => setName(event.target.value)}></input>
-            <br/>
-            <label for = "comments">Comments</label>
-            <br/>
-            <textarea id = "comments" rows = "5" cols = "50" placeholder='Enter comments here' onInput = {event => setComments(event.target.value)}></textarea>
-            <br/>
-            <label for = "date">Date</label>
-            <br/>
-            <input type = "date" id = "date" onInput = {event => setDate(event.target.value)}></input>
-          </form>
+              <form class = "loadfile" style={{display:"block"}}>  
+                <label for = "name">Problem Name</label>
+                <br/>
+                <input required type = "text" id = "name" onInput = {event => setName(event.target.value)}></input>
+                <br/>
+                <label for = "comments">Comments</label>
+                <br/>
+                <textarea id = "comments" rows = "5" cols = "50" placeholder='Enter comments here' onInput = {event => setComments(event.target.value)}></textarea>
+                <br/>
+                <label for = "date">Date</label>
+                <br/>
+                <input type = "date" id = "date" onInput = {event => setDate(event.target.value)}></input>
+              </form>
         </Modal.Body>
         <Modal.Footer>
           <Button variant="secondary" onClick={()=> {handleClose(); handleSubmit()}}>
