@@ -1,25 +1,13 @@
-import {
-  DndContext,
-  DragOverlay,
-  KeyboardSensor,
-  PointerSensor,
-  useSensor,
-  useSensors
-} from "@dnd-kit/core";
+
 import "./dnd-container.css";
 
 import {
-  SortableContext,
-  arrayMove,
-  rectSortingStrategy,
-  sortableKeyboardCoordinates,
   useSortable
 } from "@dnd-kit/sortable";
 import { CSS } from "@dnd-kit/utilities";
 import React, { useEffect, useState, useMemo } from "react";
-import { fileContext } from "../fileContext.js";
-import { snapGridModifier } from "./snapGridModifier.ts";
-import { Grade, Shuffle } from "./dnd-grading"
+
+import { fuckfuckfuck } from "./parsons.js";
 
 function SortableItem(props) {
   const {
@@ -49,85 +37,48 @@ function SortableItem(props) {
   );
 }
 export const DndContainer = () => {
-  const {file, setFile} = React.useContext(fileContext);
-  const [items, setItems] = useState(Shuffle(file));
-  const [activeId, setActiveId] = useState(null);
-  const [grade, setGrade] = useState(Grade(items));
+  var initial = "# Your Name\n" 
+    + "# 8/15/20**\n" 
+    + "# Countdown\n" 
+    + "print(\"Five...\")\n" 
+    + "print(\"Four...\")\n" 
+    + "print(\"Three...\")\n" 
+    + "print(\"Two...\")\n" 
+    + "print(\"One...\")\n" 
+    + "print(\"Blastoff!\")\n" 
+    + "input(\"\n\nPress the enter key to exit\")"; 
+  var parsonsPuzzle = new fuckfuckfuck.ParsonsWidget(
+    { "sortableId": "sortable", 
+    "max_wrong_lines": 10, 
+    "grader": fuckfuckfuck.ParsonsWidget._graders.LineBasedGrader, 
+    "exec_limit": 2500, 
+    "can_indent": true, 
+    "x_indent": 50, 
+    "lang": "en", 
+    "show_feedback": true }); 
+  useEffect(() => {
+    parsonsPuzzle.init(initial); 
+    parsonsPuzzle.shuffleLines(); 
+  }, [])
 
-  useEffect(() => { //randomize positions & reset grade for any change in the chosen file
-    resetGrade();
-    setItems(Shuffle(file));
-  }, [file])
-
-
-  function handleGrade() {
-    setGrade(Grade(items));
-  }
-  function resetGrade() {
-    setGrade(new Array(""));
-  }
-  function handleShuffle() {
-    resetGrade();
-    setItems(Shuffle(items));
-  }
-
-  const sensors = useSensors(
-    useSensor(PointerSensor),
-    useSensor(KeyboardSensor, {
-      coordinateGetter: sortableKeyboardCoordinates
-    })
-  );
-  
-
-  function handleDragStart(event) {
-    setActiveId(event.active.id);
-  }
-  function handleDragOver(event, targetItem) {
-    const { active, over } = event;
-    if (activeId !== over.id) {
-      setItems((items) => {
-        resetGrade();
-        const oldIndex = items.indexOf(activeId);
-        const newIndex = items.indexOf(over.id);
-        
-        return arrayMove(items, oldIndex, newIndex);
-      });
-    }
-  };
+  function handleShuffle(event) {
+    event.preventDefault();
+    parsonsPuzzle.shuffleLines(); 
+  } 
+  function handleGrade(event) { 
+    event.preventDefault(); 
+    parsonsPuzzle.getFeedback();  
+  } 
 
   return (
     <>
-      <div className="sortable-list">
-          <DndContext
-            sensors={sensors}
-            onDragOver={handleDragOver}
-            onDragStart={handleDragStart}
-            modifiers={[snapGridModifier]}
-            
-          >
-            <DragOverlay 
-            >
-              {<SortableItem 
-              id={activeId}
-              />}
-            </DragOverlay>
-            <SortableContext
-              items={items.map((i) => i.id)}
-              strategy={rectSortingStrategy}
-            >
-              {items.map((item, index) => (
-                <SortableItem 
-                  className="item"
-                  key={item.id} 
-                  id={item}
-                  grade={(activeId != index) ? grade[item.id] : "#000000"}
-                />
-              ))}
-            </SortableContext>
+      <body>
+        <main id="content" class="main-content" role="main">
+          { 
 
-          </DndContext>
-          
-      </div>
+          }
+        </main>
+      </body>
 
       <div class = "container text-center">
       <div class="row mt-3">
