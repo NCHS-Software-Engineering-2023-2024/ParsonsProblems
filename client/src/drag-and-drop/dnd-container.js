@@ -16,10 +16,10 @@ import {
   useSortable
 } from "@dnd-kit/sortable";
 import { CSS } from "@dnd-kit/utilities";
-import React, { useEffect, useState, useMemo } from "react";
+import React, { useEffect, useState } from "react";
 import { fileContext } from "../fileContext.js";
+import { Grade, Shuffle } from "./dnd-grading";
 import { snapGridModifier } from "./snapGridModifier.ts";
-import { Grade, Shuffle } from "./dnd-grading"
 
 function SortableItem(props) {
   const {
@@ -50,13 +50,13 @@ function SortableItem(props) {
 }
 export const DndContainer = () => {
   const {file, setFile} = React.useContext(fileContext);
-  const [items, setItems] = useState(Shuffle(file));
+  const [items, setItems] = useState(Shuffle(file[1]));
   const [activeId, setActiveId] = useState(null);
   const [grade, setGrade] = useState(Grade(items));
-
+  
   useEffect(() => { //randomize positions & reset grade for any change in the chosen file
     resetGrade();
-    setItems(Shuffle(file));
+    setItems(Shuffle(file[1]));
   }, [file])
 
 

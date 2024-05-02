@@ -77,7 +77,7 @@ export function Upload({input}, callback) {
                   comments: comments, 
                   id: name.hashCode()
                 };
-    setFile(name.hashCode(), file[1])
+    setFile([name.hashCode(), file[1]])
     //console.log(JSON.stringify(put));
     try {
         const res = await fetch("http://localhost:8000/put", {
@@ -137,15 +137,14 @@ export function Upload({input}, callback) {
   );
 }
 
-export function Save(callback) {
+export function Save({...props}) {
   //hooks - for reading inputs from user
   const [show, setShow] = useState(false);
-
-  const [type, setType] = useState("");
-  const [name, setName] = useState("");
-  const [comments, setComments] = useState("");
-  const [date, setDate] = useState("");
-
+  const [type, setType] = useState(props.problemType);
+  const [name, setName] = useState(props.problemName);
+  const [comments, setComments] = useState(props.problemComments);
+  const [date, setDate] = useState(props.problemDate);
+  const [problem, setProblem] = useState(JSON.stringify(props.problem));
   //hooks - makes the popup 'appear' 
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
@@ -158,7 +157,7 @@ export function Save(callback) {
       
     const update = { type: type,
                   name: name, 
-                  problem: json,
+                  problem: file[1],
                   date: date,
                   comments: comments, 
                   id: file[0]
@@ -173,7 +172,7 @@ export function Save(callback) {
             },
             body: JSON.stringify(update)
         })
-        .then(callback())
+        .then(props.callback)
         .then(alert("Refresh the page to see the updated problem on the database page."));
     }
         catch (error){
@@ -198,17 +197,20 @@ export function Save(callback) {
         </Modal.Header>
         <Modal.Body>
               <form class = "loadfile" style={{display:"block"}}>  
+                <label for = "problem">Problem</label>
+                <br/>
+                <textarea id = "problem" rows = "10" cols = "50"  onInput = {event => setProblem(event.target.value)} value = {props.problem}></textarea>
                 <label for = "name">Problem Name</label>
                 <br/>
-                <input required type = "text" id = "name" onInput = {event => setName(event.target.value)}></input>
+                <input type = "text" id = "name" onInput = {event => setName(event.target.value)} value = {props.problemName}></input>
                 <br/>
                 <label for = "comments">Comments</label>
                 <br/>
-                <textarea id = "comments" rows = "5" cols = "50" placeholder='Enter comments here' onInput = {event => setComments(event.target.value)}></textarea>
+                <textarea id = "comments" rows = "5" cols = "50" placeholder='Enter comments here' onInput = {event => setComments(event.target.value)} value = {props.problemComments}></textarea>
                 <br/>
                 <label for = "date">Date</label>
                 <br/>
-                <input type = "date" id = "date" onInput = {event => setDate(event.target.value)}></input>
+                <input type = "date" id = "date" onInput = {event => setDate(event.target.value)} value = {props.problemDate}></input>
               </form>
         </Modal.Body>
         <Modal.Footer>

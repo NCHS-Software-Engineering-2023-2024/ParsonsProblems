@@ -6,7 +6,7 @@ import {
 } from "react-router-dom";
 import './browsepage.css';
 import { fileContext } from "./fileContext";
-import { Upload } from "./filecomponent";
+import { Save, Upload } from "./filecomponent";
 export function Browse()  {
     const baseURL  = 'http://localhost:8000/'
     const [files, setFiles] = useState([]);
@@ -125,22 +125,18 @@ export function Browse()  {
        
           <thead>
             <tr class = "tr">
+            <th style={{cursor: "default" }}></th>
             <th onClick={() => handleSort('Name')}>Problem Name</th>
             <th onClick={() => handleSort('Type')}>File Type</th>
             <th onClick={() => handleSort('Comments')}>Comments</th>
             <th onClick={() => handleSort('Date')}>Date</th>
-            <th style={{cursor: "default" }}></th>
             </tr>
           </thead>
           <tbody>
           {sortedData.map((Problem, index)=>(
              
               <tr key = {index}>
-                <td style={{textAlign:"center", cursor:"pointer"}} onClick = {() => setFile(JSON.parse(Problem.Problem.replaceAll("/\\", "")))}><Link to="/">{Problem.Name}</Link></td>
-                <td style={{textAlign:"center"}}>{Problem.Type}</td>
-                <td>{Problem.Comments}</td>
-                <td style={{textAlign:"center"}}>{Problem.Date.substring(0,10)}</td>
-                <td style={{textAlign:"center"}}>
+                <td style={{textAlign:"center", width:"25px"}}>
                   <div class = "checkbox"> 
                   <input style = {{width:"20px", height:"20px"}}
                     type = "checkbox"
@@ -149,6 +145,11 @@ export function Browse()  {
                   />
                   </div>
                 </td>
+                <td style={{textAlign:"center", cursor:"pointer"}} onClick = {() => setFile([Problem.id, JSON.parse(Problem.Problem.replaceAll("/\\", ""))])}><Link to="/">{Problem.Name}</Link></td>
+                <td style={{textAlign:"center"}}>{Problem.Type}</td>
+                <td>{Problem.Comments}</td>
+                <td style={{textAlign:"center"}}>{Problem.Date.substring(0,10)}</td>
+                <td style={{textAlign:"center"}}><Save problem = {Problem.problem} problemName = {Problem.Name} problemType = {Problem.Type} problemComments = {Problem.Comments} problemDate = {Problem.Date.substring(0,10)} callback={() => getProblems()}/></td>
               </tr>
 
               ))}
