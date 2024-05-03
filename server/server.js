@@ -104,8 +104,8 @@ const update = mysql.createConnection({
   password: 'Qiprufecr*22@lc0fru',
   database: 'redhawk_parsons'
 });
-update.query('/update', (req, res) => {
-  let sql = "SET `Problem Name` = (?), `File Type` = (?), Comments = (?), Date = (?) WHERE id = (?)";
+app.put('/update', (req, res) => {
+  let sql = "UPDATE Files SET `Problem Name` = (?), `File Type` = (?), Comments = (?), Date = (?) WHERE id = (?)";
   update.query(sql, [req.body.name, req.body.type, req.body.comments, req.body.date, req.body.id]);
 });
 */

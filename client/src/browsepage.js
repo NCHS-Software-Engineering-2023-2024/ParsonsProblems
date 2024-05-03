@@ -149,7 +149,7 @@ export function Browse()  {
                 <td style={{textAlign:"center"}}>{Problem.Type}</td>
                 <td>{Problem.Comments}</td>
                 <td style={{textAlign:"center"}}>{Problem.Date.substring(0,10)}</td>
-                <td style={{textAlign:"center"}}><Save problem = {Problem.problem} problemName = {Problem.Name} problemType = {Problem.Type} problemComments = {Problem.Comments} problemDate = {Problem.Date.substring(0,10)} callback={() => getProblems()}/></td>
+                <td style={{textAlign:"center"}}><Save problem = {Problem.Problem} problemName = {Problem.Name} problemType = {Problem.Type} problemComments = {Problem.Comments} problemDate = {Problem.Date.substring(0,10)} callback={() => getProblems()}/></td>
               </tr>
 
               ))}

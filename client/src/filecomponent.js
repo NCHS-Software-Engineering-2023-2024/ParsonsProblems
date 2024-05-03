@@ -144,7 +144,8 @@ export function Save({...props}) {
   const [name, setName] = useState(props.problemName);
   const [comments, setComments] = useState(props.problemComments);
   const [date, setDate] = useState(props.problemDate);
-  const [problem, setProblem] = useState(JSON.stringify(props.problem));
+  const [problem, setProblem] = useState(JSON.stringify(props.problem).replaceAll("\\", ""));
+  console.log(problem)
   //hooks - makes the popup 'appear' 
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
@@ -199,18 +200,18 @@ export function Save({...props}) {
               <form class = "loadfile" style={{display:"block"}}>  
                 <label for = "problem">Problem</label>
                 <br/>
-                <textarea id = "problem" rows = "10" cols = "50"  onInput = {event => setProblem(event.target.value)} value = {props.problem}></textarea>
+                <textarea id = "problem" rows = "10" cols = "50"  onInput = {event => setProblem(event.target.value)} value = {problem}></textarea>
                 <label for = "name">Problem Name</label>
                 <br/>
-                <input type = "text" id = "name" onInput = {event => setName(event.target.value)} value = {props.problemName}></input>
+                <input type = "text" id = "name" onInput = {event => setName(event.target.value)} value = {name}></input>
                 <br/>
                 <label for = "comments">Comments</label>
                 <br/>
-                <textarea id = "comments" rows = "5" cols = "50" placeholder='Enter comments here' onInput = {event => setComments(event.target.value)} value = {props.problemComments}></textarea>
+                <textarea id = "comments" rows = "5" cols = "50" placeholder='Enter comments here' onInput = {event => setComments(event.target.value)} value = {comments}></textarea>
                 <br/>
                 <label for = "date">Date</label>
                 <br/>
-                <input type = "date" id = "date" onInput = {event => setDate(event.target.value)} value = {props.problemDate}></input>
+                <input type = "date" id = "date" onInput = {event => setDate(event.target.value)} value = {date}></input>
               </form>
         </Modal.Body>
         <Modal.Footer>
