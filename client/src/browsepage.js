@@ -145,11 +145,11 @@ export function Browse()  {
                   />
                   </div>
                 </td>
-                <td style={{textAlign:"center", cursor:"pointer"}} onClick = {() => setFile([Problem.id, JSON.parse(Problem.Problem.replaceAll("/\\", ""))])}><Link to="/">{Problem.Name}</Link></td>
+                <td style={{textAlign:"center", cursor:"pointer"}} onClick = {() => setFile([Problem.id, JSON.parse(Problem.Problem)])}><Link to="/">{Problem.Name}</Link></td>
                 <td style={{textAlign:"center"}}>{Problem.Type}</td>
                 <td>{Problem.Comments}</td>
                 <td style={{textAlign:"center"}}>{Problem.Date.substring(0,10)}</td>
-                <td style={{textAlign:"center"}}><Save problem = {Problem.Problem} problemName = {Problem.Name} problemType = {Problem.Type} problemComments = {Problem.Comments} problemDate = {Problem.Date.substring(0,10)} callback={() => getProblems()}/></td>
+                <td style={{textAlign:"center"}}><Save problem = {Problem.Problem} problemName = {Problem.Name} problemType = {Problem.Type} problemComments = {Problem.Comments} problemDate = {Problem.Date.substring(0,10)} id = {Problem.id} callback={() => getProblems()}/></td>
               </tr>
 
               ))}

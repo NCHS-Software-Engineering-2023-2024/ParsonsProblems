@@ -11,6 +11,7 @@ import './App.css';
 import { Browse } from "./browsepage.js";
 import { DndContainer } from "./drag-and-drop/dnd-container.js";
 import { PopUp } from "./pop-up.js";
+import { Upload } from "./filecomponent.js";
 
   // You can use this function for sending POST requests You can modify it if you want to use it for GET requests as well
   // This is an asynchronous function meaning that it returns a Promise
@@ -79,7 +80,7 @@ import { PopUp } from "./pop-up.js";
           <button class = "button">Save</button>
           </div>
               <div class="col-2">
-                <button class ="button">Save As</button>
+                <Upload input ={"Save as"}/>
               </div>
           </div>
       </div>

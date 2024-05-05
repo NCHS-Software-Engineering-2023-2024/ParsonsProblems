@@ -11,7 +11,7 @@ String.prototype.hashCode = function () {
     hash = ((hash << 5) - hash) + chr
     hash |=0;
   }
-  return hash;
+  return hash + Math.ceil(Math.random()*100);
 }
 
 export function Upload({input}, callback) {
@@ -36,7 +36,7 @@ export function Upload({input}, callback) {
         event.target.files[0].name.slice(-3) === ".py"){
           
           setType(event.target.files[0].type);
-          console.log(type);
+          //console.log(type);
           const reader = new FileReader();
           reader.onload = function() {
             //console.log(reader.result);
@@ -56,12 +56,12 @@ export function Upload({input}, callback) {
       if (line.includes("\r")){
         var str = line.substring(0, line.indexOf("\r"));
         if (str.length !== 0){ // doesn't add lines that only contain \r 
-          json.push({id: count, name: str, index: 0})
+          json.push({id: count, name: str})
           count++;
         }
       }
       else if (line.length !== 0 ){ 
-           json.push({id: count, name: line, index: 0});
+           json.push({id: count, name: line});
            count++;
       }
   }
@@ -69,15 +69,15 @@ export function Upload({input}, callback) {
   // only sets the file when submit button is clicked to limit rerenders
   const handleSubmit = async (event) => {
     //event.preventDefault();
-
+    const id = name.hashCode()
     const put = { type: type,
                   name: name, 
                   problem: json,
                   date: date,
                   comments: comments, 
-                  id: name.hashCode()
+                  id: id
                 };
-    setFile([name.hashCode(), file[1]])
+    setFile([id, file[1]])
     //console.log(JSON.stringify(put));
     try {
         const res = await fetch("http://localhost:8000/put", {
@@ -144,8 +144,8 @@ export function Save({...props}) {
   const [name, setName] = useState(props.problemName);
   const [comments, setComments] = useState(props.problemComments);
   const [date, setDate] = useState(props.problemDate);
-  const [problem, setProblem] = useState(JSON.stringify(props.problem).replaceAll("\\", ""));
-  console.log(problem)
+  const [problem, setProblem] = useState(props.problem);
+  //console.log(problem)
   //hooks - makes the popup 'appear' 
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
@@ -156,16 +156,17 @@ export function Save({...props}) {
   const handleSubmit = async (event) => {
     //event.preventDefault();
       
-    const update = { type: type,
+    const update = { 
                   name: name, 
-                  problem: file[1],
+                  problem: problem,
                   date: date,
                   comments: comments, 
-                  id: file[0]
-                };
+                  id: props.id
+                  };
 
     //console.log(JSON.stringify(put));
     try {
+        console.log("update "+JSON.stringify(update))
         await fetch("http://localhost:8000/update", {
             method: 'PUT',
             headers:{
@@ -174,6 +175,7 @@ export function Save({...props}) {
             body: JSON.stringify(update)
         })
         .then(props.callback)
+        .then(console.log(problem))
         .then(alert("Refresh the page to see the updated problem on the database page."));
     }
         catch (error){

@@ -79,7 +79,7 @@ app.put('/put', (req, res) => {
     //}
     //else {
       console.log("uploading...");
-      console.log(req.body);
+      //console.log(req.body);
       let sql = "INSERT INTO Files VALUES (?, ?, ?, ?, ?, ?)";
       upload.query(sql, [req.body.name, req.body.type, req.body.comments, req.body.date, JSON.stringify(req.body.problem), req.body.id]);
       //if (err) console.log("err "+ err)
@@ -97,7 +97,7 @@ app.put('/delete', (req, res) => {
   let sql = `DELETE FROM Files WHERE id IN(${req.body})` ;
   del.query(sql);
 })
-/*
+
 const update = mysql.createConnection({
   host: 'db.redhawks.us',
   user: 'redhawk_parsons', 
@@ -105,7 +105,14 @@ const update = mysql.createConnection({
   database: 'redhawk_parsons'
 });
 app.put('/update', (req, res) => {
-  let sql = "UPDATE Files SET `Problem Name` = (?), `File Type` = (?), Comments = (?), Date = (?) WHERE id = (?)";
-  update.query(sql, [req.body.name, req.body.type, req.body.comments, req.body.date, req.body.id]);
-});
-*/
+  console.log(req.body)
+  try{
+    
+    let sql = "UPDATE Files SET `Problem Name` = ?, Comments = ?, Date = ?, Problem = ? WHERE id = ?";
+    update.query(sql, [req.body.name, req.body.comments, req.body.date, req.body.problem, req.body.id]);
+  }
+  catch (err) {
+    console.log(err)
+  }
+}
+);
