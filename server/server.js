@@ -105,9 +105,9 @@ const update = mysql.createConnection({
   database: 'redhawk_parsons'
 });
 app.put('/update', (req, res) => {
-  console.log(req.body)
+  //console.log(req.body)
   try{
-    
+    console.log("updating...")
     let sql = "UPDATE Files SET `Problem Name` = ?, Comments = ?, Date = ?, Problem = ? WHERE id = ?";
     update.query(sql, [req.body.name, req.body.comments, req.body.date, req.body.problem, req.body.id]);
   }

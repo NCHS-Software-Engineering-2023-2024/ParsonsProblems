@@ -29,24 +29,22 @@ export function Upload({input}, callback) {
   const handleShow = () => setShow(true);
 
   const {file, setFile} = useContext(fileContext);// to update dnd-container's file without sending props
-  
+  var types = ["txt", "java", "py"]
   const handleFileChange = (event) => {
-    if (event.target.files[0].name.slice(-4) === ".txt" ||
-        event.target.files[0].name.slice(-5) === ".java" ||
-        event.target.files[0].name.slice(-3) === ".py"){
-          
-          setType(event.target.files[0].type);
-          //console.log(type);
+    var extension = event.target.files[0].name.split(".").pop().toLowerCase();
+    if (types.indexOf(extension) > 0){
+          setType("."+extension);
+
           const reader = new FileReader();
           reader.onload = function() {
-            //console.log(reader.result);
             setContent(reader.result); // to parse outside of handleFileChange
-          }
+            }
+          
           reader.readAsText(event.target.files[0]);
-        }
+      }
     else {
           alert("The file type you selected is not supported.");
-        }
+      }
     }
 
   const json = [];
@@ -66,8 +64,7 @@ export function Upload({input}, callback) {
       }
   }
   
-  // only sets the file when submit button is clicked to limit rerenders
-  const handleSubmit = async (event) => {
+  const handleSubmit = async () => {
     //event.preventDefault();
     const id = name.hashCode()
     const put = { type: type,
@@ -105,7 +102,7 @@ export function Upload({input}, callback) {
         onHide={handleClose}
         backdrop="static"
         keyboard={false}
-        centered = {true}
+        centered={true}
       >
         <Modal.Header closeButton>
           <Modal.Title>Save a problem</Modal.Title>
@@ -150,12 +147,7 @@ export function Save({...props}) {
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
 
-  const {file, setFile} = useContext(fileContext);// to update dnd-container's file without sending props
-
-  // only sets the file when submit button is clicked to limit rerenders
-  const handleSubmit = async (event) => {
-    //event.preventDefault();
-      
+  const handleSubmit = async () => {
     const update = { 
                   name: name, 
                   problem: problem,
@@ -163,10 +155,8 @@ export function Save({...props}) {
                   comments: comments, 
                   id: props.id
                   };
-
-    //console.log(JSON.stringify(put));
     try {
-        console.log("update "+JSON.stringify(update))
+        //console.log("update "+JSON.stringify(update))
         await fetch("http://localhost:8000/update", {
             method: 'PUT',
             headers:{
@@ -175,7 +165,7 @@ export function Save({...props}) {
             body: JSON.stringify(update)
         })
         .then(props.callback)
-        .then(console.log(problem))
+        //.then(console.log(problem))
         .then(alert("Refresh the page to see the updated problem on the database page."));
     }
         catch (error){
@@ -203,13 +193,24 @@ export function Save({...props}) {
                 <label for = "problem">Problem</label>
                 <br/>
                 <textarea id = "problem" rows = "10" cols = "50"  onInput = {event => setProblem(event.target.value)} value = {problem}></textarea>
-                <label for = "name">Problem Name</label>
-                <br/>
-                <input type = "text" id = "name" onInput = {event => setName(event.target.value)} value = {name}></input>
-                <br/>
+                <div style= {{display:"table"}}>
+                  <div style = {{display:"table-cell"}}>
+                    <label for = "type">Type</label>
+                    <input type = "text" list = "type" onInput = {event => setType(event.target.value)} value = {type}></input>
+                    <datalist id = "type">
+                      <option>.java</option>
+                      <option>.py</option>
+                      <option>.txt</option>
+                    </datalist>
+                  </div>
+                  <div style = {{display:"table-cell"}}>
+                    <label for = "name">Problem Name</label>
+                    <input type = "text" id = "name" onInput = {event => setName(event.target.value)} value = {name}></input>
+                  </div>
+                </div>
                 <label for = "comments">Comments</label>
                 <br/>
-                <textarea id = "comments" rows = "5" cols = "50" placeholder='Enter comments here' onInput = {event => setComments(event.target.value)} value = {comments}></textarea>
+                <textarea id = "comments" rows = "3" cols = "50" placeholder='Enter comments here' onInput = {event => setComments(event.target.value)} value = {comments}></textarea>
                 <br/>
                 <label for = "date">Date</label>
                 <br/>

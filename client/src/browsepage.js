@@ -126,10 +126,11 @@ export function Browse()  {
           <thead>
             <tr class = "tr">
             <th style={{cursor: "default" }}></th>
-            <th onClick={() => handleSort('Name')}>Problem Name</th>
-            <th onClick={() => handleSort('Type')}>File Type</th>
-            <th onClick={() => handleSort('Comments')}>Comments</th>
-            <th onClick={() => handleSort('Date')}>Date</th>
+            <th onClick={() => handleSort('Name')} style={{width: "25%"}}>Problem Name</th>
+            <th onClick={() => handleSort('Type')} style={{width: "7.5%"}}>File Type</th>
+            <th onClick={() => handleSort('Comments')} >Comments</th>
+            <th onClick={() => handleSort('Date')} style={{width: "10%"}}>Date</th>
+            <th style={{cursor: "default", width: "10%"}}></th>
             </tr>
           </thead>
           <tbody>
