@@ -62,15 +62,20 @@
     align-items: center;
   }
 
+  thead {
+    font-weight: bold;
+  }
+
   th{
     text-align: center;
     cursor: pointer;
-    font-size: 115%;
+    font-size: 125%;
   }
 
   td {
     padding: 30px;
     text-align: left;
+    font-size: 110%;
   }
 
   tr:nth-child(even) {

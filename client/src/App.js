@@ -52,22 +52,14 @@ import { Upload } from "./filecomponent.js";
       </head>
       <body className="App-body">
   
-      <div class = "navbar">
-        <div class = "container-fluid">
-          <div class = "row">
-            <div class = "col"> 
-              <h1>NCHS Parsons Problems</h1>
-            <div class = "col"></div>
-            </div>
-            
-        </div>
-      </div>
-  
-      </div>
+      <ul>
+        <li style={{pointerEvents: "none"}}><a><Link to="/">NCHS Parsons Problems</Link></a></li>
+        <li><a><Link to="/browse">Problems Database</Link></a></li>
+      </ul>
       
       <div class="container text-center">
         <div class="row mt-4">
-          <div class="col-4" >
+          <div class="col-3" >
             <button class = "button" ><Link to="/browse">Browse Problems Database</Link></button>
           </div>
           <div class="col-3">
