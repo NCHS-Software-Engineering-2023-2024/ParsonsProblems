@@ -9,14 +9,15 @@ export function PopUp() {
   const [show, setShow] = useState(false);
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
-
+  var types = ["txt", "java", "py"]
   const {file, setFile} = useContext(fileContext);// to update dnd-container's file without sending props
     
   const [content, setContent] = useState("");
   const handleFileChange = (event) => {
-    if (event.target.files[0].name.slice(-4) === ".txt" ||
-        event.target.files[0].name.slice(-5) === ".java" ||
-        event.target.files[0].name.slice(-3) === ".py"){
+    console.log(event.target.files[0]);
+    
+    var extension = event.target.files[0].name.split(".").pop().toLowerCase();
+    if (types.indexOf(extension) > -1){
           const reader = new FileReader();
           reader.onload = function() {
           //console.log(reader.result);

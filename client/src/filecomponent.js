@@ -32,7 +32,8 @@ export function Upload({input}, callback) {
   var types = ["txt", "java", "py"]
   const handleFileChange = (event) => {
     var extension = event.target.files[0].name.split(".").pop().toLowerCase();
-    if (types.indexOf(extension) > 0){
+    console.log(extension);
+    if (types.indexOf(extension) > -1){
           setType("."+extension);
 
           const reader = new FileReader();
@@ -175,7 +176,7 @@ export function Save({...props}) {
   return (
     <>
       <button class = "button" onClick={handleShow}>
-        Update Problem
+        Edit Problem
       </button>
 
       <Modal
