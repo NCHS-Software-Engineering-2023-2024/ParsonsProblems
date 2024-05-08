@@ -51,7 +51,18 @@ import { Upload } from "./filecomponent.js";
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous"></link>
       </head>
       <body className="App-body">
-  
+      {/*
+      <div class = "navbar">
+          <div class = "container-fluid">
+            <div class = "row">
+              <div class = "col"> 
+                <h1>NCHS Parsons Problems</h1>
+              </div>
+          </div>
+        </div>
+        </div>
+        */}
+      {/**/}
       <ul>
         <li style={{pointerEvents: "none"}}><a><Link to="/">NCHS Parsons Problems</Link></a></li>
         <li><a><Link to="/browse">Problems Database</Link></a></li>

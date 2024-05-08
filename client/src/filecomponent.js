@@ -14,7 +14,7 @@ String.prototype.hashCode = function () {
   return hash + Math.ceil(Math.random()*100);
 }
 
-export function Upload({input}, callback) {
+export function Upload({input}, callback) { // input to change the text if it is a Save or Edit button
   //hooks - for reading inputs from user
   const [show, setShow] = useState(false);
 
@@ -29,10 +29,10 @@ export function Upload({input}, callback) {
   const handleShow = () => setShow(true);
 
   const {file, setFile} = useContext(fileContext);// to update dnd-container's file without sending props
-  var types = ["txt", "java", "py"]
+  var types = ["txt", "java", "py"] // types that can be added to database
   const handleFileChange = (event) => {
     var extension = event.target.files[0].name.split(".").pop().toLowerCase();
-    console.log(extension);
+    //console.log(extension);
     if (types.indexOf(extension) > -1){
           setType("."+extension);
 
@@ -67,7 +67,7 @@ export function Upload({input}, callback) {
   
   const handleSubmit = async () => {
     //event.preventDefault();
-    const id = name.hashCode()
+    const id = name.hashCode() //generate unique id when submitting
     const put = { type: type,
                   name: name, 
                   problem: json,
@@ -78,14 +78,14 @@ export function Upload({input}, callback) {
     setFile([id, file[1]])
     //console.log(JSON.stringify(put));
     try {
-        const res = await fetch("http://localhost:8000/put", {
+        await fetch("http://localhost:8000/put", {
             method: 'PUT',
             headers:{
                 'Content-Type': 'application/json'
             },
             body: JSON.stringify(put)
         })
-        .then(callback)
+        .then(callback) // to update mysql database
         .then(alert("Refresh the page to see the added problem."));
     }
         catch (error){
@@ -136,7 +136,7 @@ export function Upload({input}, callback) {
 }
 
 export function Save({...props}) {
-  //hooks - for reading inputs from user
+  //sets the default value of the inputs to the problem's existing values
   const [show, setShow] = useState(false);
   const [type, setType] = useState(props.problemType);
   const [name, setName] = useState(props.problemName);
@@ -194,7 +194,12 @@ export function Save({...props}) {
                 <label for = "problem">Problem</label>
                 <br/>
                 <textarea id = "problem" rows = "10" cols = "50"  onInput = {event => setProblem(event.target.value)} value = {problem}></textarea>
-                <div style= {{display:"table"}}>
+
+                <div style= {{display:"table"}}> { /* to align the inputs */ }
+                  <div style = {{display:"table-cell"}}> 
+                    <label for = "name">Problem Name</label>
+                    <input type = "text" id = "name" onInput = {event => setName(event.target.value)} value = {name}></input>
+                  </div>
                   <div style = {{display:"table-cell"}}>
                     <label for = "type">Type</label>
                     <input type = "text" list = "type" onInput = {event => setType(event.target.value)} value = {type}></input>
@@ -204,11 +209,8 @@ export function Save({...props}) {
                       <option>.txt</option>
                     </datalist>
                   </div>
-                  <div style = {{display:"table-cell"}}>
-                    <label for = "name">Problem Name</label>
-                    <input type = "text" id = "name" onInput = {event => setName(event.target.value)} value = {name}></input>
-                  </div>
                 </div>
+
                 <label for = "comments">Comments</label>
                 <br/>
                 <textarea id = "comments" rows = "3" cols = "50" placeholder='Enter comments here' onInput = {event => setComments(event.target.value)} value = {comments}></textarea>
