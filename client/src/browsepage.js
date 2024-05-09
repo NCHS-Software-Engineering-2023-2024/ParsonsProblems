@@ -97,15 +97,10 @@ export function Browse()  {
           <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous"></link>
 
         </head>
-        <div class = "navbar">
-          <div class = "container-fluid">
-            <div class = "row">
-              <div class = "col"> 
-                <h1>NCHS Parsons Problems</h1>
-              </div>
-          </div>
-        </div>
-        </div>
+        <ul>
+          <li style={{pointerEvents: "none"}}><a href = ""><Link to="/">NCHS Parsons Problems</Link></a></li>
+          <li><a href = ""><Link to="/">Homepage</Link></a></li>
+        </ul>
         <div class = "container">
             <div class = "row mt-4">
                 <div class = "col-4">

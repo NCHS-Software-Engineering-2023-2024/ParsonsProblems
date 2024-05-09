@@ -13,22 +13,6 @@
   }
 }
 
-.navbar {
-  z-index: 999;
-  background-color: rgb(255, 0, 0);
-  padding-left: 15px;
-  padding-right: 15px;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  overflow: hidden;
-  font-family: Arial, Helvetica, sans-serif;
-  font-size: 10px;
-  color: white;
-  min-height: 100px;
-  margin-bottom: auto;
-}
-
 ul {
   list-style-type: none;
   margin: 0;
