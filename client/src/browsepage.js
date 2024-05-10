@@ -78,7 +78,7 @@ export function Browse()  {
               },
               body: JSON.stringify(deletedIds)
             })
-            .then(alert("Refresh the page to see the updated database."));
+            .then(window.location.reload());
 
             const updatedTable = files.filter((Problem, index) => !selectedRows[index]);
             setFiles(updatedTable);
@@ -98,8 +98,8 @@ export function Browse()  {
 
         </head>
         <ul>
-          <li style={{pointerEvents: "none"}}><a href = ""><Link to="/">NCHS Parsons Problems</Link></a></li>
-          <li><a href = ""><Link to="/">Homepage</Link></a></li>
+          <li style={{pointerEvents: "none"}}><a href = {undefined}><Link to="/">NCHS Parsons Problems</Link></a></li> 
+          <li><a href = {undefined}><Link to="/">Homepage</Link></a></li>
         </ul>
         <div class = "container">
             <div class = "row mt-4">

@@ -53,7 +53,7 @@ import { PopUp } from "./pop-up.js";
       <body className="App-body">
       <ul>
         <li style={{pointerEvents: "none"}}><a href = ""><Link to="/">NCHS Parsons Problems</Link></a></li>
-        <li><a href = "brose"><Link to="/browse">Problems Database</Link></a></li>
+        <li><a href = "browse"><Link to="/browse">Problems Database</Link></a></li>
       </ul>
       
       <div class="container text-center">

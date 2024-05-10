@@ -86,7 +86,7 @@ export function Upload({input}, callback) { // input to change the text if it is
             body: JSON.stringify(put)
         })
         .then(callback) // to update mysql database
-        .then(alert("Refresh the page to see the added problem."));
+        .then(window.location.reload());
     }
         catch (error){
             console.error('upload error');
@@ -167,7 +167,7 @@ export function Save({...props}) {
         })
         .then(props.callback)
         //.then(console.log(problem))
-        .then(alert("Refresh the page to see the updated problem on the database page."));
+        .then(window.location.reload());
     }
         catch (error){
             console.error('upload error');
