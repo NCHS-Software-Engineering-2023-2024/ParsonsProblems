@@ -104,11 +104,9 @@ export function Browse()  {
         <div class = "container">
             <div class = "row mt-4">
                 <div class = "col-4">
-                  <button class = "button" ><Link to="/">Back to Home</Link></button>
-                </div>
-                <div class = "col-4">
                   <button class = "button" onClick = {deleteRows}>Delete Selected Rows</button>
                 </div>
+                <div class = "col-4"></div>
                 <div class = "col-4">
                   <Upload input = {"Upload"} callback={() => getProblems()}/>
                 </div>
