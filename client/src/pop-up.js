@@ -32,7 +32,7 @@ export function PopUp() {
     
 
   var json = [];
-  var count = 1;
+  var count = 0;
   // file contents need to be added to an array for dnd
   for (const line of content.split("\n")){
       if (line.includes("\r")){
