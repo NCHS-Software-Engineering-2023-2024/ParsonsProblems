@@ -1,6 +1,6 @@
 ![Parsons Puzzlers' logo](parsons-logo.png)\
 2024 Software Engineering 2's Parsons Puzzlers\
-*Celeste Emery ('24), Seth Tan ('23), Aryan Pradhan ('23), and Andrew Bukowski ('23)*
+*Celeste Emery ('24), Seth Tan ('25), Aryan Pradhan ('25), and Andrew Bukowski ('25)*
 
 # NCHS Parsons Problems
 ## Overview
@@ -45,7 +45,7 @@ Puzzle json
 | indent | Integer. Correct indent position of parson block (indentation not implemented yet). wrt problems currently in the database, this attribute might not be in the puzzle JSON... |
 
 ## Known issues
-- [ ] Updating problems in the database does not work in some places
+- [ ] Updating problems in the database does not work on Firefox
 - [ ] With huge parsons problems, drag-and-drop + its animation is laggy (see Great Gatsby Ch 1 'problem')
 
 *See 'Final heuristic evaluation' and 'Final user testing' in the Trello board for more details...*
@@ -55,8 +55,9 @@ Puzzle json
 - [ ] Users should be able to indent parson blocks
 - [ ] Users should be able to base a problem's grading off of blocks' # of indentations
 - [ ] In the database page, users should be able to select an entire row to redirect users to a problem
+- [ ] In the database page, users should be able to select a problem, and after sorting, the problem should still be selected 
 - [ ] (?) In the database page, users should be able to double-click on a textbox area to edit the text WITHOUT using a dialogue / modal
-- [ ] Users should be able to log in as a teacher or student user.
+- [ ] Users should be able to log in as a teacher or student user (through google authentication).
 - [ ] Teacher users should be able to upload/edit problems to the database exclusively
 
 *See Trello board's Product Backlog for more details...*
