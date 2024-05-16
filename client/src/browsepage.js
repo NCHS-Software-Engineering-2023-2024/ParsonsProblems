@@ -95,7 +95,6 @@ export function Browse()  {
         <div>
         <head>
           <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous"></link>
-
         </head>
         <ul>
           <li style={{pointerEvents: "none"}}><a href = {undefined}><Link to="/">NCHS Parsons Problems</Link></a></li> 
@@ -153,6 +152,7 @@ export function Browse()  {
     </table>
     </div>
 
+    <p style={{textAlign: "center", color: "grey"}}>NCHS Parsons Problems by Seth Tan ('25), Celeste Emery ('24), Aryan Pradhan ('25), and Andrew Bukowski ('25)</p>
         </div>
       );
     

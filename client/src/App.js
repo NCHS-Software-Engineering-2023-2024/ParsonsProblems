@@ -43,41 +43,44 @@ import { PopUp } from "./pop-up.js";
     // You can put any Javascript (JSX) code within curly brackets in a React app
 
   }
-  
+
   function Home() {
     return (
       <div className="App">
-      <head>
-        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous"></link>
-      </head>
-      <body className="App-body">
-      <ul>
-        <li style={{pointerEvents: "none"}}><a href = ""><Link to="/">NCHS Parsons Problems</Link></a></li>
-        <li><a href = "browse"><Link to="/browse">Problems Database</Link></a></li>
-      </ul>
+        <head>
+          <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous"></link>
+        </head>
+
+
+        <body className="App-body">
+          <ul>
+            <li style={{pointerEvents: "none"}}><a href = ""><Link to="/">NCHS Parsons Problems</Link></a></li>
+            <li><a href = "browse"><Link to="/browse">Problems Database</Link></a></li>
+          </ul>
+          
+          <div class="container text-center">
+            <div class="row mt-4">
+              <div class="col-3">
+                <PopUp />
+              </div>
+              <div class="col-6"></div>
+              <div class="col-3">
+                <Upload input ={"Save as"}/>
+              </div>
+            </div>
+          </div>
+          
+          <div>
+            <DndContainer/>
+          </div>
+              
+        
+        </body>    
+        <p style={{textAlign: "center", color: "grey"}}>NCHS Parsons Problems by Seth Tan ('25), Celeste Emery ('24), Aryan Pradhan ('25), and Andrew Bukowski ('25)</p>
+
       
-      <div class="container text-center">
-        <div class="row mt-4">
-          <div class="col-3">
-            <PopUp />
-          </div>
-          <div class="col-6"></div>
-          <div class="col-3">
-            <Upload input ={"Save as"}/>
-          </div>
-        </div>
       </div>
-      
-      <div>
-        <DndContainer/>
-      </div>
-          
-          
-          </body>
-          </div>
-          
-        );
-      }
+);}
   
     
   
