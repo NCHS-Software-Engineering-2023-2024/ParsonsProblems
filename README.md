@@ -1,8 +1,7 @@
-![Parsons Puzzlers' logo](parsons-logo.png)\
-2024 Software Engineering 2's Parsons Puzzlers\
-*Celeste Emery ('24), Seth Tan ('25), Aryan Pradhan ('25), and Andrew Bukowski ('25)*
 
 # NCHS Parsons Problems
+![Parsons Puzzlers' logo](parsons-logo.png)
+
 ## Overview
 Parsons problems are a type of draggable code puzzle, where the user rearranges the code blocks to arrange functioning code.\
 Users, as of this build of NCHS Parsons Problems, can:
@@ -12,15 +11,40 @@ Users, as of this build of NCHS Parsons Problems, can:
 4. Upload custom problems (via local files) to the database for other users to use
 
 ## Platform Requirements
-Can be run on any platform, but requires React installation.\
-Optionally, use Github Codespaces to code on the browser (useful for Chromebooks). *However, Github Codespaces gives a 'failed to fetch' error when trying to access the database. We think this is an issue with routing, since Codespaces redirects ports to a custom domain (ie. not "http://localhost/...")*
+Can be run on any platform, but requires (functioning!) React installation. (We saw minor issues with running React apps on MacOS.)\
+Optionally, use Github Codespaces to code on the browser (useful for Chromebooks). *However, Github Codespaces gives a 'failed to fetch' error when trying to access the database. We think this is an issue with routing, since Codespaces redirects ports to a custom domain (ie. not "http://localhost/...")*\
+The actual React app itself works best in Google Chrome browser.
 
 ## Installation/configuration instructions
 Requires React installed.\
-Install necessary React dependencies/packages to the repository's back/frontend located respectively at `/parsons-problems/server/` and `/parsons-problems/client/` with `npm install` (`npm i` for short). Avoid installing packages directly to the root, to reduce redundancies. 
+Install necessary React dependencies/packages to the repository's back/frontend located respectively at `/parsons-problems/server/` and `/parsons-problems/client/` with `npm install` (`npm i` for short). Avoid installing packages directly to the root, to reduce redundancies.\
 
+**Frontend dependencies**:
+    @dnd-kit (/core, /modifiers, /sortable, /utilities),
+    @testing-library (/jest-dom, /react, /user-event),
+    bootstrap,
+    immutability-helper,
+    mysql2m
+    react,
+    react-bootstrap,
+    react-dom,
+    react-redux,
+    react-router-dom,
+    react-scripts,
+    react-select,
+    web-vitals\
+    
+**Backend dependencies**:
+    cors,
+    express,
+    i,
+    mysql\
+    
+*See package.json under *`/client/`* or *`/server/`* for package version details*
+    
 ## Running the app
-Clone this repository & install its required packages. To run the React app, run run `npm start` in `/server` and `/client`.\ Frontend/client is hosted on http://localhost:3000/, while backend/server is hosted on http://localhost:8000/. 
+Clone this repository & install its required packages. To run the React app, run run `npm start` in `/server/` and `/client/`.\
+Frontend/client is hosted on http://localhost:3000/, while backend/server is hosted on http://localhost:8000/. 
 
 ## Project Architecture
 Frontend: React\
@@ -61,3 +85,8 @@ Puzzle json
 - [ ] Teacher users should be able to upload/edit problems to the database exclusively
 
 *See Trello board's Product Backlog for more details...*
+
+## Credits
+
+2024 Software Engineering 2's Parsons Puzzlers\
+*Celeste Emery ('24), Seth Tan ('25), Aryan Pradhan ('25), and Andrew Bukowski ('25)*
