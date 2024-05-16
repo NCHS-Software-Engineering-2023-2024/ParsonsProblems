@@ -1,9 +1,17 @@
 // Video4Ever Starter Code
 // Dr. Miller
 // Start your React app using npm start while in the client directory
-
+import React from "react";
+import {
+  Link,
+  Route,
+  Routes
+} from "react-router-dom";
 import './App.css';
-import React, { useState, useEffect } from "react";
+import { Browse } from "./browsepage.js";
+import { DndContainer } from "./drag-and-drop/dnd-container.js";
+import { Upload } from "./filecomponent.js";
+import { PopUp } from "./pop-up.js";
 
   // You can use this function for sending POST requests You can modify it if you want to use it for GET requests as well
   // This is an asynchronous function meaning that it returns a Promise
@@ -27,40 +35,104 @@ import React, { useState, useEffect } from "react";
       body: JSON.stringify(data), // body data type must match "Content-Type" header
     });
     return response.json(); // parses JSON response into native JavaScript objects
-}
 
-function App() {
-  // Use this variable whenever you want to connect to the Node.js server
-  // When you create production version of a React app, this address will change
-  const baseURL = "http://localhost:8000/";
+    
+    
 
-  // This is an example variable (message) that can be changed with the setMessage function
-  // The initial state of the message is an empty string. When the variable is changed, it changes everywhere it is used.
-  // This is referred to as a state hook
-  const [message, setMessage] = useState("");
+    // The message variable is displayed below and will update, if necessary
+    // You can put any Javascript (JSX) code within curly brackets in a React app
 
-  // useEffect will run when the app loads
-  // This is referred to as an effect hook
-  // This effect will modify the message based on what is returned from a GET request to the server's message 
-  useEffect(() => {
-    fetch(`${baseURL}message`)
-      .then((res) => res.json())
-      .then((data) => {setMessage(data.message);}
-      );
-  }, []);
+  }
+  
+  function Home() {
+    return (
+      <div className="App">
+      <head>
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous"></link>
+      </head>
+      <body className="App-body">
+      <ul>
+        <li style={{pointerEvents: "none"}}><a href = ""><Link to="/">NCHS Parsons Problems</Link></a></li>
+        <li><a href = "browse"><Link to="/browse">Problems Database</Link></a></li>
+      </ul>
+      
+      <div class="container text-center">
+        <div class="row mt-4">
+          <div class="col-3">
+            <PopUp />
+          </div>
+          <div class="col-6"></div>
+          <div class="col-3">
+            <Upload input ={"Save as"}/>
+          </div>
+        </div>
+      </div>
+      
+      <div>
+        <DndContainer/>
+      </div>
+          
+          
+          </body>
+          </div>
+          
+        );
+      }
+  
+    
   
 
-  // The message variable is displayed below and will update, if necessary
-  // You can put any Javascript (JSX) code within curly brackets in a React app
+function App() {
+    // Use this variable whenever you want to connect to the Node.js server
+    // When you create production version of a React app, this address will change
+    const baseURL = "http://localhost:3000/";
+    
+    // useEffect will run when the app loads
+    // This is referred to as an effect hook
+    // This effect will modify the message based on what is returned from a GET request to the server's message 
+    /*
+    useEffect(() => {
+      fetch(`${baseURL}message`)
+        .then((res) => res.json())
+        .then((data) => {setMessage(data.message);}
+        );
+    }, []);
+    */
   return (
-    <div className="App">
-      <header className="App-header">
-      <h1>{message}</h1>
-
-      </header>
-      
-    </div>
-  );
-}
+      <>
+            {/* This is the alias of BrowserRouter i.e. Router */}
+  
+                <Routes>
+                    {/* This route is for home component 
+          with exact path "/", in component props 
+          we passes the imported component*/}
+                    <Route
+                            exact
+                            path="/"
+                            element={<Home />}
+                        ></Route>
+  
+                    {/* This route is for about component 
+          with exact path "/about", in component 
+          props we passes the imported component*/}
+                    <Route
+                        path="/browse"
+                        element={<Browse />}
+                    />
+  
+                    {/* This route is for contactus component
+          with exact path "/contactus", in 
+          component props we passes the imported component*/}
+  
+  
+                    {/* If any route mismatches the upper 
+          route endpoints then, redirect triggers 
+          and redirects app to home component with to="/" */}
+                    {/* <Redirect to="/" /> */}
+  
+                </Routes>
+                </>
+    )
+} 
 
 export default App;

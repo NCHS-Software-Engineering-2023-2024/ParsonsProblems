@@ -1,0 +1,111 @@
+@media (prefers-reduced-motion: no-preference) {
+    .App-logo {
+      animation: App-logo-spin infinite 20s linear;
+    }
+  }
+  
+  @keyframes App-logo-spin {
+    from {
+      transform: rotate(0deg);
+    }
+    to {
+      transform: rotate(360deg);
+    }
+  }
+  .jumbotron{
+    background-color: red !important;
+    color: white;
+  }
+
+  ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    border: 1px solid #e7e7e7;
+    background-color: #ff0000;
+    font-size: larger;
+  }
+  
+  li {
+    float: left;
+    margin: 0px auto
+  }
+  
+  li a {
+    display: block;
+    color: white;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+  }
+  
+  li a:hover:not(.active) {
+    background-color: #ddd;
+  }
+  
+  li a.active {
+    color: white;
+    
+  }
+  
+  .h1 {
+    display: inline-flex;
+  }
+  .strong {
+    border: none;
+    border-radius: 12px;
+    padding: 5% !important;
+    text-align: center;
+    font-size: 18px;
+  }
+
+  .sortable-list{
+    margin-inline: auto;
+  }
+  
+  table.center{
+    margin: auto;
+    text-align: center;
+  }
+
+  table, th, td, tr {
+    border: 3px solid black;
+    border-collapse: collapse;
+  }
+
+  table{
+    width: 90%;
+    align-items: center;
+  }
+
+  thead {
+    font-weight: bold;
+  }
+
+  th{
+    text-align: center;
+    cursor: pointer;
+    font-size: 125%;
+  }
+
+  td {
+    padding: 30px;
+    text-align: left;
+    font-size: 110%;
+  }
+
+  tr:nth-child(even) {
+    background-color: #d3d3d3;
+  }
+
+  .button{
+    border: none;
+    border-radius: 12px;
+    padding: 5% !important;
+    text-align: center;
+    font-size: 18px;
+    margin: auto;
+  }
+
+  
